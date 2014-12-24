@@ -1,39 +1,28 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<% provide(:title, t('fishing_memories.devise.edit_registration.title')) %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+<%= semantic_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+  <%=f.inputs do %>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <%=f.input :email, label: t('fishing_memories.devise.email.title')%>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div><%= t('fishing_memories.devise.edit_registration.unconfirmed_email') %>: <%= resource.unconfirmed_email %></div>
+    <% end %>
+
+    <%=f.input :password, label: t('fishing_memories.devise.password.title')%>
+    <%=f.input :password_confirmation, label: t('fishing_memories.devise.password_confirmation.title'), required: true%>
+    <%=f.input :current_password, label: t('fishing_memories.devise.current_password.title'), required: true%>
   <% end %>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
+  <%=f.actions do%>
+    <%=f.action :submit, label: t('fishing_memories.devise.edit_registration.submit'), button_html: { value: t('fishing_memories.devise.edit_registration.submit') } %>
+  <% end %>
 <% end %>
 
-<h3>Cancel my account</h3>
+<h2><%= t('fishing_memories.devise.edit_registration.delete.title')  %></h2>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<p>Unhappy? <%= button_to t('fishing_memories.devise.edit_registration.delete.submit'), registration_path(resource_name), data: { confirm: t('fishing_memories.delete_confirmation') }, method: :delete %></p>
 
-<%= link_to "Back", :back %>
+<%= link_to t('fishing_memories.back'), :back %>

@@ -10,6 +10,7 @@ ru:
     delete_model: "Удалить %{model}"
     details: "%{model} подробнее"
     cancel: "Отмена"
+    back: "Назад"
     empty: "Пусто"
     previous: "Пред."
     next: "След."
@@ -66,9 +67,18 @@ ru:
         title: "Пароль"
       password_confirmation:
         title: "Подтверждение пароля"
+      current_password:
+        title: "Текущий пароль"
       sign_up:
         title: "Зарегистрироваться"
         submit: "Зарегистрироваться"
+      edit_registration:
+        title: "Изменить учетную запись"
+        submit: "Обновить"
+        delete:
+          title: "Удалить учетную запись"
+          submit: "Удалить"
+        unconfirmed_email: "Ожидается подтверждение учетной записи"
       sign_in:
         title: "Войти"
         remember_me: "Запомнить меня"

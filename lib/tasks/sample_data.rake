@@ -16,7 +16,7 @@ def make_users
   10.times do |n|
     User.create!(
       username: "#{Faker::Name.first_name}#{n}",
-      email: Faker::Internet.email,
+      email: Faker::Internet.safe_email,
       password: "password",
       password_confirmation: "password",
       confirmed_at: "21.04.2014")

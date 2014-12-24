@@ -11,14 +11,7 @@ module ApplicationHelper
 	end
 
 	def resolve_body_class
-		if user_signed_in?
-			"logged_in"
-		else
-			if devise_controller?
-				"logged_out devise"
-			else
-				"logged_out"
-			end
-		end
+		body_class = user_signed_in? ? "logged_in" : "logged_out"
+		devise_controller? ? body_class + " devise" : body_class		
 	end
 end
