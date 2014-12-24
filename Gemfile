@@ -6,10 +6,16 @@ gem 'rails', '4.1.4'
 gem 'sass-rails', '~> 4.0.2'
 gem 'coffee-rails', '4.0.1'
 gem 'jquery-rails', '3.0.4'
+gem 'bourbon'
+gem 'turbolinks'
+gem 'cancan'
+gem 'devise'
+gem 'formtastic', '~> 3.0'
+gem 'faker'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'
-  gem "rspec-rails"
+  gem "rspec-rails", '~> 2.14.0.rc1'
 end
 
 group :test do

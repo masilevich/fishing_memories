@@ -1,14 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>FishingMemories</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+	<title><%= full_title(yield(:title)) %></title>
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	<%= csrf_meta_tags %>
 </head>
-<body>
+<body class="<%= resolve_body_class %>">
+	<div class="wrapper">
+		<%= render 'layouts/header' %>
 
-<%= yield %>
+		<% if devise_controller? %>
+			<%= render layout: 'layouts/devise_layout' do %>
+			<%= yield %>
+		<% end %>
+		<% else %>
+			<% if user_signed_in? %>
+				<%= render 'layouts/title_bar' %>
+			<% end %>
+			<%= render 'layouts/flashes' %>
+			<%= render layout: 'layouts/main_content_layout' do %>
+        <%= yield %>
+      <% end %>    
+		<% end %>
+
+		<%= render 'layouts/footer' %>
+	</div>
 
 </body>
 </html>

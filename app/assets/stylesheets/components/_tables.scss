@@ -1,4 +1,4 @@
-//= depend_on_asset "active_admin/orderable.png"
+//= depend_on_asset "orderable.png"
 // ----------------------------------- Tables
 
 table tr {
@@ -31,7 +31,7 @@ table.index_table {
     }
 
     &.sortable a {
-      background: image-url('active_admin/orderable.png') no-repeat 0 4px; padding-left: 13px;
+      background: image-url('orderable.png') no-repeat 0 4px; padding-left: 13px;
     }
 
     &.sorted-asc a { background-position: 0 -27px; }

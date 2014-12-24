@@ -1,0 +1,18 @@
+<% provide(:title, t('fishing_memories.devise.sign_up.title')) %>
+
+<%= semantic_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+	<%= devise_error_messages! %>
+
+	<%=f.inputs do %>
+		<%=f.input :username, label: t('fishing_memories.devise.username.title'), required: true%>
+		<%=f.input :email, label: t('fishing_memories.devise.email.title')%>
+		<%=f.input :password, label: t('fishing_memories.devise.password.title')%>
+		<%=f.input :password_confirmation, label: t('fishing_memories.devise.password_confirmation.title'), required: true%>
+	<%end%>
+	
+	<%=f.actions do%>
+		<%=f.action :submit, label: t('fishing_memories.devise.login.submit'), button_html: { value: t('fishing_memories.devise.sign_up.submit') } %>
+	<% end %>
+<% end %>
+
+<%= render "devise/shared/links" %>

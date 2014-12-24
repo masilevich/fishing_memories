@@ -23,7 +23,7 @@ body.logged_in {
   }
 }
 
-body.logged_out {
+body.logged_out.devise {
   .flash {
     @include no-shadow;
     @include text-shadow(#fff);

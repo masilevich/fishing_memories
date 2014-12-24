@@ -1,10 +1,10 @@
-body.logged_out {
+body.logged_out.devise {
   background: #e8e9ea;
 
-  #content_wrapper{
+  #devise_wrapper{
     width: 500px;
     margin: 70px auto;
-    #active_admin_content {
+    #fishing_memories_content {
       @include shadow;
       background: #fff;
       padding: 13px 30px;
@@ -31,8 +31,9 @@ body.logged_out {
         li { padding: 10px 0; }
 
         input[type=text], input[type=email], input[type=password] {
-          width: 70%;
+          width: calc(100% - 22px);
         }
+
         &.buttons { margin-left: 20%; }
         margin-bottom: 0;
       }
