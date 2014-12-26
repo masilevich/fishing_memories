@@ -5,6 +5,7 @@
 
   <%=f.inputs do %>
 
+    <%=f.input :username, label: t('fishing_memories.devise.username.title'), required: true%>
     <%=f.input :email, label: t('fishing_memories.devise.email.title')%>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -19,10 +20,12 @@
   <%=f.actions do%>
     <%=f.action :submit, label: t('fishing_memories.devise.edit_registration.submit'), button_html: { value: t('fishing_memories.devise.edit_registration.submit') } %>
   <% end %>
+
+  <%= link_to t('fishing_memories.back'), :back %><br />
 <% end %>
 
 <h2><%= t('fishing_memories.devise.edit_registration.delete.title')  %></h2>
 
-<p>Unhappy? <%= button_to t('fishing_memories.devise.edit_registration.delete.submit'), registration_path(resource_name), data: { confirm: t('fishing_memories.delete_confirmation') }, method: :delete %></p>
+<%= button_to t('fishing_memories.devise.edit_registration.delete.submit'), registration_path(resource_name), data: { confirm: t('fishing_memories.delete_confirmation') }, method: :delete %>
 
-<%= link_to t('fishing_memories.back'), :back %>
+<%= link_to t('fishing_memories.back'), :back %><br />

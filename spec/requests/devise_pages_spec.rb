@@ -134,4 +134,149 @@ describe "DevisePages" do
       end
     end
   end
+
+  describe "edit registration" do
+    let(:user) { FactoryGirl.create(:confirmed_user) }
+    let(:submit) {I18n.translate('fishing_memories.devise.edit_registration.submit')}
+    before do
+      login_as(user, :scope => :user)
+      visit edit_user_registration_path(user)
+    end 
+
+    describe "page" do
+      it { should have_content(I18n.translate('fishing_memories.devise.edit_registration.title')) }
+      it { should have_title(I18n.translate('fishing_memories.devise.edit_registration.title')) }
+    end
+
+    describe "with valid information" do
+      describe "change username and password" do
+        let(:new_user_name)  { "new_user_name" }
+        let(:new_password) { "newpassword" }
+        before do
+          fill_in "user_username",        with: new_user_name
+          fill_in "user_password",         with: new_password
+          fill_in "user_password_confirmation", with: new_password
+          fill_in "user_current_password", with: user.password
+          click_button submit
+        end
+        it { should have_selector('div.flash.flash_notice',
+          text: I18n.translate('devise.registrations.updated')) }
+        specify { expect(user.reload.username).to  eq new_user_name }
+      end
+
+      describe "change email" do
+        let(:new_email) { "new@example.com" }
+        before do
+          fill_in "user_email",            with: new_email
+          fill_in "user_current_password", with: user.password
+          click_button submit
+        end
+
+        it { should have_selector('div.flash.flash_notice',
+          text: I18n.translate('devise.registrations.update_needs_confirmation')) }
+
+        describe "should be unconfirmed" do
+          before {visit edit_user_registration_path(user)}
+          it { should have_content(I18n.translate('fishing_memories.devise.edit_registration.unconfirmed_email') + ": #{new_email}") }
+        end
+
+        it "should send notification" do
+          expect(ActionMailer::Base.deliveries.last.to).to eq [new_email]
+          expect(ActionMailer::Base.deliveries.last.subject).to eq I18n.translate('devise.mailer.confirmation_instructions.subject')
+        end
+      end
+    end
+  end
+
+  describe "resend confirmation instructions" do
+    before (:each) {ActionMailer::Base.deliveries.clear}
+    let(:submit) {click_button I18n.translate('fishing_memories.devise.resend_confirmation_instructions.submit')}
+
+    describe "for unconfirmed user" do
+
+      let(:user) { FactoryGirl.create(:user) }
+      before do
+        visit new_user_confirmation_path
+        fill_in "user_email", with: user.email
+        click_button submit
+      end
+
+      it "should send notification" do
+        expect(ActionMailer::Base.deliveries.last.to).to eq [user.email]
+        expect(ActionMailer::Base.deliveries.last.subject).to eq I18n.translate('devise.mailer.confirmation_instructions.subject')
+      end
+    end
+
+    describe "for confirmed user" do
+
+      let(:user) { FactoryGirl.create(:confirmed_user) }
+      before do
+        visit new_user_confirmation_path
+        fill_in "user_email", with: user.email
+        click_button submit
+      end
+
+      it "should not send notification" do
+        expect(ActionMailer::Base.deliveries).to be_empty
+      end
+    end
+
+    describe "for random email" do
+      before do
+        visit new_user_confirmation_path
+        fill_in "user_email", with: "random@example.com"
+        click_button submit
+      end
+
+      it "should not send notification" do
+        expect(ActionMailer::Base.deliveries).to be_empty
+      end
+    end
+  end
+
+  describe "reset password instructions" do
+    let(:submit) {I18n.translate('fishing_memories.devise.reset_password.submit')}
+    before (:each) {ActionMailer::Base.deliveries.clear}
+    describe "for unconfirmed user" do
+
+      let(:user) { FactoryGirl.create(:user) }
+      before do
+        visit new_user_password_path
+        fill_in "user_email", with: user.email
+        click_button submit
+      end
+
+      it "should send notification" do
+        expect(ActionMailer::Base.deliveries.last.to).to eq [user.email]
+        expect(ActionMailer::Base.deliveries.last.subject).to eq I18n.translate('devise.mailer.reset_password_instructions.subject')
+      end
+    end
+
+    describe "for confirmed user" do
+
+      let(:user) { FactoryGirl.create(:confirmed_user) }
+      before do
+        visit new_user_password_path
+        fill_in "user_email", with: user.email
+        click_button submit
+      end
+
+      it "should send notification" do
+        expect(ActionMailer::Base.deliveries.last.to).to eq [user.email]
+        expect(ActionMailer::Base.deliveries.last.subject).to eq I18n.translate('devise.mailer.reset_password_instructions.subject')
+      end
+    end
+
+    describe "for random email" do
+      before do
+        visit new_user_password_path
+        fill_in "user_email", with: "random@example.com"
+        click_button submit
+      end
+
+      it "should not send notification" do
+        expect(ActionMailer::Base.deliveries).to be_empty
+      end
+    end
+  end
 end
