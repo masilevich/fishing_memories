@@ -106,7 +106,29 @@ describe User do
     end
   end
 
+  describe "memory associations" do
 
+    before { @user.save }
+    let!(:older_memory) do
+      FactoryGirl.create(:memory, user: @user, occured_at: 1.day.ago)
+    end
+    let!(:newer_memory) do
+      FactoryGirl.create(:memory, user: @user, occured_at: 1.hour.ago)
+    end
+
+    it "should have the right memories in the right order" do
+      expect(@user.memories.to_a).to eq [newer_memory, older_memory]
+    end
+
+    it "should destroy associated memories" do
+      memories = @user.memories.to_a
+      @user.destroy
+      expect(memories).not_to be_empty
+      memories.each do |memory|
+        expect(memory.where(id: memory.id)).to be_empty
+      end
+    end
+  end
 
 =begin
   describe "role" do

@@ -14,4 +14,10 @@ FactoryGirl.define do
     end
 
   end
+
+  factory :memory do
+    content "Lorem ipsum"
+    occured_at Time.now
+    user
+  end
 end

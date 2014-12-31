@@ -5,6 +5,7 @@ ru:
     edit: "Изменить"
     delete: "Удалить"
     delete_confirmation: "Вы уверены, что хотите удалить это?"
+    index_model: "%{model}"
     new_model: "Создать %{model}"
     edit_model: "Изменить %{model}"
     delete_model: "Удалить %{model}"
@@ -357,6 +358,10 @@ ru:
     errors:
       <<: *errors
   activerecord:
+    models:
+      memory:
+        one: "Запись"
+        other: "Записи"
     attributes:
       user:
         login: "Email или имя пользователя"

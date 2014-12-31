@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   
+  get 'memories/new'
+
   devise_for :users
+
+  resources :memories
 
   root 'static_pages#home'
 

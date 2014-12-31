@@ -3,11 +3,16 @@
     <span class="breadcrumb">
       <a href="#">Admin</a>            <span class="breadcrumb_sep">/</span>
     </span>
-    <h2 id="page_title">Bookstores</h2>
+    <h2 id="page_title"><%= title %></h2>
   </div>
   <div id="titlebar_right">
-    <div class="action_items">
-      <span class="action_item"><a href="#">New Bookstore</a></span>
-    </div>
+    <% if @action_items && @action_items.any? %>
+      <div class="action_items">
+      <% @action_items.each do |item|   %>
+        <span class="action_item"><%= item %></a></span>
+      <% end %>
+      </div>
+    <% end %>
+    
   </div>
 </div>
