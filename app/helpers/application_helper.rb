@@ -10,9 +10,9 @@ module ApplicationHelper
 		end
 	end
 
-	def title
+	def resource_title
 		case action_name
-		when "new"
+		when "new", "edit", "destroy"
 			I18n.t("fishing_memories.#{action_name}_model", model: resource_label)
 		when "index"
 			plural_resource_label

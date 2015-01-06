@@ -25,9 +25,9 @@ class ApplicationController < ActionController::Base
     resource_name.model_name.human defaults.merge options
   end
 
-  def resource
+  def find_resource
     if params[:id]
-      resource_name.find(params[:id])
+      @resource = resource_name.find(params[:id])
     end
   end
 
@@ -35,11 +35,11 @@ class ApplicationController < ActionController::Base
 
     new_link = view_context.link_to I18n.t('fishing_memories.new_model', 
       model: resource_label),   view_context.new_polymorphic_path(resource_name)
-    if params[:id]
+    if find_resource
       edit_link = view_context.link_to I18n.t('fishing_memories.edit_model', 
-        model: resource_label),   view_context.edit_polymorphic_path(resource)
+        model: resource_label),   view_context.edit_polymorphic_path(@resource)
       destroy_link = view_context.link_to I18n.t('fishing_memories.delete_model', 
-        model: resource_label),   view_context.polymorphic_path(resource), method: :delete,
+        model: resource_label),   view_context.polymorphic_path(@resource), method: :delete,
         data: {confirm: I18n.t('fishing_memories.delete_confirmation')}
     end
     @action_items = []

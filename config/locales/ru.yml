@@ -8,7 +8,7 @@ ru:
     index_model: "%{model}"
     new_model: "Создать %{model}"
     edit_model: "Изменить %{model}"
-    delete_model: "Удалить %{model}"
+    destroy_model: "Удалить %{model}"
     details: "%{model} подробнее"
     cancel: "Отмена"
     back: "Назад"
