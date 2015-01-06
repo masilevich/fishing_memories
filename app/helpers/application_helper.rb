@@ -10,15 +10,6 @@ module ApplicationHelper
 		end
 	end
 
-	def resource_title
-		case action_name
-		when "new", "edit", "destroy"
-			I18n.t("fishing_memories.#{action_name}_model", model: resource_label)
-		when "index"
-			plural_resource_label
-		end
-	end
-
 	def resolve_body_class
 		body_class = user_signed_in? ? "logged_in" : "logged_out"
 		devise_controller? ? body_class + " devise" : body_class		

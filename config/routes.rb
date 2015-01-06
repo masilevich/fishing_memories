@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
-  
+
   get 'memories/new'
 
   devise_for :users
 
   resources :memories
+
+  authenticated :user do
+    root :to => 'memories#index', as: :authenticated_root
+  end
 
   root 'static_pages#home'
 
