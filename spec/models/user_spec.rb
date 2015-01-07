@@ -125,7 +125,7 @@ describe User do
       @user.destroy
       expect(memories).not_to be_empty
       memories.each do |memory|
-        expect(memory.where(id: memory.id)).to be_empty
+        expect(Memory.where(id: memory.id)).to be_empty
       end
     end
   end

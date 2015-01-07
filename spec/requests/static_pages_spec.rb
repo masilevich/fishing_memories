@@ -6,6 +6,9 @@ describe "Static pages" do
 
 	describe "Home page" do
 		before { visit root_path }
+
+		it { should have_title(full_title) }
+
 		describe "header links" do
 			it { should have_link(full_title, href: root_path) }
 			it { should have_link(I18n.translate('fishing_memories.devise.sign_in.title'), href: new_user_session_path) }

@@ -16,7 +16,7 @@ FactoryGirl.define do
   end
 
   factory :memory do
-    content "Lorem ipsum"
+    description "Lorem ipsum"
     occured_at Time.now
     user
   end

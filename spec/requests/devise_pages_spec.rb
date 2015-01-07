@@ -10,6 +10,10 @@ describe "DevisePages" do
   let(:signout_label) { I18n.translate('fishing_memories.sign_out') }
   let(:signup_label) { I18n.translate('fishing_memories.devise.sign_up.title') }
 
+  shared_examples "memories index page" do
+    it { should have_title(full_title(Memory.model_name.human count: 2)) }
+  end
+
   describe "signin" do
     before do
       logout(:user)
@@ -65,23 +69,20 @@ describe "DevisePages" do
         it { should have_content("Вход в систему выполнен.") }
       end
 
-=begin
       describe "redirect" do
 
         describe "default" do
-          let(:user) { FactoryGirl.create(:confirmed_user,sign_in_count: 2, last_sign_in_at: Time.now) }
+          let(:user) { FactoryGirl.create(:confirmed_user) }
           before do
             fill_in "user_login",     with: user.email
             fill_in "user_password",     with: user.password
             click_button submit
           end
-          it { should have_title(full_title('Случайный рецепт')) }
+          it_behaves_like "memories index page"
         end
       end
-=end
     end
   end
-
 
   describe "signup" do
 
@@ -133,6 +134,15 @@ describe "DevisePages" do
         end
       end
     end
+  end
+
+  describe "authenticated root" do
+    let(:user) { FactoryGirl.create(:confirmed_user) }
+    before do
+      login_as(user, :scope => :user)
+      visit root_path
+    end
+    it_behaves_like "memories index page"
   end
 
   describe "edit registration" do
