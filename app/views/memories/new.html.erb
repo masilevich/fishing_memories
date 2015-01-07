@@ -1,1 +1,11 @@
-<p>Find me in app/views/memories/new.html.erb</p>
+<%= semantic_form_for(@memory) do |f| %>
+
+	<%=f.inputs do %>
+		<%=f.input :occured_at, required: true, as: :date_picker %>
+		<%=f.input :description, as: :text, input_html: {:rows => 20} %>
+	<%end%>
+	
+	<%=f.actions do%>
+		<%=f.action :submit, label: t("fishing_memories.new_model", model: resource_label), button_html: { value: t("fishing_memories.new_model", model: resource_label) } %>
+	<% end %>
+<% end %>

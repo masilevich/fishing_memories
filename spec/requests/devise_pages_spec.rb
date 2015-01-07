@@ -35,7 +35,7 @@ describe "DevisePages" do
         it { should have_selector('h2',    text: signin_label) }
         it { should have_title(full_title(signin_label)) }
         it { should_not have_link(signout_label, href: destroy_user_session_path) }
-        it { should have_selector('div.flash.flash_alert', text: "Неверный логин или пароль.") }
+        it { should have_error_message("Неверный логин или пароль.") }
       end
     end
 
@@ -48,7 +48,7 @@ describe "DevisePages" do
           fill_in "user_password",     with: user.password
           click_button submit
         end
-        it { should have_selector('div.flash.flash_notice', text: "Вход в систему выполнен.") }
+        it { should have_success_message("Вход в систему выполнен.") }
         it { should_not have_link(signup_label, href: new_user_registration_path) }
         it { should_not have_link(signin_label, href: new_user_session_path) }
         it { should have_link(user.email, href: edit_user_registration_path(user)) }
@@ -125,8 +125,7 @@ describe "DevisePages" do
       describe "after saving the user" do
         before { click_button submit }
 
-        it { should have_selector('div.flash.flash_notice', 
-          text: I18n.translate('devise.confirmations.send_instructions')) }
+        it { should have_success_message(I18n.translate('devise.confirmations.send_instructions')) }
 
         it "should send notification" do
           expect(ActionMailer::Base.deliveries.last.to).to eq [email]
@@ -169,8 +168,7 @@ describe "DevisePages" do
           fill_in "user_current_password", with: user.password
           click_button submit
         end
-        it { should have_selector('div.flash.flash_notice',
-          text: I18n.translate('devise.registrations.updated')) }
+        it { should have_success_message(I18n.translate('devise.registrations.updated')) }
         specify { expect(user.reload.username).to  eq new_user_name }
       end
 
@@ -182,8 +180,7 @@ describe "DevisePages" do
           click_button submit
         end
 
-        it { should have_selector('div.flash.flash_notice',
-          text: I18n.translate('devise.registrations.update_needs_confirmation')) }
+        it { should have_success_message( I18n.translate('devise.registrations.update_needs_confirmation')) }
 
         describe "should be unconfirmed" do
           before {visit edit_user_registration_path(user)}

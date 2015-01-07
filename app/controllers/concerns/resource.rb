@@ -3,8 +3,8 @@ module Resource
   extend ActiveSupport::Concern
 
   included do
-    before_filter :generate_default_action_items
-    before_filter :resource_title
+    layout :resource_layout
+    helper_method :resource_name, :resource_label, :plural_resource_label, :find_resource
   end
 
   private
@@ -29,33 +29,12 @@ module Resource
     end
   end
 
-  def resource_title
-    case action_name
-    when "new", "edit", "destroy"
-      @resource_title = I18n.t("fishing_memories.#{action_name}_model", model: resource_label)
-    when "index"
-      @resource_title = plural_resource_label
-    end
-  end
+  private
 
-  def generate_default_action_items
-
-    new_link = view_context.link_to I18n.t('fishing_memories.new_model', 
-      model: resource_label),   view_context.new_polymorphic_path(resource_name)
-    if find_resource
-      edit_link = view_context.link_to I18n.t('fishing_memories.edit_model', 
-        model: resource_label),   view_context.edit_polymorphic_path(@resource)
-      destroy_link = view_context.link_to I18n.t('fishing_memories.delete_model', 
-        model: resource_label),   view_context.polymorphic_path(@resource), method: :delete,
-      data: {confirm: I18n.t('fishing_memories.delete_confirmation')}
-    end
-    @action_items = []
+  def resource_layout
     case action_name
-    when "show"
-      @action_items << edit_link
-      @action_items << destroy_link
-    when "index"
-      @action_items << new_link
-    end   
+    when 'index', 'show', 'new', 'edit'
+      "resources/#{action_name}"
+    end
   end
 end

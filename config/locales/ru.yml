@@ -369,6 +369,9 @@ ru:
         password: "Пароль"
         password_confirmation: "Подтверждение пароля"
         current_password: "Текущий пароль"
+      memory:
+        occured_at: "Дата"
+        description: "Описание"
     errors:
       <<: *errors
   unauthorized:

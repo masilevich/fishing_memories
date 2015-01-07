@@ -1,0 +1,12 @@
+<% provide :title, plural_resource_label %>
+<% content_for :page_title do %>
+	<%= plural_resource_label %>
+<% end %>
+<% content_for :action_items do %>
+	<div class="action_items">
+		<span class="action_item">
+		<%= link_to I18n.t('fishing_memories.new_model', model: resource_label),   new_polymorphic_path(resource_name) %>
+		</span>
+	</div>
+<% end %>
+<%= render template: "layouts/application" %>
