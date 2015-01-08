@@ -1,17 +1,12 @@
-<% content_for :table_content do %>
-	<% if @resources && @resources.any? %>
-
-	<table border="0" cellspacing="0" cellpadding="0" id= "index_table_<%=plural_resource_name%>" class="index_table index" paginator="true">
-		<thead>
-			<tr>
+<%= render layout: 'layouts/resources/index_table' do %>
+	<% content_for :table_head do %>
 				<th class="sortable col"><%= Memory.human_attribute_name("occured_at") %></th>
 				<th class="sortable col"><%= Memory.human_attribute_name("description") %></th>
 				<th class="col col-actions"></th>
-			</tr>
-		</thead>
+	<% end %>
 
-		<tbody>
-			<% @resources.each do |resource| %>
+	<% content_for :table_body do %>
+		<% @resources.each do |resource| %>
 			<tr class="odd" id="<%=singular_resource_name%>_<%=resource.id%>">
 				<td class="col"><%= resource.occured_at %></td>
 				<td class="col"><%= truncate(resource.description, length: 90) %></td>
@@ -21,8 +16,6 @@
           </div>
         </td>
 			</tr>
-			<% end %>
-		</tbody>
-	</table>
+		<% end %>
 	<% end %>
 <% end %>

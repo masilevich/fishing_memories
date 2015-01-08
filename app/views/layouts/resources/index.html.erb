@@ -11,19 +11,21 @@
 <% end %>
 
 <% content_for :page_content do %>
-	<% if content_for?(:table_content) %> 
-	<div class="paginated_collection">
-	  <div class="paginated_collection_contents">
-	    <div class="index_content">
-	      <div class="index_as_table">
-	      	<%= yield(:table_content)  %>
-	      </div>
-	    </div>
-	  </div>
-	  <div id="index_footer">
-	    <div class="pagination_information">Displaying <b>1</b> Post</div>
-	  </div>
-	</div>
+	<% if @resources && @resources.any? %>
+		<% if content_for?(:table_content) %> 
+			<div class="paginated_collection">
+			  <div class="paginated_collection_contents">
+			    <div class="index_content">
+			      <div class="index_as_table">
+			      	<%= yield(:table_content)  %>
+			      </div>
+			    </div>
+			  </div>
+			  <div id="index_footer">
+			    <div class="pagination_information">Displaying <b>1</b> Post</div>
+			  </div>
+			</div>
+		<% end %>
 	<% end %>
 <% end %>
 
