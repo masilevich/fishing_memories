@@ -9,10 +9,10 @@ class MemoriesController < ApplicationController
 	def create
 		@memory = memories.build(memory_params)
 		if @memory.save
-			flash[:notice] = 'Запись добавлена'
+			flash[:notice] = t('fishing_memories.model_created', model: resource_label)
 			redirect_to memories_path
 		else
-			flash.now[:alert] = 'Запись не добавлена'
+			flash.now[:alert] = t('fishing_memories.model_not_created', model: resource_label)
 			render 'new'
 		end
 	end

@@ -16,7 +16,7 @@ FactoryGirl.define do
   end
 
   factory :memory do
-    description "Lorem ipsum"
+    description Faker::Lorem.sentence
     occured_at Time.now
     user
   end

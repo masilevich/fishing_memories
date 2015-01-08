@@ -41,7 +41,7 @@ describe "ResourcesPages" do
 
 				describe "error messages" do
 					before { click_button submit }
-					it { should have_error_message('Запись не добавлена') }
+					it { should have_error_message(I18n.t('fishing_memories.model_not_created', model: resource.model_name.human)) }
 				end
 
 			end
@@ -54,7 +54,7 @@ describe "ResourcesPages" do
 				
 				describe "success messages" do
 					before { click_button submit }
-					it { should have_success_message('Запись добавлена') }
+					it { should have_success_message(I18n.t('fishing_memories.model_created', model: resource.model_name.human)) }
 				end
 			end
 		end
