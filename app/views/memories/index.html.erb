@@ -1,3 +1,28 @@
+<% content_for :table_content do %>
+	<% if @resources && @resources.any? %>
 
-	<p>Find me in app/views/memories/index.html.erb</p>
+	<table border="0" cellspacing="0" cellpadding="0" id= "index_table_<%=plural_resource_name%>" class="index_table index" paginator="true">
+		<thead>
+			<tr>
+				<th class="sortable col"><%= Memory.human_attribute_name("occured_at") %></th>
+				<th class="sortable col"><%= Memory.human_attribute_name("description") %></th>
+				<th class="col col-actions"></th>
+			</tr>
+		</thead>
 
+		<tbody>
+			<% @resources.each do |resource| %>
+			<tr class="odd" id="<%=singular_resource_name%>_<%=resource.id%>">
+				<td class="col"><%= resource.occured_at %></td>
+				<td class="col"><%= truncate(resource.description, length: 90) %></td>
+				<td class="col col-actions">
+          <div class="table_actions">
+          	<%= render 'layouts/resources/index_table_actions', resource: resource %>
+          </div>
+        </td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+	<% end %>
+<% end %>

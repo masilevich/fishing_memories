@@ -1,7 +1,7 @@
 ru:
   fishing_memories:
     title: "Рыболовные воспоминания"
-    view: "Открыть"
+    show: "Открыть"
     edit: "Изменить"
     delete: "Удалить"
     delete_confirmation: "Вы уверены, что хотите удалить это?"
@@ -11,6 +11,8 @@ ru:
     destroy_model: "Удалить %{model}"
     model_created: "%{model} создан(а)"
     model_not_created: "%{model} не создан(а)"
+    model_destroyed: "%{model} удален(а)"
+    model_not_destroyed: "%{model} не удален(а)"
     details: "%{model} подробнее"
     cancel: "Отмена"
     back: "Назад"

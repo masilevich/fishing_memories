@@ -5,8 +5,26 @@
 <% content_for :action_items do %>
 	<div class="action_items">
 		<span class="action_item">
-		<%= link_to I18n.t('fishing_memories.new_model', model: resource_label),   new_polymorphic_path(resource_name) %>
+		<%= link_to I18n.t('fishing_memories.new_model', model: resource_label),   new_polymorphic_path(resource_class) %>
 		</span>
 	</div>
 <% end %>
-<%= render template: "layouts/application" %>
+
+<% content_for :page_content do %>
+	<% if content_for?(:table_content) %> 
+	<div class="paginated_collection">
+	  <div class="paginated_collection_contents">
+	    <div class="index_content">
+	      <div class="index_as_table">
+	      	<%= yield(:table_content)  %>
+	      </div>
+	    </div>
+	  </div>
+	  <div id="index_footer">
+	    <div class="pagination_information">Displaying <b>1</b> Post</div>
+	  </div>
+	</div>
+	<% end %>
+<% end %>
+
+<%= render template: "layouts/application"%>

@@ -20,7 +20,7 @@
 			<% end %>
 			<%= render 'layouts/flashes' %>
 			<%= render layout: 'layouts/main_content_layout' do %>
-        <%= yield %>
+        <%= content_for?(:page_content) ? yield(:page_content) : yield %>
       <% end %>    
 		<% end %>
 

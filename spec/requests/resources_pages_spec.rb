@@ -58,5 +58,23 @@ describe "ResourcesPages" do
 				end
 			end
 		end
+
+		describe "destruction"  do
+			let(:delete_link) { I18n.t('fishing_memories.delete') }
+			let!(:resource_item) {FactoryGirl.create(:"#{resource.model_name.singular}", user: user)}
+			describe "in controller pages" do
+
+				before { visit polymorphic_path(resource.model_name.plural) }
+				
+				it "should delete resource" do
+					expect { click_link delete_link }.to change(resource, :count).by(-1)
+				end
+
+				describe "should have link to destroy" do
+					specify {expect(page).to have_link(delete_link, polymorphic_path(resource_item))}
+				end
+			end
+
+		end
 	end
 end
