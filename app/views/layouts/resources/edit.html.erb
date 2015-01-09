@@ -1,0 +1,5 @@
+<% provide :title, I18n.t("fishing_memories.edit_model", model: resource_label) %>
+<% content_for :page_title do %>
+	<%= I18n.t("fishing_memories.edit_model", model: resource_label) %>
+<% end %>
+<%= render template: "layouts/application" %>

@@ -5,19 +5,19 @@
 <% content_for :action_items do %>
 	<div class="action_items">
 		<span class="action_item">
-		<%= link_to I18n.t('fishing_memories.new_model', model: resource_label),   new_polymorphic_path(resource_class) %>
+		<%= link_to I18n.t('fishing_memories.new_model', model: resource_label),   new_resource_path %>
 		</span>
 	</div>
 <% end %>
 
 <% content_for :page_content do %>
 	<% if @resources && @resources.any? %>
-		<% if content_for?(:table_content) %> 
+		<% if content_for?(:table) %> 
 			<div class="paginated_collection">
 			  <div class="paginated_collection_contents">
 			    <div class="index_content">
 			      <div class="index_as_table">
-			      	<%= yield(:table_content)  %>
+			      	<%= yield(:table)  %>
 			      </div>
 			    </div>
 			  </div>

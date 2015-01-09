@@ -1,0 +1,34 @@
+<% provide :title, @resource.title %>
+<% content_for :page_title do %>
+	<%= @resource.title %>
+<% end %>
+<% content_for :action_items do %>
+	<div class="action_items">
+		<span class="action_item">
+		<%= link_to I18n.t('fishing_memories.edit_model', model: resource_label),   edit_resource_path(@resource) %>
+		</span>
+		<span class="action_item">
+		<%= link_to I18n.t('fishing_memories.destroy_model', model: resource_label),  resource_path(@resource), { method: :delete, class: 'member_link', data: { confirm: I18n.t('fishing_memories.delete_confirmation') } } %>
+		</span>
+	</div>
+<% end %>
+
+<% content_for :page_content do %>
+	<% if @resource %>
+		<% if content_for?(:table) %> 
+		<div class="panel">
+			<h3><%= resource_label %></h3>
+			<div class="panel_contents">
+				<div class="attributes_table">
+					<%= yield(:table)  %>
+				</div>
+			</div>
+		</div>
+		<% end %>
+	<% end %>
+<% end %>
+
+<%= render template: "layouts/application" %>
+
+
+						

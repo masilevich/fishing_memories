@@ -6,6 +6,7 @@ module Resource
     layout :resource_layout
     helper_method :resource_class, :resource_label, :plural_resource_label, 
       :find_resource, :plural_resource_name, :singular_resource_name
+    helper_method :resources_path, :resource_path, :new_resource_path, :edit_resource_path
   end
 
   def new
@@ -13,13 +14,28 @@ module Resource
   end
 
   def create
-    @resource = resources.build(send("#{singular_resource_name}_params"))
+    @resource = resources.build(resource_params)
     if @resource.save
       flash[:notice] = t('fishing_memories.model_created', model: resource_label)
-      redirect_to polymorphic_path(plural_resource_name)
+      redirect_to resources_path
     else
       flash.now[:alert] = t('fishing_memories.model_not_created', model: resource_label)
       render 'new'
+    end
+  end
+
+  def edit
+    find_resource
+  end
+
+  def update
+    find_resource
+    if @resource.update_attributes(resource_params)
+      flash[:notice] = t('fishing_memories.model_updated', model: resource_label)
+      redirect_to resources_path
+    else
+      flash.now[:alert] = t('fishing_memories.model_not_updated', model: resource_label)
+      render 'edit'
     end
   end
 
@@ -33,13 +49,17 @@ module Resource
       format.html do
         if delete_result
           flash[:notice] = t('fishing_memories.model_destroyed', model: resource_label)
-          redirect_to polymorphic_path(plural_resource_name)
+          redirect_to resources_path
         else
           flash[:alert] = t('fishing_memories.model_destroyed', model: resource_label)
         end
       end
       format.js
     end
+  end
+
+  def show
+    find_resource
   end
 
   private
@@ -75,6 +95,27 @@ module Resource
       @resource = resource_class.find(params[:id])
     end
   end
+
+  def resource_params
+    send "#{singular_resource_name}_params"
+  end
+
+  def resource_path(resource)
+    polymorphic_path(resource)
+  end
+
+  def new_resource_path
+    new_polymorphic_path(resource_class)
+  end
+
+  def edit_resource_path(resource)
+    edit_polymorphic_path(resource)
+  end
+
+  def resources_path
+    polymorphic_path(plural_resource_name)
+  end
+
 
   private
 

@@ -9,10 +9,13 @@ ru:
     new_model: "Создать %{model}"
     edit_model: "Изменить %{model}"
     destroy_model: "Удалить %{model}"
+    update_model: "Обновить %{model}"
     model_created: "%{model} создан(а)"
     model_not_created: "%{model} не создан(а)"
     model_destroyed: "%{model} удален(а)"
     model_not_destroyed: "%{model} не удален(а)"
+    model_updated: "%{model} обновлен(а)"
+    model_not_updated: "%{model} не обновлен(а)"
     details: "%{model} подробнее"
     cancel: "Отмена"
     back: "Назад"
@@ -175,6 +178,7 @@ ru:
   unauthorized:
     default: "Вы не имеете права для выполнения операции."
   date:
+    from: от
     abbr_day_names:
     - Вс
     - Пн

@@ -1,0 +1,12 @@
+<%= render layout: 'layouts/resources/show_table' do %>
+	<% content_for :table_body do %>
+		<tr class="row">
+      <th><%= Memory.human_attribute_name("occured_at") %></th>
+      <td><%= @resource.occured_at %></td>
+    </tr>
+    <tr class="row">
+      <th><%= Memory.human_attribute_name("description") %></th>
+      <td ><%= @resource.description %></td>
+    </tr>			
+	<% end %>
+<% end %>
