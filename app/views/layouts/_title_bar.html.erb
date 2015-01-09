@@ -1,8 +1,6 @@
 <div class="title_bar" id="title_bar">
   <div id="titlebar_left">
-    <span class="breadcrumb">
-      <a href="#">Admin</a>            <span class="breadcrumb_sep">/</span>
-    </span>
+    <%= render 'layouts/breadcrumb' %>
     <h2 id="page_title"><%= yield(:page_title) if content_for?(:page_title) %></h2>
   </div>
   <div id="titlebar_right">

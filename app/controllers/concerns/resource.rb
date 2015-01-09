@@ -86,7 +86,7 @@ module Resource
   end
 
   def plural_resource_label(options = {})
-    defaults = {count: 2.1, default: resource_label.pluralize.titleize}
+    defaults = {count: PLURAL_MANY_COUNT, default: resource_label.pluralize.titleize}
     resource_class.model_name.human defaults.merge options
   end
 

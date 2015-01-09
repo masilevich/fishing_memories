@@ -33,6 +33,10 @@ GEM
       sass (~> 3.2)
       thor
     builder (3.2.2)
+    byebug (3.5.1)
+      columnize (~> 0.8)
+      debugger-linecache (~> 1.2)
+      slop (~> 3.6)
     cancan (1.6.10)
     capybara (2.2.0)
       mime-types (>= 1.16)
@@ -49,6 +53,8 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.8.0)
+    columnize (0.8.9)
+    debugger-linecache (1.2.0)
     devise (3.4.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -131,6 +137,7 @@ GEM
       multi_json (~> 1.0)
       rubyzip (< 1.0.0)
       websocket (~> 1.0.4)
+    slop (3.6.0)
     sprockets (2.12.3)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -162,6 +169,7 @@ PLATFORMS
 
 DEPENDENCIES
   bourbon
+  byebug
   cancan
   capybara (= 2.2.0)
   coffee-rails (= 4.0.1)

@@ -9,6 +9,10 @@ describe "ResourcesPages" do
 		specify { expect(find('#page_title')).to have_content(title) }
 	end
 
+	shared_examples "breadscrumb link" do |name, href|
+		specify { expect(page).to have_link(name, href)  }
+	end
+
 	RESOURCES = [Memory]
 
 	RESOURCES.each do |resource|
@@ -18,26 +22,27 @@ describe "ResourcesPages" do
 		end
 
 		describe "index" do
-			let(:title) { resource.model_name.human count: 2 }
+			let(:title) { resource.model_name.human count: PLURAL_MANY_COUNT }
 			before {visit polymorphic_path(resource)}
 
 			it_behaves_like "title and page_title"
 
-			it { should have_link( I18n.t('fishing_memories.new_model', 
-      model: resource.model_name.human), href: new_polymorphic_path(resource)) }
-      
+			describe "title links" do
+				it { should have_link( I18n.t('fishing_memories.new_model', 
+					model: resource.model_name.human), href: new_polymorphic_path(resource)) }
+			end
 		end
 
 		describe "create" do
 			let(:title) { I18n.t('fishing_memories.new_model', model: resource.model_name.human) }
 			let(:submit) {I18n.t('fishing_memories.new_model', model: resource.model_name.human)}
-		  before {visit new_polymorphic_path(resource)}
+			before {visit new_polymorphic_path(resource)}
 
-		  it_behaves_like "title and page_title"
+			it_behaves_like "title and page_title"
 
-		  it { should have_button(submit) }
+			it { should have_button(submit) }
 
-		  describe "with invalid information" do
+			describe "with invalid information" do
 
 				it "should not create a #{resource}" do
 					expect { click_button submit }.not_to change(resource, :count)
@@ -92,8 +97,21 @@ describe "ResourcesPages" do
 
 			it_behaves_like "title and page_title"
 
-			it { should have_link( I18n.t('fishing_memories.edit_model', 
-      model: resource.model_name.human), href: edit_polymorphic_path(resource_item)) }
+			describe "title links" do
+				it { should have_link( I18n.t('fishing_memories.edit_model', 
+					model: resource.model_name.human), href: edit_polymorphic_path(resource_item)) }
+				it { should have_link( I18n.t('fishing_memories.destroy_model', 
+					model: resource.model_name.human), href: polymorphic_path(resource_item)) }
+			end
+
+			describe "breadscrumbs links" do
+				specify do
+					within('#titlebar_left') do
+						expect(page).to have_link( resource.model_name.human count: PLURAL_MANY_COUNT,
+							href: polymorphic_path(resource))
+					end
+				end
+			end
 
 		end
 
@@ -101,16 +119,28 @@ describe "ResourcesPages" do
 			include_context 'resource_item'
 			let(:title) { I18n.t('fishing_memories.edit_model', model: resource.model_name.human) }
 			let(:submit) {I18n.t('fishing_memories.update_model', model: resource.model_name.human)}
-		  before {visit edit_polymorphic_path(resource_item)}
+			before {visit edit_polymorphic_path(resource_item)}
 
-		  it_behaves_like "title and page_title"
+			it_behaves_like "title and page_title"
 
-		  it { should have_button(submit) }
+			it { should have_button(submit) }
 
 			describe "success messages" do
 				before { click_button submit }
 				it { should have_success_message(I18n.t('fishing_memories.model_updated', model: resource.model_name.human)) }
 			end
+
+			describe "breadscrumbs links" do
+				specify do
+					within('#titlebar_left') do
+						expect(page).to have_link( resource.model_name.human count: PLURAL_MANY_COUNT,
+							href: polymorphic_path(resource))
+						expect(page).to have_link( resource_item.title,
+							href: polymorphic_path(resource_item))
+					end
+				end
+			end
 		end
+
 	end
 end
