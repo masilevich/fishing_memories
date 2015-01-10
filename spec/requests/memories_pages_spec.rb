@@ -52,15 +52,21 @@ describe "MemoriesPages" do
 		let!(:memory) { FactoryGirl.create(:memory, user: user) }
 		before {visit memory_path(memory)}
 
-		describe "table" do
+		describe "panels" do
+		  specify do
+				expect(page).to have_selector('div.panel h3', text: I18n.t('fishing_memories.details'))
+				expect(page).to have_selector('div.panel h3', text: Memory.human_attribute_name("description"))
+			end
+		end
+
+		describe "tables" do
 		  it "should have head" do
 				expect(page).to have_selector('th', text: Memory.human_attribute_name("occured_at"))
-				expect(page).to have_selector('th', text: Memory.human_attribute_name("description"))
 			end
 
 			it "should have body" do
 				expect(page).to have_selector('td', text: memory.occured_at)
-				expect(page).to have_selector('td', text: memory.description.truncate(90))
+				expect(page).to have_selector('tr', text: memory.description.truncate(90))
 			end
 		end
 		

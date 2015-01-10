@@ -1,8 +1,10 @@
-<%= yield %>
-<% content_for :table do %>
-	<table border="0" cellspacing="0" cellpadding="0">
-		<tbody>
-			<%= yield(:table_body) %>
-		</tbody>
-	</table>
+<%= render layout: 'layouts/resources/panel', locals: {panel_title: (local_assigns.fetch :title, nil)} do %>
+	
+	<div class="attributes_table">
+		<table border="0" cellspacing="0" cellpadding="0">
+			<tbody>
+				<%= yield %>
+			</tbody>
+		</table>
+	</div>
 <% end %>

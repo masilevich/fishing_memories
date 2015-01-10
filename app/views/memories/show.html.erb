@@ -1,12 +1,15 @@
-<%= render layout: 'layouts/resources/show_table' do %>
-	<% content_for :table_body do %>
-		<tr class="row">
-      <th><%= Memory.human_attribute_name("occured_at") %></th>
-      <td><%= @resource.occured_at %></td>
-    </tr>
-    <tr class="row">
-      <th><%= Memory.human_attribute_name("description") %></th>
-      <td ><%= @resource.description %></td>
-    </tr>			
-	<% end %>
+<% content_for :show_content do %>
+  <%= render layout: 'layouts/resources/show_table' do %>
+  		<tr class="row">
+        <th><%= Memory.human_attribute_name("occured_at") %></th>
+        <td><%= @resource.occured_at %></td>
+      </tr>		
+  <% end %>
+
+  <%= render layout: 'layouts/resources/show_table', locals: {title: Memory.human_attribute_name("description")} do %>
+      <tr class="row">
+        <%= simple_format(@resource.description) %>
+      </tr>     
+  <% end %>
+
 <% end %>
