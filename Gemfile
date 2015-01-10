@@ -12,6 +12,7 @@ gem 'cancan'
 gem 'devise'
 gem 'formtastic', '~> 3.0'
 gem 'faker'
+gem 'kaminari'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'

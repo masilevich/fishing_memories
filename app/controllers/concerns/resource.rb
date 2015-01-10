@@ -40,7 +40,7 @@ module Resource
   end
 
   def index 
-    @resources = resources
+    @resources = resources.page(params[:page])
   end
 
   def destroy
