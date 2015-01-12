@@ -16,8 +16,13 @@ FactoryGirl.define do
   end
 
   factory :memory do
-    description Faker::Lorem.sentence
+    description { Faker::Lorem.sentence }
     occured_at Time.now
+    user
+  end
+
+  factory :tackle do
+    name { Faker::Lorem.sentence }
     user
   end
 end

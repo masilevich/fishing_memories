@@ -43,4 +43,5 @@ RSpec.configure do |config|
   config.include Capybara::DSL
 
   config.include ApplicationHelper
+  config.include Devise::TestHelpers, :type => :view
 end

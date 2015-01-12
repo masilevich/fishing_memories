@@ -1,5 +1,5 @@
 require 'spec_helper'
-require "user_helper"
+require 'user_helper'
 require 'active_support/core_ext/string/filters'
 
 describe "MemoriesPages" do

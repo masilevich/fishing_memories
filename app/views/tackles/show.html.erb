@@ -1,0 +1,8 @@
+<% content_for :show_content do %>
+  <%= render layout: 'layouts/resources/show_table' do %>
+  		<tr class="row">
+        <th><%= Tackle.human_attribute_name("name") %></th>
+        <td><%= @resource.name %></td>
+      </tr>		
+  <% end %>
+<% end %>

@@ -13,7 +13,9 @@ describe "resource_classsPages" do
 		specify { expect(page).to have_link(name, href)  }
 	end
 
-	RESOURCECLASSES = [Memory]
+	
+
+	RESOURCECLASSES = [Memory, Tackle]
 
 	RESOURCECLASSES.each do |resource_class|
 

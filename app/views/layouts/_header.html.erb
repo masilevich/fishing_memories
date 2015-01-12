@@ -5,7 +5,7 @@
 
 	<%# if current_user.admin? %>
 	<ul class="header-item tabs" id="tabs">
-		<li id="admin"><a href="#">Admin Users</a></li>
+		<li id="tackles"><%= link_to (Tackle.model_name.human count: PLURAL_MANY_COUNT), tackles_path %></li>
 	</ul>
 	<%# end %>
 

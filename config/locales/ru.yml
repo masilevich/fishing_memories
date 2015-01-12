@@ -170,6 +170,9 @@ ru:
       memory:
         one: "Запись"
         other: "Записи"
+      tackle:
+        one: "Снасть"
+        other: "Снасти"
     attributes:
       user:
         login: "Email или имя пользователя"
@@ -180,6 +183,8 @@ ru:
       memory:
         occured_at: "Дата"
         description: "Описание"
+      tackle:
+        name: "Название"
     errors:
       <<: *errors
   unauthorized:

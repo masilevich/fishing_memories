@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :memories
+  resources :tackles
 
   authenticated :user do
     root :to => 'memories#index', as: :authenticated_root
