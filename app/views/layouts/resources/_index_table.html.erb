@@ -1,5 +1,5 @@
 <%= yield %>
-<% content_for :table do %>
+
 <table border="0" cellspacing="0" cellpadding="0" id= "index_table_<%=plural_resource_name%>" class="index_table index" paginator="true">
 	<thead>
 		<tr>
@@ -11,4 +11,4 @@
 		<%= yield(:table_body) %>
 	</tbody>
 </table>
-<% end %>
+

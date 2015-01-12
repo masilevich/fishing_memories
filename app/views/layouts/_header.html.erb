@@ -1,6 +1,6 @@
 <div class="header" id="header">
 	<div id="site_title">
-		<%= link_to (user_signed_in? ? plural_resource_label(Memory) : full_title), root_path  %>
+		<%= link_to (user_signed_in? ? (Memory.model_name.human count: PLURAL_MANY_COUNT) : full_title), root_path  %>
 	</div>
 
 	<%# if current_user.admin? %>

@@ -1,21 +1,25 @@
-<%= render layout: 'layouts/resources/index_table' do %>
-	<% content_for :table_head do %>
-				<th class="sortable col"><%= Memory.human_attribute_name("occured_at") %></th>
-				<th class="sortable col"><%= Memory.human_attribute_name("description") %></th>
-				<th class="col col-actions"></th>
-	<% end %>
+<% content_for :index_content do %>
+	<div class="index_as_table">
+		<%= render layout: 'layouts/resources/index_table' do %>
+			<% content_for :table_head do %>
+						<th class="sortable col"><%= Memory.human_attribute_name("occured_at") %></th>
+						<th class="sortable col"><%= Memory.human_attribute_name("description") %></th>
+						<th class="col col-actions"></th>
+			<% end %>
 
-	<% content_for :table_body do %>
-		<% @resources.each do |resource| %>
-			<tr class="odd" id="<%=singular_resource_name%>_<%=resource.id%>">
-				<td class="col"><%= resource.occured_at %></td>
-				<td class="col"><%= truncate(resource.description, length: 90) %></td>
-				<td class="col col-actions">
-          <div class="table_actions">
-          	<%= render 'layouts/resources/index_table_actions', resource: resource %>
-          </div>
-        </td>
-			</tr>
+			<% content_for :table_body do %>
+				<% @resources.each do |resource| %>
+					<tr class="odd" id="<%=singular_resource_name%>_<%=resource.id%>">
+						<td class="col"><%= resource.occured_at %></td>
+						<td class="col"><%= truncate(resource.description, length: 90) %></td>
+						<td class="col col-actions">
+		          <div class="table_actions">
+		          	<%= render 'layouts/resources/index_table_actions', resource: resource %>
+		          </div>
+		        </td>
+					</tr>
+				<% end %>
+			<% end %>
 		<% end %>
-	<% end %>
+	</div>
 <% end %>

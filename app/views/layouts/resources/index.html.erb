@@ -12,13 +12,11 @@
 
 <% content_for :page_content do %>
 	<% if @resources && @resources.any? %>
-		<% if content_for?(:table) %> 
+		<% if content_for?(:index_content) %> 
 			<div class="paginated_collection">
 			  <div class="paginated_collection_contents">
 			    <div class="index_content">
-			      <div class="index_as_table">
-			      	<%= yield(:table)  %>
-			      </div>
+			      <%= yield(:index_content)  %>
 			    </div>
 			  </div>
 			  <div id="index_footer">
