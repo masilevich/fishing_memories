@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150112071645) do
+ActiveRecord::Schema.define(version: 20150112111924) do
 
   create_table "memories", force: true do |t|
     t.integer  "user_id"
@@ -23,6 +23,16 @@ ActiveRecord::Schema.define(version: 20150112071645) do
 
   add_index "memories", ["user_id", "occured_at"], name: "index_memories_on_user_id_and_occured_at"
   add_index "memories", ["user_id"], name: "index_memories_on_user_id"
+
+  create_table "ponds", force: true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ponds", ["name", "user_id"], name: "index_ponds_on_name_and_user_id", unique: true
+  add_index "ponds", ["user_id"], name: "index_ponds_on_user_id"
 
   create_table "tackles", force: true do |t|
     t.string   "name"

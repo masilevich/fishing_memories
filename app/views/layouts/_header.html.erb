@@ -6,6 +6,7 @@
 	<%# if current_user.admin? %>
 	<ul class="header-item tabs" id="tabs">
 		<li id="tackles"><%= link_to (Tackle.model_name.human count: PLURAL_MANY_COUNT), tackles_path %></li>
+		<li id="ponds"><%= link_to (Pond.model_name.human count: PLURAL_MANY_COUNT), ponds_path %></li>
 	</ul>
 	<%# end %>
 

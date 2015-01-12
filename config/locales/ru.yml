@@ -173,6 +173,9 @@ ru:
       tackle:
         one: "Снасть"
         other: "Снасти"
+      pond:
+        one: "Водоем"
+        other: "Водоемы"
     attributes:
       user:
         login: "Email или имя пользователя"
@@ -184,6 +187,8 @@ ru:
         occured_at: "Дата"
         description: "Описание"
       tackle:
+        name: "Название"
+      pond:
         name: "Название"
     errors:
       <<: *errors

@@ -44,4 +44,7 @@ RSpec.configure do |config|
 
   config.include ApplicationHelper
   config.include Devise::TestHelpers, :type => :view
+
+  Dir[Rails.root.join("spec/models/shared_examples/**/*.rb")].each {|f| require f}
+  Dir[Rails.root.join("spec/requests/shared_examples/**/*.rb")].each {|f| require f}
 end

@@ -3,6 +3,11 @@ require 'user_helper'
 require 'active_support/core_ext/string/filters'
 
 describe "MemoriesPages" do
+
+	it_should_behave_like "resource pages" do
+	  let(:resource_class) { Memory }
+	end
+
 	include_context "login user"
 
 	describe "index" do
