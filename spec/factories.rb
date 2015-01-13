@@ -25,4 +25,9 @@ FactoryGirl.define do
     name { Faker::Lorem.sentence }
     user
   end
+
+  factory :pond do
+    name { Faker::Lorem.sentence }
+    user
+  end
 end
