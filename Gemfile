@@ -15,6 +15,11 @@ gem 'kaminari'
 gem 'select2-rails'
 gem 'ckeditor'
 
+group :production do
+  gem 'pg', '0.15.1'
+  gem 'rails_12factor', '0.0.2'
+end
+
 group :development, :test do
   gem 'sqlite3', '1.3.8'
   gem "rspec-rails", '~> 2.14.0.rc1'
