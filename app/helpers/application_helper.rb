@@ -30,4 +30,8 @@ module ApplicationHelper
 	    link_to name, url_for('/' + parts[0..index].join('/'))
 	  end
 	end
+
+	def clear_text_from_tags(text)
+		strip_tags(text.gsub("&nbsp;", "").gsub("&#39;", "'"))
+	end
 end

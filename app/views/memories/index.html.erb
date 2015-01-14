@@ -11,7 +11,7 @@
 				<% @resources.each do |resource| %>
 					<tr class="odd" id="<%=singular_resource_name%>_<%=resource.id%>">
 						<td class="col"><%= resource.occured_at %></td>
-						<td class="col"><%= truncate(resource.description, length: 90) %></td>
+						<td class="col"><%= truncate(clear_text_from_tags(resource.description), length: 90) %></td>
 						<td class="col col-actions">
 		          <div class="table_actions">
 		          	<%= render 'layouts/resources/index_table_actions', resource: resource %>

@@ -15,4 +15,5 @@
 //= require jquery_ujs
 //= require select2
 //= require select2_locale_ru
+//= require ckeditor/init
 //= require_tree .

@@ -2,5 +2,6 @@
 	<%=f.input :occured_at, required: true, as: :date_picker %>
 	<%=f.input :tackles, collection: @tackles, input_html: { class: 'select2', style: 'width: 100%;',data: { placeholder: t('js.placeholders.memory_tackles') }} %>
 	<%=f.input :ponds, collection: @ponds, input_html: { class: 'select2', style: 'width: 100%;',data: { placeholder: t('js.placeholders.memory_ponds') }} %>
-	<%=f.input :description, as: :text, input_html: {:rows => 35} %>
+	<%#=f.input :description, as: :text, input_html: {:rows => 35} %>
+	<%= f.input :description, :as => :ckeditor, :input_html => {:ckeditor => { :height => 400 } } %>
 <%end%>
