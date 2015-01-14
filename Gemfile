@@ -26,3 +26,9 @@ group :test do
   gem 'capybara', '2.2.0'
   gem 'factory_girl_rails', '4.2.1'
 end
+
+group :development do
+  # Debugging
+  gem 'better_errors'      # Web UI to debug exceptions. Go to /__better_errors to access the latest one
+  gem 'binding_of_caller'  # Retrieve the binding of a method's caller in MRI Ruby >= 1.9.2
+end
