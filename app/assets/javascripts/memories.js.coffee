@@ -1,3 +1,9 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+select2Gem = ->
+  $('.select2').each (i, e) =>
+    select = $(e)
+    options =
+      placeholder: select.data('placeholder')
+    select.select2(options)
+
+$(document).ready(select2Gem);
+$(document).on('page:load', select2Gem);

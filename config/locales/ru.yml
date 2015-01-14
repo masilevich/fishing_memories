@@ -186,6 +186,7 @@ ru:
       memory:
         occured_at: "Дата"
         description: "Описание"
+        tackles: "Снасти"
       tackle:
         name: "Название"
       pond:

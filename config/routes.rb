@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  get 'tackles/search/name', to: 'tackles#search_for_name', as: 'search_tackle_names'
+
   resources :memories
   resources :tackles
   resources :ponds
