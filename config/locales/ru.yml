@@ -187,6 +187,7 @@ ru:
         occured_at: "Дата"
         description: "Описание"
         tackles: "Снасти"
+        ponds: "Водоёмы"
       tackle:
         name: "Название"
       pond:
@@ -402,3 +403,7 @@ ru:
       long: ! '%d %B %Y, %H:%M'
       short: ! '%d %b, %H:%M'
     pm: вечера
+  js:
+    placeholders:
+      memory_tackles: "Введите название снасти"
+      memory_ponds: "Введите название водоёма"

@@ -7,6 +7,7 @@ module Resource
     helper_method :resource_class, :resource_label, :plural_resource_label, 
       :find_resource, :plural_resource_name, :singular_resource_name
     helper_method :resources_path, :resource_path, :new_resource_path, :edit_resource_path
+    before_action :find_resource, only: [:edit, :update, :show]
   end
 
   def new
@@ -25,11 +26,9 @@ module Resource
   end
 
   def edit
-    find_resource
   end
 
   def update
-    find_resource
     if @resource.update_attributes(resource_params)
       flash[:notice] = t('fishing_memories.model_updated', model: resource_label)
       redirect_to resources_path
@@ -59,7 +58,6 @@ module Resource
   end
 
   def show
-    find_resource
   end
 
   private
