@@ -34,4 +34,8 @@ module ApplicationHelper
 	def clear_text_from_tags(text)
 		strip_tags(text.gsub("&nbsp;", "").gsub("&#39;", "'"))
 	end
+
+	def resource_class
+    controller_name.classify.constantize
+  end
 end

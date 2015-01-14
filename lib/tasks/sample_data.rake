@@ -2,7 +2,7 @@ namespace :db do
   desc "Fill database with sample data"
   task populate: :environment do
     make_users
-    make_memories 
+    #make_memories 
   end
 
   task populate_memories: :environment do

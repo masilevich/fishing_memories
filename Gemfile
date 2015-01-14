@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.1.0'
+ruby '2.2.0'
 
 gem 'rails', '4.1.4'
 gem 'sass-rails', '~> 4.0.2'
@@ -21,7 +21,7 @@ group :production do
 end
 
 group :development, :test do
-  gem 'sqlite3', '1.3.8'
+  gem 'sqlite3'
   gem "rspec-rails", '~> 2.14.0.rc1'
   gem 'byebug'
   gem 'faker'
