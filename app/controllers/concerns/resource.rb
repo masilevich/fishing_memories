@@ -44,16 +44,25 @@ module Resource
 
   def destroy
     delete_result = find_resource.destroy
+    success_flash = t('fishing_memories.model_destroyed', model: resource_label)
+    fail_flash = t('fishing_memories.model_not_destroyed', model: resource_label)
+    @resources = resources.page(params[:page]) if delete_result
     respond_to do |format|
       format.html do
         if delete_result
-          flash[:notice] = t('fishing_memories.model_destroyed', model: resource_label)
+          flash[:notice] = success_flash
           redirect_to resources_path
         else
-          flash[:alert] = t('fishing_memories.model_destroyed', model: resource_label)
+          flash[:alert] = fail_flash
         end
       end
-      format.js
+      format.js do
+      if delete_result
+        flash[:notice] = success_flash
+      else
+        flash[:alert] = fail_flash
+      end
+      end
     end
   end
 
