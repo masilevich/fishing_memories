@@ -1,13 +1,1 @@
-<%= semantic_form_for(@resource) do |f| %>
-
-	<%= render 'form_fields', f: f %>
-	
-	<%= f.actions do %>
-		<li class="action">
-    	<%= f.submit %>
-    <li>
-    <li class="cancel">
-      <%= link_to t('fishing_memories.back'), :back %>
-    <li>
-  <% end %>
-<% end %>
+<%= render 'layouts/resources/resource_form' %>
