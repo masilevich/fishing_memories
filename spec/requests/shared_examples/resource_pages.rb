@@ -10,11 +10,17 @@ shared_examples "resource pages" do
 		specify { expect(find('#page_title')).to have_content(title) }
 	end
 
+	shared_examples "back link" do
+		specify { expect(page).to have_link(I18n.t("fishing_memories.back"), :back)  }
+	end
+
 	shared_examples "breadscrumb link" do |name, href|
 		within ".breadcrumb" do
 			specify { expect(page).to have_link(name, href)  }
 		end
 	end
+
+
 
 	shared_context 'resource_item' do 
 		let!(:resource_item) {FactoryGirl.create(:"#{resource_class.model_name.singular}", user: user)}
@@ -76,6 +82,7 @@ shared_examples "resource pages" do
 		before {visit new_polymorphic_path(resource_class)}
 
 		it_behaves_like "title and page_title"
+		it_behaves_like "back link"
 
 		it { should have_button(submit) }
 
@@ -159,6 +166,7 @@ shared_examples "resource pages" do
 		before {visit edit_polymorphic_path(resource_item)}
 
 		it_behaves_like "title and page_title"
+		it_behaves_like "back link"
 
 		it { should have_button(submit) }
 

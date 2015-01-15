@@ -6,10 +6,10 @@ ru:
     delete: "Удалить"
     delete_confirmation: "Вы уверены, что хотите удалить это?"
     index_model: "%{model}"
-    new_model: "Создать %{model}"
-    edit_model: "Изменить %{model}"
-    destroy_model: "Удалить %{model}"
-    update_model: "Обновить %{model}"
+    new_model: &new_model "Создать %{model}"
+    edit_model: &edit_model "Изменить %{model}"
+    destroy_model: &destroy_model "Удалить %{model}"
+    update_model: &update_model "Обновить %{model}"
     model_created: "%{model} создан(а)"
     model_not_created: "%{model} не создан(а)"
     model_destroyed: "%{model} удален(а)"
@@ -319,9 +319,9 @@ ru:
     select:
       prompt: ! 'Выберите: '
     submit:
-      create: Создать %{model}
-      submit: Сохранить %{model}
-      update: Сохранить %{model}
+      create: *new_model
+      submit: *new_model
+      update: *update_model
   number:
     currency:
       format:

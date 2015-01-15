@@ -2,7 +2,12 @@
 
 	<%= render 'form_fields', f: f %>
 	
-	<%=f.actions do%>
-		<%=f.action :submit, label: t("fishing_memories.new_model", model: resource_label), button_html: { value: t("fishing_memories.new_model", model: resource_label) } %>
-	<% end %>
+	<%= f.actions do %>
+		<li class="action">
+    	<%= f.submit %>
+    <li>
+    <li class="cancel">
+      <%= link_to t('fishing_memories.back'), :back %>
+    <li>
+  <% end %>
 <% end %>
