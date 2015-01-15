@@ -27,6 +27,11 @@ describe 'layouts/_header' do
     it "should display logo with main title" do
       expect(rendered).to have_link(I18n.t('fishing_memories.title'), href: root_path)
     end
+
+    it "should not display tackles, ponds links" do
+      expect(rendered).to_not have_link((Tackle.model_name.human count: PLURAL_MANY_COUNT), href: tackles_path)
+      expect(rendered).to_not have_link((Pond.model_name.human count: PLURAL_MANY_COUNT), href: ponds_path)
+    end
   end
 
 

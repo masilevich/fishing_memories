@@ -3,6 +3,14 @@
   		<tr class="row">
         <th><%= Memory.human_attribute_name("occured_at") %></th>
         <td><%= @resource.occured_at %></td>
+      </tr>
+      <tr class="row">
+        <th><%= Memory.human_attribute_name("tackles") %></th>
+        <td><%= pluck_and_join(@resource.tackles, :name) %></td>
+      </tr>
+      <tr class="row">
+        <th><%= Memory.human_attribute_name("ponds") %></th>
+        <td><%= pluck_and_join(@resource.ponds, :name) %></td>
       </tr>		
   <% end %>
 

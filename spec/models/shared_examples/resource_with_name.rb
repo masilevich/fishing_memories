@@ -8,6 +8,7 @@ shared_examples 'resource with name' do
 	it { should respond_to(:user_id) }
 	it { should respond_to(:user) }
 	it { should respond_to(:title) }
+
 	its(:user) { should eq user }
 
 	it { should be_valid }
@@ -25,4 +26,5 @@ shared_examples 'resource with name' do
 	describe "#title" do
 		its(:title) { should eq @resource.name }
 	end
+
 end

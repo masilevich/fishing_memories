@@ -10,7 +10,6 @@ module ResourceWithName
 		default_scope -> { order('name ASC') }
 	end
 
-
 	def title
 		name
 	end

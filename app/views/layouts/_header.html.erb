@@ -3,13 +3,12 @@
 		<%= link_to (user_signed_in? ? (Memory.model_name.human count: PLURAL_MANY_COUNT) : full_title), root_path  %>
 	</div>
 
-	<%# if current_user.admin? %>
 	<ul class="header-item tabs" id="tabs">
-		<li id="tackles"><%= link_to (Tackle.model_name.human count: PLURAL_MANY_COUNT), tackles_path %></li>
-		<li id="ponds"><%= link_to (Pond.model_name.human count: PLURAL_MANY_COUNT), ponds_path %></li>
+		<% if user_signed_in? %>
+			<li id="tackles"><%= link_to (Tackle.model_name.human count: PLURAL_MANY_COUNT), tackles_path %></li>
+			<li id="ponds"><%= link_to (Pond.model_name.human count: PLURAL_MANY_COUNT), ponds_path %></li>
+		<% end %>
 	</ul>
-	<%# end %>
-
 	
 	<ul class="header-item tabs" id="utility_nav">
 		<% if user_signed_in? %>

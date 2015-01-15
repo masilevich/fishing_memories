@@ -19,6 +19,17 @@ FactoryGirl.define do
     description { Faker::Lorem.sentence }
     occured_at Time.now
     user
+
+    factory :memory_with_ponds_and_tackles do
+      ignore do
+        tackles_count 2
+        ponds_count 2
+      end
+      after(:create) do |memory, evaluator|
+        create_list(:tackle, evaluator.tackles_count, memories: [memory])
+        create_list(:pond, evaluator.ponds_count, memories: [memory])
+      end
+    end
   end
 
   factory :tackle do

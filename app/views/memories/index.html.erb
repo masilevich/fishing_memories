@@ -3,6 +3,8 @@
 		<%= render layout: 'layouts/resources/index_table' do %>
 			<% content_for :table_head do %>
 						<th class="sortable col"><%= Memory.human_attribute_name("occured_at") %></th>
+						<th class="sortable col"><%= Memory.human_attribute_name("tackles") %></th>
+						<th class="sortable col"><%= Memory.human_attribute_name("ponds") %></th>
 						<th class="sortable col"><%= Memory.human_attribute_name("description") %></th>
 						<th class="col col-actions"></th>
 			<% end %>
@@ -11,7 +13,9 @@
 				<% @resources.each do |resource| %>
 					<tr class="odd" id="<%=singular_resource_name%>_<%=resource.id%>">
 						<td class="col"><%= resource.occured_at %></td>
-						<td class="col"><%= truncate(clear_text_from_tags(resource.description), length: 90) %></td>
+						<td class="col"><%= pluck_and_join(resource.tackles, :name).truncate(70) %></td>
+						<td class="col"><%= pluck_and_join(resource.ponds, :name).truncate(70) %></td>
+						<td class="col"><%= clear_text_from_tags(resource.description).truncate(70) %></td>
 						<td class="col col-actions">
 		          <div class="table_actions">
 		          	<%= render 'layouts/resources/index_table_actions', resource: resource %>
