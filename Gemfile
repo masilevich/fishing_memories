@@ -10,6 +10,7 @@ gem 'bourbon'
 gem 'turbolinks'
 gem 'cancan'
 gem 'devise'
+gem 'faker'
 gem 'formtastic', '~> 3.0'
 gem 'kaminari'
 gem 'select2-rails'
@@ -24,7 +25,6 @@ group :development, :test do
   gem 'sqlite3'
   gem "rspec-rails", '~> 2.14.0.rc1'
   gem 'byebug'
-  gem 'faker'
 end
 
 group :test do
