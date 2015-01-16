@@ -1,7 +1,7 @@
-<p>Hello <%= @resource.email %>!</p>
+<p>Здравствуйте <%= @resource.email %>!</p>
 
-<p>Your account has been locked due to an excessive number of unsuccessful sign in attempts.</p>
+<p>Ваша учетная запись была заблокирована по причине превышения количества попыток неудачного входа в систему.</p>
 
-<p>Click the link below to unlock your account:</p>
+<p>Нажмите на ссылку для разблокирования:</p>
 
-<p><%= link_to 'Unlock my account', unlock_url(@resource, unlock_token: @token) %></p>
+<p><%= link_to t('fishing_memories.devise.mailer.unlock_account'), unlock_url(@resource, unlock_token: @token) %></p>

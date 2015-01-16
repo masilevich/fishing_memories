@@ -219,6 +219,7 @@ describe "DevisePages" do
       it "should send notification" do
         expect(ActionMailer::Base.deliveries.last.to).to eq [user.email]
         expect(ActionMailer::Base.deliveries.last.subject).to eq I18n.translate('devise.mailer.confirmation_instructions.subject')
+        expect(ActionMailer::Base.deliveries.last.body.encoded).to include("Подтвердить регистрацию")
       end
     end
 
@@ -264,6 +265,7 @@ describe "DevisePages" do
       it "should send notification" do
         expect(ActionMailer::Base.deliveries.last.to).to eq [user.email]
         expect(ActionMailer::Base.deliveries.last.subject).to eq I18n.translate('devise.mailer.reset_password_instructions.subject')
+        expect(ActionMailer::Base.deliveries.last.body.encoded).to include("Изменить пароль")
       end
     end
 
@@ -294,4 +296,5 @@ describe "DevisePages" do
       end
     end
   end
+
 end

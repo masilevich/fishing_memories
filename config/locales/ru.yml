@@ -109,6 +109,10 @@ ru:
         forgot_your_password: "Забыли пароль?"
         sign_in_with_omniauth_provider: "Войти с помощью %{provider}"
         resend_confirmation_instructions: "Не получили письмо с активацией?"
+      mailer:
+        confirm_account: Подтвердить регистрацию
+        change_password: Изменить пароль
+        unlock_account: Разблокировать учетную запись
     access_denied:
       message: "Вы не авторизованы для выполнения данного действия."
   views:
