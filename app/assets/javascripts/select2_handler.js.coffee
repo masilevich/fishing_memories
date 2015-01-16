@@ -3,6 +3,7 @@ select2Gem = ->
     select = $(e)
     options =
       placeholder: select.data('placeholder')
+      width: '100%'
     select.select2(options)
 
 $(document).ready(select2Gem);
