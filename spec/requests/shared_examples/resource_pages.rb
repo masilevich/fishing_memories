@@ -20,8 +20,6 @@ shared_examples "resource pages" do
 		end
 	end
 
-
-
 	shared_context 'resource_item' do 
 		let!(:resource_item) {FactoryGirl.create(:"#{resource_class.model_name.singular}", user: user)}
 	end
