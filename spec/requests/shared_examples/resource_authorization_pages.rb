@@ -39,7 +39,7 @@ shared_examples "resource with authorization pages" do
         end
 
         describe "submitting to the create action" do
-          before { post new_polymorphic_path(resource_class) }
+          before { post polymorphic_path(resource_class) }
           it_should_behave_like "Redirect to signin page"
         end
 

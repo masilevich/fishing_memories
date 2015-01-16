@@ -1,5 +1,8 @@
 class TacklesController < ApplicationController
+  
 	include Resource
+
+  load_and_authorize_resource
 
 	def search_for_name
     @resources = current_user.tackles.select([:id, :name]).

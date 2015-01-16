@@ -1,5 +1,8 @@
 class MemoriesController < ApplicationController
+
 	include Resource
+
+  load_and_authorize_resource
 
   before_action :set_tackles, only: [:new, :edit]
   before_action :set_ponds, only: [:new, :edit]

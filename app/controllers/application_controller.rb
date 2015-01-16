@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
 
   after_filter :flash_to_headers
 
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, :alert => exception.message
+  end
+
   def flash_to_headers
     return unless request.xhr?
     response.headers['X-Message'] = flash_message
