@@ -23,23 +23,27 @@ module ApplicationHelper
     parts = path.split('/').select(&:present?)[0..-2]
 
     parts.each_with_index.map do |part, index|
-	    if part =~ /\A(\d+|[a-f0-9]{24})\z/ && parts[index-1]
-	    	name   = find_resource.title
-	    end
-	    name ||= I18n.t "activerecord.models.#{part.singularize}", count: PLURAL_MANY_COUNT, default: part.titlecase
-	    link_to name, url_for('/' + parts[0..index].join('/'))
-	  end
-	end
+    	if part =~ /\A(\d+|[a-f0-9]{24})\z/ && parts[index-1]
+    		name   = find_resource.title
+    	end
+    	name ||= I18n.t "activerecord.models.#{part.singularize}", count: PLURAL_MANY_COUNT, default: part.titlecase
+    	link_to name, url_for('/' + parts[0..index].join('/'))
+    end
+  end
 
-	def clear_text_from_tags(text)
-		strip_tags(text.gsub("&nbsp;", "").gsub("&#39;", "'"))
-	end
+  def clear_text_from_tags(text)
+  	strip_tags(text.gsub("&nbsp;", "").gsub("&#39;", "'"))
+  end
 
-	def clear_text_from_tags(text)
-		strip_tags(text.gsub("&nbsp;", "").gsub("&#39;", "'"))
-	end
+  def pluck_and_join(items, column_name, separator = ', ')
+  	items.pluck(column_name).join(separator)
+  end
 
-	def pluck_and_join(items, column_name, separator = ', ')
-		items.pluck(column_name).join(separator)
-	end
+  def nav_link(link_text, link_path, id)
+  	class_name = controller_name == id ? 'current' : ''
+
+  	content_tag(:li, :class => class_name, id: id) do
+  		link_to link_text, link_path
+  	end
+  end
 end
