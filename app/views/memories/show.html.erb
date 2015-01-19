@@ -6,7 +6,7 @@
       </tr>
       <tr class="row">
         <th><%= Memory.human_attribute_name("tackles") %></th>
-        <td><%= pluck_and_join(@resource.tackles, :name) %></td>
+        <td><%= render 'layouts/resources/resource_link_to', collection: @resource.ponds %></td>
       </tr>
       <tr class="row">
         <th><%= Memory.human_attribute_name("ponds") %></th>
