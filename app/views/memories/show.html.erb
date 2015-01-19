@@ -6,11 +6,11 @@
       </tr>
       <tr class="row">
         <th><%= Memory.human_attribute_name("tackles") %></th>
-        <td><%= render partial: 'shared/resource_link_to', collection: @resource.tackles, as: :resource, spacer_template: 'shared/comma' %></td>
+        <td><%= render partial: 'layouts/resources/resource_link_to', collection: @resource.tackles, as: :resource, spacer_template: 'shared/comma' %></td>
       </tr>
       <tr class="row">
         <th><%= Memory.human_attribute_name("ponds") %></th>
-        <td><%= render partial: 'shared/resource_link_to', collection: @resource.ponds, as: :resource, spacer_template: 'shared/comma' %></td>
+        <td><%= render partial: 'layouts/resources/resource_link_to', collection: @resource.ponds, as: :resource, spacer_template: 'shared/comma' %></td>
       </tr>		
   <% end %>
 

@@ -116,8 +116,8 @@ describe "MemoriesPages" do
 			it "should have body" do
 				expect(page).to have_selector('td', text: memory.occured_at)
 				expect(page).to have_selector('tr', text: memory.description.truncate(90))
-				expect(page).to have_selector('tr', text: memory.tackles.pluck(:name).join(', '))
-				expect(page).to have_selector('tr', text: memory.ponds.pluck(:name).join(', '))
+				memory.tackles.each { |tackle|  expect(page).to have_link(tackle.title, href: tackle_path(tackle))}
+				memory.ponds.each { |pond|  expect(page).to have_link(pond.title, href: pond_path(pond))}
 			end
 		end
 		
