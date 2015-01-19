@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     root :to => 'memories#index', as: :authenticated_root
   end
 
+  get '/home',    to: 'static_pages#home'
+
   root 'static_pages#home'
 
   # The priority is based upon order of creation: first created -> highest priority.

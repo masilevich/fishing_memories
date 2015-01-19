@@ -143,13 +143,6 @@ describe "DevisePages" do
     end
     it_behaves_like "memories index page"
 
-    describe "logo" do
-      specify do
-        within 'div#site_title' do
-          expect(page).to have_link((Memory.model_name.human count: PLURAL_MANY_COUNT), href: root_path)
-        end
-      end
-    end
   end
 
   describe "edit registration" do

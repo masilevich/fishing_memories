@@ -46,4 +46,8 @@ module ApplicationHelper
   		link_to link_text, link_path
   	end
   end
+
+  def static_pages_controller?
+    controller_name == "static_pages"
+  end
 end

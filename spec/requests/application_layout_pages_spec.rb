@@ -12,17 +12,20 @@ describe "ApplicationLayoutPages" do
 		end
 
 		describe "header" do
+			let(:tackle_tab_label) {Tackle.model_name.human count: PLURAL_MANY_COUNT}
+			let(:memories_tab_label) {Memory.model_name.human count: PLURAL_MANY_COUNT}
 			describe "tabs" do
 				it "should display tackles, ponds links" do
 					within "#tabs" do
-						expect(page).to have_link((Tackle.model_name.human count: PLURAL_MANY_COUNT), href: tackles_path)
+						expect(page).to have_selector('li.current', text: memories_tab_label)
+						expect(page).to have_link(memories_tab_label, href: root_path)
+						expect(page).to have_link(tackle_tab_label, href: tackles_path)
 						expect(page).to have_link((Pond.model_name.human count: PLURAL_MANY_COUNT), href: ponds_path)
 					end
 				end
 
 				describe "switch" do
 					describe "to another tab" do
-						let(:tackle_tab_label) {Tackle.model_name.human count: PLURAL_MANY_COUNT}
 
 						describe "through click on tab" do
 							before {click_link tackle_tab_label}
@@ -46,6 +49,27 @@ describe "ApplicationLayoutPages" do
 					end
 				end
 			end
+		end
+
+		describe "title bar" do
+		  describe "on resource pages" do
+		    it { should have_selector('div#title_bar') }
+		  end
+
+		  describe "on static pages" do
+		  	before {visit home_path}
+		  	it { should_not have_selector('div#title_bar') }
+		  end
+		end
+	end
+
+	describe "for signed-out user" do
+		before do 
+			visit root_path
+		end
+
+		describe "title bar" do
+			it { should_not have_selector('div#title_bar') }
 		end
 	end
 end
