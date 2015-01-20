@@ -10,4 +10,6 @@
         <td><%= render partial: 'layouts/resources/resource_link_to', collection: @resource.tackles, as: :resource, spacer_template: 'shared/comma' %></td>
       </tr>
   <% end %>
+
+  <%= render partial: 'memories/related_memories', locals: {memories: @resource.memories} %>
 <% end %>

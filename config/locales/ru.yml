@@ -62,6 +62,7 @@ ru:
       action_label: "%{title} выбранное"
       labels:
         destroy: "Удалить"
+    related_memories: "Упоминается в записях"
     devise:
       username:
         title: "Имя пользователя"

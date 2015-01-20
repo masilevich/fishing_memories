@@ -5,4 +5,6 @@
         <td><%= @resource.name %></td>
       </tr>		
   <% end %>
+
+  <%= render partial: 'memories/related_memories', locals: {memories: @resource.memories} %>
 <% end %>
