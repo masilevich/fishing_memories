@@ -129,7 +129,7 @@ describe "MemoriesPages" do
 				expect(page).to have_selector('td', text: memory.occured_at)
 				expect(page).to have_selector('tr', text: memory.description.truncate(90))
 				memory.tackles.each { |tackle|  expect(page).to have_link(tackle.title, href: tackle_path(tackle))}
-				memory.tackle_sets.each { |tackle_set|  expect(page).to have_link(tackle.title, href: tackle_set_path(tackle_set))}
+				memory.tackle_sets.each { |tackle_set|  expect(page).to have_link(tackle_set.title, href: tackle_set_path(tackle_set))}
 				memory.ponds.each { |pond|  expect(page).to have_link(pond.title, href: pond_path(pond))}
 			end
 		end

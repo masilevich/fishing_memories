@@ -23,8 +23,4 @@ shared_examples 'resource with name' do
 		it { should_not be_valid }
 	end
 
-	describe "#title" do
-		its(:title) { should eq @resource.name }
-	end
-
 end

@@ -11,4 +11,7 @@ describe Tackle do
 	it { should respond_to(:memories) }
 	it { should respond_to(:tackle_sets) }
 
+	describe "#title" do
+		its(:title) { should eq @tackle.name }
+	end
 end

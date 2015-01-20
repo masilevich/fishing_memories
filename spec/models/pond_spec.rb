@@ -9,4 +9,8 @@ describe Pond do
 	subject { @pond }
 
 	it { should respond_to(:memories) }
+
+	describe "#title" do
+		its(:title) { should eq @pond.name }
+	end
 end
