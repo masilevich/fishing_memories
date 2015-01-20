@@ -177,6 +177,9 @@ ru:
       tackle:
         one: "Снасть"
         other: "Снасти"
+      tackle_set:
+        one: "Комплект снастей"
+        other: "Комплекты снастей"
       pond:
         one: "Водоем"
         other: "Водоемы"
@@ -191,9 +194,13 @@ ru:
         occured_at: "Дата"
         description: "Описание"
         tackles: "Снасти"
+        tackle_sets: "Комплекты снастей"
         ponds: "Водоёмы"
       tackle:
         name: "Название"
+      tackle_set:
+        name: "Название"
+        tackles: "Снасти"
       pond:
         name: "Название"
     errors:
@@ -410,4 +417,5 @@ ru:
   js:
     placeholders:
       memory_tackles: "Введите название снасти"
+      memory_tackle_sets: "Введите название комплекта снастей"
       memory_ponds: "Введите название водоёма"

@@ -5,6 +5,7 @@ class MemoriesController < ApplicationController
   load_and_authorize_resource
 
   before_action :set_tackles, only: [:new, :edit]
+  before_action :set_tackle_sets, only: [:new, :edit]
   before_action :set_ponds, only: [:new, :edit]
 
 	def new
@@ -17,11 +18,16 @@ class MemoriesController < ApplicationController
 	private
 
 	def memory_params
-		params.require(:memory).permit(:occured_at, :description, tackle_ids: [], pond_ids: [])
+		params.require(:memory).permit(:occured_at, :description, 
+      tackle_ids: [], pond_ids: [], tackle_set_ids: [])
 	end
 
   def set_tackles
     @tackles = current_user.tackles
+  end
+
+  def set_tackle_sets
+    @tackle_sets = current_user.tackle_sets
   end
 
   def set_ponds

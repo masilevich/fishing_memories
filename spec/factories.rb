@@ -37,6 +37,20 @@ FactoryGirl.define do
     user
   end
 
+  factory :tackle_set do
+    name { Faker::Lorem.sentence }
+    user
+
+    factory :tackle_set_with_tackles do
+      ignore do
+        tackles_count 2
+      end
+      after(:create) do |tackle_set, evaluator|
+        create_list(:tackle, evaluator.tackles_count, tackle_sets: [tackle_set])
+      end
+    end
+  end
+
   factory :pond do
     name { Faker::Lorem.sentence }
     user

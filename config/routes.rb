@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   resources :memories
   resources :tackles
+  resources :tackle_sets
   resources :ponds
 
   authenticated :user do

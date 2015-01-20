@@ -1,0 +1,13 @@
+<% content_for :show_content do %>
+  <%= render layout: 'layouts/resources/show_table' do %>
+  		<tr class="row">
+        <th><%= resource_class.human_attribute_name("name") %></th>
+        <td><%= @resource.name %></td>
+      </tr>
+      
+      <tr class="row">
+        <th><%= Memory.human_attribute_name("tackles") %></th>
+        <td><%= render partial: 'layouts/resources/resource_link_to', collection: @resource.tackles, as: :resource, spacer_template: 'shared/comma' %></td>
+      </tr>
+  <% end %>
+<% end %>

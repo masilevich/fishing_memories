@@ -50,4 +50,8 @@ module ApplicationHelper
   def static_pages_controller?
     controller_name == "static_pages"
   end
+
+  def show_sidebar?
+    action_name == "index"
+  end
 end

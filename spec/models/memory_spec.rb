@@ -12,6 +12,7 @@ describe Memory do
   it { should respond_to(:user) }
   it { should respond_to(:title) }
   it { should respond_to(:tackles) }
+  it { should respond_to(:tackle_sets) }
   it { should respond_to(:ponds) }
   its(:user) { should eq user }
 
@@ -38,7 +39,7 @@ describe Memory do
       before do
         @memory = Memory.create(occured_at: Time.now, tackles: tackles)
       end
-      it "should include shopping lists" do
+      it "should include tackles" do
         tackles.each do |tackle| 
           expect(@memory.tackles).to include(tackle) 
         end 
@@ -50,9 +51,21 @@ describe Memory do
       before do
         @memory = Memory.create(occured_at: Time.now, ponds: ponds)
       end
-      it "should include shopping lists" do
+      it "should include ponds" do
         ponds.each do |pond| 
           expect(@memory.ponds).to include(pond) 
+        end 
+      end
+    end
+
+    describe "tackle sets" do
+      let!(:tackle_sets) { FactoryGirl.create_list(:tackle_set, 2) }
+      before do
+        @memory = Memory.create(occured_at: Time.now, tackle_sets: tackle_sets)
+      end
+      it "should include tackle sets" do
+        tackle_sets.each do |tackle_set| 
+          expect(@memory.tackle_sets).to include(tackle_set) 
         end 
       end
     end

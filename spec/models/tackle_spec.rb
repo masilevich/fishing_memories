@@ -9,5 +9,6 @@ describe Tackle do
 	subject { @tackle }
 
 	it { should respond_to(:memories) }
+	it { should respond_to(:tackle_sets) }
 
 end

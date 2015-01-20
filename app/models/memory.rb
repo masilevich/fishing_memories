@@ -1,6 +1,7 @@
 class Memory < ActiveRecord::Base
   belongs_to :user
   has_and_belongs_to_many :tackles
+  has_and_belongs_to_many :tackle_sets
   has_and_belongs_to_many :ponds
 
   validates :user_id, presence: true

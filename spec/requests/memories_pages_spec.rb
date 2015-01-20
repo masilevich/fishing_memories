@@ -19,6 +19,7 @@ describe "MemoriesPages" do
 			expect(page).to have_selector('th', text: Memory.human_attribute_name("occured_at"))
 			expect(page).to have_selector('th', text: Memory.human_attribute_name("description"))
 			expect(page).to have_selector('th', text: Memory.human_attribute_name("tackles"))
+			expect(page).to have_selector('th', text: Memory.human_attribute_name("tackle_sets"))
 			expect(page).to have_selector('th', text: Memory.human_attribute_name("ponds"))
 		end
 
@@ -27,6 +28,7 @@ describe "MemoriesPages" do
 				expect(page).to have_selector('td', text: memory.occured_at)
 				expect(page).to have_selector('td', text: memory.ponds.pluck(:name).join(', ').truncate(70))
 				expect(page).to have_selector('td', text: memory.tackles.pluck(:name).join(', ').truncate(70))
+				expect(page).to have_selector('td', text: memory.tackle_sets.pluck(:name).join(', ').truncate(70))
 				expect(page).to have_selector('td', text: memory.description.truncate(70))
 				expect(page).to have_link(I18n.t('fishing_memories.show'), href: memory_path(memory))
 				expect(page).to have_link(I18n.t('fishing_memories.edit'), href: edit_memory_path(memory))
@@ -46,13 +48,19 @@ describe "MemoriesPages" do
 		describe "select" do
 			let!(:ponds) { FactoryGirl.create_list(:pond, 3, user: user) }
 			let!(:tackles) { FactoryGirl.create_list(:tackle, 3, user: user) }
+			let!(:tackle_sets) { FactoryGirl.create_list(:tackle_set, 3, user: user) }
 			let(:other_user) { FactoryGirl.create(:confirmed_user) }
 		  let!(:other_user_tackles) { FactoryGirl.create_list(:tackle, 3, user: other_user) }
+		  let!(:other_user_tackle_sets) { FactoryGirl.create_list(:tackle_set, 3, user: other_user) }
 		  let!(:other_user_ponds) { FactoryGirl.create_list(:pond, 3, user: other_user) }
 		  before {visit new_memory_path}
 
 		  context "tackles" do
 		  	it { should have_select('memory[tackle_ids][]', :options => tackles.map { |e| e.name}.sort) }
+			end
+
+			context "tackle sets" do
+		  	it { should have_select('memory[tackle_set_ids][]', :options => tackle_sets.map { |e| e.name}.sort) }
 			end
 
 			context "ponds" do
@@ -64,10 +72,12 @@ describe "MemoriesPages" do
 		describe "with valid information" do
 			let!(:pond) { FactoryGirl.create(:pond, user: user) }
 			let!(:tackle) { FactoryGirl.create(:tackle, user: user) }
+			let!(:tackle_set) { FactoryGirl.create(:tackle_set, user: user) }
 			before do
 				@occured_at = DateTime.now.to_date
 				visit new_memory_path
 				select tackle.name, :from => "memory[tackle_ids][]"
+				select tackle_set.name, :from => "memory[tackle_set_ids][]"
 				select pond.name, :from => "memory[pond_ids][]"
 				fill_in "memory_occured_at", with: @occured_at
 			end
@@ -84,6 +94,7 @@ describe "MemoriesPages" do
 					expect(@memory.occured_at).to eq @occured_at
 					expect(@memory.ponds.first).to eq pond
 					expect(@memory.tackles.first).to eq tackle
+					expect(@memory.tackle_sets.first).to eq tackle_set
 				end
 			end
 			
@@ -110,6 +121,7 @@ describe "MemoriesPages" do
 		  it "should have head" do
 				expect(page).to have_selector('th', text: Memory.human_attribute_name("occured_at"))
 				expect(page).to have_selector('th', text: Memory.human_attribute_name("tackles"))
+				expect(page).to have_selector('th', text: Memory.human_attribute_name("tackle_sets"))
 				expect(page).to have_selector('th', text: Memory.human_attribute_name("ponds"))
 			end
 
@@ -117,6 +129,7 @@ describe "MemoriesPages" do
 				expect(page).to have_selector('td', text: memory.occured_at)
 				expect(page).to have_selector('tr', text: memory.description.truncate(90))
 				memory.tackles.each { |tackle|  expect(page).to have_link(tackle.title, href: tackle_path(tackle))}
+				memory.tackle_sets.each { |tackle_set|  expect(page).to have_link(tackle.title, href: tackle_set_path(tackle_set))}
 				memory.ponds.each { |pond|  expect(page).to have_link(pond.title, href: pond_path(pond))}
 			end
 		end
@@ -127,12 +140,14 @@ describe "MemoriesPages" do
 	describe "edit" do
 		let!(:memory) { FactoryGirl.create(:memory, user: user) }
 		let!(:tackles) {FactoryGirl.create_list(:tackle, 2, user: user)}
+		let!(:tackle_sets) {FactoryGirl.create_list(:tackle_set, 2, user: user)}
 		let!(:ponds) {FactoryGirl.create_list(:pond, 2, user: user)}
 		let(:submit) {I18n.t('fishing_memories.update_model', model: Memory.model_name.human)}
 		before do
 			visit edit_memory_path(memory)
 			memory.ponds << ponds.first
 			memory.tackles << tackles.first
+			memory.tackle_sets << tackle_sets.first
 		end
 
 		it { should have_field("memory_occured_at", with: memory.occured_at.strftime("%Y-%m-%d")) }
@@ -143,6 +158,7 @@ describe "MemoriesPages" do
 				@new_occured_at = DateTime.now.to_date
 			  fill_in "memory_occured_at", with: @new_occured_at
 			  select tackles.second.name, :from => "memory[tackle_ids][]"
+			  select tackle_sets.second.name, :from => "memory[tackle_set_ids][]"
 				select ponds.second.name, :from => "memory[pond_ids][]"
 			  click_button submit
 			  memory.reload
@@ -159,6 +175,11 @@ describe "MemoriesPages" do
 			it "should contain right tackles" do
 				expect(memory.tackles).to include(tackles.second)
 				expect(memory.tackles).to_not include(tackles.first)
+			end
+
+			it "should contain right tackle set" do
+				expect(memory.tackle_sets).to include(tackle_sets.second)
+				expect(memory.tackle_sets).to_not include(tackle_sets.first)
 			end
 		end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150113064051) do
+ActiveRecord::Schema.define(version: 20150120074343) do
 
   create_table "memories", force: true do |t|
     t.integer  "user_id"
@@ -29,6 +29,11 @@ ActiveRecord::Schema.define(version: 20150113064051) do
     t.integer "pond_id"
   end
 
+  create_table "memories_tackle_sets", id: false, force: true do |t|
+    t.integer "memory_id",     null: false
+    t.integer "tackle_set_id", null: false
+  end
+
   create_table "memories_tackles", id: false, force: true do |t|
     t.integer "memory_id"
     t.integer "tackle_id"
@@ -43,6 +48,21 @@ ActiveRecord::Schema.define(version: 20150113064051) do
 
   add_index "ponds", ["name", "user_id"], name: "index_ponds_on_name_and_user_id", unique: true
   add_index "ponds", ["user_id"], name: "index_ponds_on_user_id"
+
+  create_table "tackle_sets", force: true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tackle_sets", ["name", "user_id"], name: "index_tackle_sets_on_name_and_user_id", unique: true
+  add_index "tackle_sets", ["user_id"], name: "index_tackle_sets_on_user_id"
+
+  create_table "tackle_sets_tackles", id: false, force: true do |t|
+    t.integer "tackle_id",     null: false
+    t.integer "tackle_set_id", null: false
+  end
 
   create_table "tackles", force: true do |t|
     t.string   "name"

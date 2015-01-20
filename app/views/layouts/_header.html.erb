@@ -7,6 +7,7 @@
 		<% if user_signed_in? %>
 			<%= nav_link (Memory.model_name.human count: PLURAL_MANY_COUNT), root_path, 'memories'  %>
 			<%= nav_link (Tackle.model_name.human count: PLURAL_MANY_COUNT), tackles_path, 'tackles' %>
+			<%= nav_link (TackleSet.model_name.human count: PLURAL_MANY_COUNT), tackle_sets_path, 'tackle_sets' %>
 			<%= nav_link (Pond.model_name.human count: PLURAL_MANY_COUNT), ponds_path, 'ponds' %>
 		<% end %>
 	</ul>

@@ -13,14 +13,16 @@ describe "ApplicationLayoutPages" do
 
 		describe "header" do
 			let(:tackle_tab_label) {Tackle.model_name.human count: PLURAL_MANY_COUNT}
+			let(:tackle_sets_tab_label) {TackleSet.model_name.human count: PLURAL_MANY_COUNT}
 			let(:memories_tab_label) {Memory.model_name.human count: PLURAL_MANY_COUNT}
+			let(:ponds_tab_label) {Pond.model_name.human count: PLURAL_MANY_COUNT}
 			describe "tabs" do
 				it "should display tackles, ponds links" do
 					within "#tabs" do
 						expect(page).to have_selector('li.current', text: memories_tab_label)
 						expect(page).to have_link(memories_tab_label, href: root_path)
 						expect(page).to have_link(tackle_tab_label, href: tackles_path)
-						expect(page).to have_link((Pond.model_name.human count: PLURAL_MANY_COUNT), href: ponds_path)
+						expect(page).to have_link(ponds_tab_label, href: ponds_path)
 					end
 				end
 
@@ -28,11 +30,32 @@ describe "ApplicationLayoutPages" do
 					describe "to another tab" do
 
 						describe "through click on tab" do
-							before {click_link tackle_tab_label}
-							it "should change current tab" do
-								within "ul#tabs" do
-									expect(page).to have_selector('li.current', text: tackle_tab_label)
-								end	
+
+							describe "tackles" do
+								before {click_link tackle_tab_label}
+								it "should change current tab" do
+									within "ul#tabs" do
+										expect(page).to have_selector('li.current', text: tackle_tab_label)
+									end	
+								end
+							end
+
+							describe "tackle_sets" do
+								before {click_link tackle_sets_tab_label}
+								it "should change current tab" do
+									within "ul#tabs" do
+										expect(page).to have_selector('li.current', text: tackle_sets_tab_label)
+									end	
+								end
+							end
+							
+							describe "ponds" do
+								before {click_link ponds_tab_label}
+								it "should change current tab" do
+									within "ul#tabs" do
+										expect(page).to have_selector('li.current', text: ponds_tab_label)
+									end	
+								end
 							end
 						end
 
@@ -52,14 +75,14 @@ describe "ApplicationLayoutPages" do
 		end
 
 		describe "title bar" do
-		  describe "on resource pages" do
-		    it { should have_selector('div#title_bar') }
-		  end
+			describe "on resource pages" do
+				it { should have_selector('div#title_bar') }
+			end
 
-		  describe "on static pages" do
-		  	before {visit home_path}
-		  	it { should_not have_selector('div#title_bar') }
-		  end
+			describe "on static pages" do
+				before {visit home_path}
+				it { should_not have_selector('div#title_bar') }
+			end
 		end
 	end
 
