@@ -53,7 +53,11 @@ describe "MemoriesPages" do
 		  let!(:other_user_tackles) { FactoryGirl.create_list(:tackle, 3, user: other_user) }
 		  let!(:other_user_tackle_sets) { FactoryGirl.create_list(:tackle_set, 3, user: other_user) }
 		  let!(:other_user_ponds) { FactoryGirl.create_list(:pond, 3, user: other_user) }
-		  before {visit new_memory_path}
+		  before do
+		  	visit new_memory_path
+		  	tackle_sets.first.tackles << tackles
+		  	tackle_sets.first.save
+		  end
 
 		  context "tackles" do
 		  	it { should have_select('memory[tackle_ids][]', :options => tackles.map { |e| e.name}.sort) }
