@@ -19,5 +19,11 @@ describe "authorization" do
       let(:resource_class) { Pond }
     end
   end
+
+  describe "tackle sets" do
+    it_should_behave_like "resource with authorization pages" do
+      let(:resource_class) { TackleSet }
+    end
+  end
   
 end
