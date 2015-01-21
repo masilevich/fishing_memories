@@ -148,14 +148,22 @@ describe "MemoriesPages" do
 		let!(:ponds) {FactoryGirl.create_list(:pond, 2, user: user)}
 		let(:submit) {I18n.t('fishing_memories.update_model', model: Memory.model_name.human)}
 		before do
-			visit edit_memory_path(memory)
 			memory.ponds << ponds.first
 			memory.tackles << tackles.first
 			memory.tackle_sets << tackle_sets.first
+			memory.save
+			visit edit_memory_path(memory)
 		end
 
 		it { should have_field("memory_occured_at", with: memory.occured_at.strftime("%Y-%m-%d")) }
 		it { should have_field("memory_description", with: memory.description) }
+		it { should have_select('memory[pond_ids][]', :options => ponds.map { |e| e.name}.sort,
+			selected: ponds.first.name )}
+		it { should have_select('memory[tackle_ids][]', :options => tackles.map { |e| e.name}.sort, 
+			selected: tackles.first.name)}
+		it { should have_select('memory[tackle_set_ids][]', :options => tackle_sets.map { |e| e.name}.sort, 
+			selected: tackle_sets.first.title)}
+
 
 		describe "with valid information" do
 			before do
@@ -173,17 +181,17 @@ describe "MemoriesPages" do
 
 			it "should contain right ponds" do
 				expect(memory.ponds).to include(ponds.second)
-				expect(memory.ponds).to_not include(ponds.first)
+				expect(memory.ponds).to include(ponds.first)
 			end
 
 			it "should contain right tackles" do
 				expect(memory.tackles).to include(tackles.second)
-				expect(memory.tackles).to_not include(tackles.first)
+				expect(memory.tackles).to include(tackles.first)
 			end
 
 			it "should contain right tackle set" do
 				expect(memory.tackle_sets).to include(tackle_sets.second)
-				expect(memory.tackle_sets).to_not include(tackle_sets.first)
+				expect(memory.tackle_sets).to include(tackle_sets.first)
 			end
 		end
 
