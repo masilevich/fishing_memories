@@ -92,6 +92,17 @@ describe "TackleSetsPages" do
 				tackle_set.tackles.each { |tackle|  expect(page).to have_link(tackle.title, href: tackle_path(tackle))}
 			end
 		end
+
+		describe "related memories" do
+			let!(:tackle_set_memories) { FactoryGirl.create_list(:memory, 3, user: user, occured_at: Date.today.to_date) }
+			let!(:tackle_set) { FactoryGirl.create(:tackle_set, user: user, memories: tackle_set_memories) }
+
+			it_should_behave_like "table with related memories" do
+				let!(:memories) {tackle_set.memories}
+				let!(:other_memories) { FactoryGirl.create_list(:memory, 3, user: user, occured_at: Date.yesterday.to_date) }
+				before {visit tackle_set_path(tackle_set)}
+			end
+		end
 		
 	end
 
