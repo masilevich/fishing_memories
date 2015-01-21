@@ -8,7 +8,6 @@ fade_flash()
 show_ajax_message = (msg, type) ->
   $("div.flashes").html "<div class=\"flash flash_" + type + "\">" + msg + "</div>"
   fade_flash()
-  console.log "show ajax message"
   return
 
 $(document).ajaxComplete (event, request) ->
