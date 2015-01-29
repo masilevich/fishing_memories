@@ -47,6 +47,14 @@ module ApplicationHelper
   	end
   end
 
+  def sortable_col(column, title)
+    css_class = (column == sort_column) ? "sorted-#{sort_direction}" : nil
+    direction = (column == sort_column && sort_direction == "asc") ? "desc" : "asc"
+    content_tag(:th, class: "sortable col #{css_class}") do
+      link_to title, {:sort => column, :direction => direction}
+    end
+  end
+
   def static_pages_controller?
     controller_name == "static_pages"
   end
@@ -54,4 +62,5 @@ module ApplicationHelper
   def show_sidebar?
     action_name == "index"
   end
+
 end

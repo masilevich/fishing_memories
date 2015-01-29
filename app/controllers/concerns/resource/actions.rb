@@ -29,8 +29,9 @@ module Resource
 			end
 		end
 
-		def index 
-			@resources = resources.page(params[:page])
+		def index
+			@resources = sort_column ? resources.unscoped.order(sort_column + ' ' + sort_direction) : resources 
+			@resources = @resources.page(params[:page])
 		end
 
 		def destroy

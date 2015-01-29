@@ -9,41 +9,41 @@ class MemoriesController < ApplicationController
   before_action :set_ponds, only: [:new, :edit]
 
   def create
-      @resource = resources.build(resource_params)
-      if @resource.save
-        flash[:notice] = t('fishing_memories.model_created', model: resource_label)
-        redirect_to resources_path
-      else
-        flash.now[:alert] = t('fishing_memories.model_not_created', model: resource_label)
-        set_ponds
-        set_tackles
-        set_tackle_sets
-        render 'new'
-      end
+    @resource = resources.build(resource_params)
+    if @resource.save
+      flash[:notice] = t('fishing_memories.model_created', model: resource_label)
+      redirect_to resources_path
+    else
+      flash.now[:alert] = t('fishing_memories.model_not_created', model: resource_label)
+      set_ponds
+      set_tackles
+      set_tackle_sets
+      render 'new'
     end
+  end
 
-    def edit
+  def edit
+  end
+
+  def update
+    if @resource.update_attributes(resource_params)
+      flash[:notice] = t('fishing_memories.model_updated', model: resource_label)
+      redirect_to resources_path
+    else
+      flash.now[:alert] = t('fishing_memories.model_not_updated', model: resource_label)
+      set_ponds
+      set_tackles
+      set_tackle_sets
+      render 'edit'
     end
+  end
 
-    def update
-      if @resource.update_attributes(resource_params)
-        flash[:notice] = t('fishing_memories.model_updated', model: resource_label)
-        redirect_to resources_path
-      else
-        flash.now[:alert] = t('fishing_memories.model_not_updated', model: resource_label)
-        set_ponds
-        set_tackles
-        set_tackle_sets
-        render 'edit'
-      end
-    end
+  private
 
-	private
-
-	def memory_params
-		params.require(:memory).permit(:occured_at, :description, 
+  def memory_params
+    params.require(:memory).permit(:sort, :direction, :occured_at, :description, 
       tackle_ids: [], pond_ids: [], tackle_set_ids: [])
-	end
+  end
 
   def set_tackles
     @tackles = current_user.tackles

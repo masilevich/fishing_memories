@@ -7,6 +7,6 @@ class TacklesController < ApplicationController
   private
 
   def tackle_params
-  	params.require(:tackle).permit(:name)
+  	params.require(:tackle).permit(:sort, :direction, :name)
   end
 end
