@@ -2,7 +2,7 @@ namespace :db do
   desc "Fill database with sample data"
   task populate: :environment do
     make_users
-    #make_memories 
+    make_memories 
   end
 
   task populate_memories: :environment do
@@ -36,7 +36,6 @@ def make_memories
       description: Faker::Lorem.sentence,
       occured_at: Time.now)
   end
-
 end
 
 
