@@ -8,6 +8,21 @@ class MemoriesController < ApplicationController
   before_action :set_tackle_sets, only: [:new, :edit]
   before_action :set_ponds, only: [:new, :edit]
 
+  def index
+    @resources = if sort_column == 'description'
+      resources.sort_by_description(sort_direction)
+    else
+      sort_column ? resources.reorder(sort_column + ' ' + sort_direction) : resources 
+    end
+
+    unless @resources.kind_of?(Array)
+      @resources = @resources.page(params[:page])
+    else
+      @resources = Kaminari.paginate_array(@resources).page(params[:page])
+    end
+    
+  end
+
   def create
     @resource = resources.build(resource_params)
     if @resource.save

@@ -2,13 +2,11 @@ require 'spec_helper'
 require 'user_helper'
 
 describe "TackleSetsPages" do
-  it_should_behave_like "resource pages" do
-	  let(:resource_class) { TackleSet }
-	end
+	let(:resource_class) { TackleSet }
 
-	it_should_behave_like "resource with name pages" do
-	  let(:resource_class) { TackleSet }
-	end
+  it_should_behave_like "resource pages" 
+
+	it_should_behave_like "resource with name pages"
 
 	include_context "login user"
 

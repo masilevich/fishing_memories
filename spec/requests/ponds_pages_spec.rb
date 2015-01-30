@@ -2,13 +2,12 @@ require 'spec_helper'
 require 'user_helper'
 
 describe "PondsPages" do
-	it_should_behave_like "resource pages" do
-		let(:resource_class) { Pond }
-	end
 
-	it_should_behave_like "resource with name pages" do
-		let(:resource_class) { Pond }
-	end
+	let(:resource_class) { Pond }
+
+	it_should_behave_like "resource pages" 
+
+	it_should_behave_like "resource with name pages" 
 
 	describe "show" do
 		describe "related memories" do
