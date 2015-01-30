@@ -1,3 +1,3 @@
 <%= link_to I18n.t('fishing_memories.show'),   resource_path(resource), class: 'member_link' %>
 <%= link_to I18n.t('fishing_memories.edit'),   edit_resource_path(resource), class: 'member_link' %>
-<%= link_to I18n.t('fishing_memories.delete'),  resource_path(resource), { method: :delete, class: 'member_link', remote: true, data: { confirm: I18n.t('fishing_memories.delete_confirmation') } } %>
+<%= link_to I18n.t('fishing_memories.delete'),  resource_path(resource), { method: :delete, class: 'member_link delete_column', remote: true, data: { confirm: I18n.t('fishing_memories.delete_confirmation') } } %>

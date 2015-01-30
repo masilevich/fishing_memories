@@ -50,6 +50,7 @@ module Resource
 				end
 				format.js do
 					if delete_result
+						render 'layouts/resources/destroy.js.erb'
 						flash[:notice] = success_flash
 					else
 						flash[:alert] = fail_flash
