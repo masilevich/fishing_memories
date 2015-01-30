@@ -12,16 +12,19 @@
 
 		<% if devise_controller? %>
 			<%= render layout: 'layouts/devise_layout' do %>
-			<%= yield %>
-		<% end %>
+				<%= yield %>
+			<% end %>
 		<% else %>
 			<% if user_signed_in? && !static_pages_controller? %>
 				<%= render 'layouts/title_bar' %>
 			<% end %>
 			<%= render 'layouts/flashes' %>
-			<%= render layout: 'layouts/main_content_layout' do %>
-        <%= content_for?(:page_content) ? yield(:page_content) : yield %>
-      <% end %>    
+			<div id="fishing_memories_content" class= <%= 'without_sidebar' unless show_sidebar? %>>
+				<%= render layout: 'layouts/main_content_layout' do %>
+	        <%= content_for?(:page_content) ? yield(:page_content) : yield %>
+	      <% end %>
+	      <%= render 'layouts/sidebar' if show_sidebar? %>
+      </div>    
 		<% end %>
 
 		<%= render 'layouts/footer' %>
