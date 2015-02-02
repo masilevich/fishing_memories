@@ -1,56 +1,8 @@
 <div id="sidebar">
   <div class="sidebar_section panel" id="filters_sidebar_section">
-    <h3>Filters</h3>
-    <div class="panel_contents"><form accept-charset="UTF-8" action="/admin/posts" class="filter_form" id="new_q" method="get"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"></div><div class="filter_form_field filter_select"><label class="label" for="q_custom_category_id">Category</label><select id="q_custom_category_id" name="q[category_id_eq]"><option value="">Any</option>
-    <option value="1">afd</option>
-    <option value="3">asdf</option>
-    <option value="4">asdf</option>
-    <option value="5">sadf</option>
-    <option value="6">asgg</option>
-    <option value="7">g</option>
-    <option value="8">g</option>
-    <option value="9">g</option>
-    <option value="10">g</option>
-    <option value="11">g</option>
-    <option value="12">g</option>
-    <option value="13">d</option>
-    <option value="14">d</option>
-    <option value="15">a</option>
-    <option value="16">d</option>
-    <option value="17">a</option>
-    <option value="18">d</option>
-    <option value="19">d</option>
-    <option value="20">d</option>
-    <option value="21">d</option>
-    <option value="22">d</option>
-    <option value="23">d</option>
-    <option value="25">a</option>
-    <option value="26">g</option>
-    <option value="28">s</option>
-    <option value="29">g</option>
-    <option value="30">a</option>
-    <option value="31">g</option>
-    <option value="32">cxb</option></select></div><div class="filter_form_field filter_select"><label class="label" for="q_author_id">Author</label><select id="q_author_id" name="q[author_id_eq]"><option value="">Any</option>
-    <option value="1">ag asdf</option></select></div><div class="filter_form_field filter_select"><label class="label" for="q_tagging_ids">Taggings</label><select id="q_tagging_ids" name="q[taggings_id_eq]"><option value="">Any</option>
-  </select></div><div class="filter_form_field filter_string select_and_search"><label class="label" for="q_title">Title</label><select id="" name=""><option value="title_contains" selected="selected">Contains</option>
-  <option value="title_equals">Equals</option>
-  <option value="title_starts_with">Starts with</option>
-  <option value="title_ends_with">Ends with</option></select><input id="q_title" maxlength="255" name="q[title_contains]" type="text"></div><div class="filter_form_field filter_string select_and_search"><label class="label" for="q_body">Body</label><select id="" name=""><option value="body_contains" selected="selected">Contains</option>
-  <option value="body_equals">Equals</option>
-  <option value="body_starts_with">Starts with</option>
-  <option value="body_ends_with">Ends with</option></select><input id="q_body" name="q[body_contains]" type="text"></div><div class="filter_form_field filter_date_range"><label class="label" for="q_published_at_gteq">Published at</label>
-  <input class="datepicker" id="q_published_at_gteq" max="10" name="q[published_at_gteq]" size="12" type="text" value="">
-  <span class="seperator">-</span>
-  <input class="datepicker" id="q_published_at_lteq" max="10" name="q[published_at_lteq]" size="12" type="text" value=""></div><div class="filter_form_field filter_numeric select_and_search"><label class="label" for="q_position">Position</label><select id="" name=""><option value="position_equals" selected="selected">Equals</option>
-  <option value="position_greater_than">Greater than</option>
-  <option value="position_less_than">Less than</option></select><input id="q_position" name="q[position_equals]" step="any" type="text"></div><div class="filter_form_field filter_boolean"><label class="label" for="q_starred">Starred</label><select id="q_starred" name="q[starred_eq]"><option value="">Any</option>
-  <option value="true">Yes</option>
-  <option value="false">No</option></select></div><div class="filter_form_field filter_date_range"><label class="label" for="q_created_at_gteq">Created at</label>
-  <input class="datepicker" id="q_created_at_gteq" max="10" name="q[created_at_gteq]" size="12" type="text" value="">
-  <span class="seperator">-</span>
-  <input class="datepicker" id="q_created_at_lteq" max="10" name="q[created_at_lteq]" size="12" type="text" value=""></div><div class="filter_form_field filter_date_range"><label class="label" for="q_updated_at_gteq">Updated at</label>
-  <input class="datepicker" id="q_updated_at_gteq" max="10" name="q[updated_at_gteq]" size="12" type="text" value="">
-  <span class="seperator">-</span>
-  <input class="datepicker" id="q_updated_at_lteq" max="10" name="q[updated_at_lteq]" size="12" type="text" value=""></div><div class="buttons"><input name="commit" type="submit" value="Filter"><a href="#" class="clear_filters_btn">Clear Filters</a><input id="hidden_active_admin_order" name="order" type="hidden" value="id_desc"></div></form></div>
-</div>
+    <h3><%= t('fishing_memories.sidebars.filters') %></h3>
+    <div class="panel_contents">
+      <%= yield %>
+    </div>
+  </div>
 </div>

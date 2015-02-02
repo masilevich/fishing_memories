@@ -23,7 +23,11 @@
 				<%= render layout: 'layouts/main_content_layout' do %>
 	        <%= content_for?(:page_content) ? yield(:page_content) : yield %>
 	      <% end %>
-	      <%= render 'layouts/sidebar' if show_sidebar? %>
+	      <% if show_sidebar? %>
+		      <%= render layout: 'layouts/sidebar' do %>
+		      	<%= yield(:sidebar_content) if content_for?(:sidebar_content) %>
+		      <% end %>
+	      <% end %>
       </div>    
 		<% end %>
 

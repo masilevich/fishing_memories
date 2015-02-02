@@ -65,6 +65,21 @@ describe "MemoriesPages" do
 			end
 
 		end
+
+		describe "sidebar" do
+		  describe "title" do
+		  	specify { expect(page).to have_selector('div#sidebar h3', text: I18n.t('fishing_memories.sidebars.filters')) }
+		  end
+
+		  describe "actions" do
+		    specify do
+		    	within("#sidebar") do
+		    		expect(page).to have_submit_button(I18n.t('fishing_memories.filters.buttons.filter'))
+		    		expect(page).to have_link(I18n.t('fishing_memories.filters.buttons.clear'))
+		    	end
+		    end
+		  end
+		end
 	end
 
 	describe "create" do

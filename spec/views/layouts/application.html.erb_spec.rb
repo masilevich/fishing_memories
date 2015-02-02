@@ -13,6 +13,14 @@ describe 'layouts/application' do
       expect(rendered).to have_selector('div#title_bar')
     end
 
+    describe "sidebar" do
+      before do
+        view.stub(:show_sidebar?).and_return(true)
+        render
+      end
+      specify { expect(rendered).to have_selector('div#sidebar h3', text: I18n.t('fishing_memories.sidebars.filters')) }
+    end
+
   end
 
   context 'signed-out user' do

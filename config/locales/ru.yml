@@ -29,8 +29,21 @@ ru:
     status_tag:
       "yes": "Да"
       "no": "Нет"
+    filters:
+      buttons:
+        filter: "Фильтровать"
+        clear: "Очистить фильтр"
+      predicates:
+        contains: "Contains"
+        equals: "Equals"
+        starts_with: "Starts with"
+        ends_with: "Ends with"
+        greater_than: "Greater than"
+        less_than: "Less than"
     main_content: "Создайте %{model}#main_content для отображения содержимого."
     sign_out: "Выйти"
+    sidebars:
+      filters: "Фильтры"
     pagination:
       empty: "%{model} не найдено"
       one: "Результат: <b>1</b> %{model}"
@@ -206,6 +219,8 @@ ru:
         name: "Название"
     errors:
       <<: *errors
+  ransack:
+    search: "Найти"
   unauthorized:
     default: "Вы не имеете права для выполнения операции."
   date:

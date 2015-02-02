@@ -1,0 +1,13 @@
+<div class="filter_form_field filter_date_range">
+<%= f.label :occured_at %>
+<%= f.text_field :occured_at_gteq, class: "datepicker", max: "10", size: "12" %>
+
+<span class="seperator">-</span>
+
+<%= f.text_field :occured_at_lteq, class: "datepicker", max: "10", size: "12" %>
+</div>
+
+<div class="filter_form_field filter_string">
+<%= f.label :description %>
+<%= f.text_field :description_cont, maxlength: "255" %>
+</div>

@@ -9,10 +9,12 @@ class MemoriesController < ApplicationController
   before_action :set_ponds, only: [:new, :edit]
 
   def index
+    @q = resources.ransack(params[:q])
+    @resources = @q.result
     @resources = if sort_column == 'description'
-      resources.sort_by_description(sort_direction)
+      @resources.sort_by_description(sort_direction)
     else
-      sort_column ? resources.reorder(sort_column + ' ' + sort_direction) : resources 
+      sort_column ? @resources.reorder(sort_column + ' ' + sort_direction) : @resources 
     end
 
     unless @resources.kind_of?(Array)

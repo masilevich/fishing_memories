@@ -1,0 +1,9 @@
+<%= search_form_for @q, class: "filter_form" do |f| %>
+
+  <%= render 'filter_form_fields', f: f %>
+
+  <div class="buttons">
+    <%= f.submit %>
+    <%= link_to t('fishing_memories.filters.buttons.clear'), "#", class: "clear_filters_btn"  %>
+  </div>
+<% end %>
