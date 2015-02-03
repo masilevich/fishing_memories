@@ -2,6 +2,16 @@ require 'spec_helper'
 require 'user_helper'
 require 'active_support/core_ext/string/filters'
 
+shared_context "ordered memories" do
+	let!(:first) { FactoryGirl.create(:memory, user: user, 
+		description: 'a', occured_at: 2.day.ago) }
+	let!(:second) { FactoryGirl.create(:memory, user: user, 
+		description: 'b', occured_at: 1.day.ago) }
+	let!(:third) { FactoryGirl.create(:memory, user: user, 
+		description: 'c', occured_at: DateTime.now.to_date) }
+	let!(:other) { FactoryGirl.create(:memory) }
+end
+
 describe "MemoriesPages" do
 
 	let(:resource_class) { Memory }
@@ -11,6 +21,7 @@ describe "MemoriesPages" do
 	include_context "login user"
 
 	describe "index" do
+
 		let!(:memories) { FactoryGirl.create_list(:memory_with_ponds_and_tackles, 3, user: user) }
 		let!(:lond_desc_memory) { FactoryGirl.create(:memory, user: user, description: 'a'*100) }
 		before {visit memories_path}
@@ -46,39 +57,35 @@ describe "MemoriesPages" do
 				before do
 					Memory.delete_all
 				end
-				let!(:first) { FactoryGirl.create(:memory, user: user, 
-					description: 'a', occured_at: 2.day.ago) }
-				let!(:second) { FactoryGirl.create(:memory, user: user, 
-					description: 'b', occured_at: 1.day.ago) }
-				let!(:third) { FactoryGirl.create(:memory, user: user, 
-					description: 'c', occured_at: DateTime.now.to_date) }
-				let!(:other) { FactoryGirl.create(:memory) }
+				
+				include_context "ordered memories"
 
 				it_should_behave_like "sorted_table" do
-					let!(:column) { "occured_at" }
+					let!(:sorted_column) { "occured_at" }
 				end
 
 				it_should_behave_like "sorted_table" do
-					let!(:column) { "description" }
+					let!(:sorted_column) { "description" }
 				end
-
 			end
 
 		end
 
-		describe "sidebar" do
-		  describe "title" do
-		  	specify { expect(page).to have_selector('div#sidebar h3', text: I18n.t('fishing_memories.sidebars.filters')) }
-		  end
+		describe "filter" do
+			let(:submit) { I18n.t('ransack.search') }
 
-		  describe "actions" do
-		    specify do
-		    	within("#sidebar") do
-		    		expect(page).to have_submit_button(I18n.t('fishing_memories.filters.buttons.filter'))
-		    		expect(page).to have_link(I18n.t('fishing_memories.filters.buttons.clear'))
-		    	end
-		    end
-		  end
+			it_should_behave_like "filter with title and actions"
+
+			include_context "ordered memories"
+
+			it_should_behave_like "by range field" do
+				let!(:filter_column) { "occured_at" }
+			end
+
+			it_should_behave_like "by contains field" do
+				let!(:filter_column) { "description" }
+			end
+
 		end
 	end
 

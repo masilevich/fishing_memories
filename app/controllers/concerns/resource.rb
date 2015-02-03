@@ -17,6 +17,7 @@ module Resource
       :find_resource, :plural_resource_name, :singular_resource_name
     helper_method :resources_path, :resource_path, :new_resource_path, :edit_resource_path
     helper_method :sort_column, :sort_direction
+    helper_method :resource_with_only_name_field?
     before_action :find_resource, only: [:edit, :update, :show]
   end
 
@@ -41,5 +42,13 @@ module Resource
 
   def resources
     current_user.send(plural_resource_name)
+  end
+
+  def resource_with_only_name_field?
+    if resource_class.respond_to?(:resource_with_only_name_field)
+      resource_class.resource_with_only_name_field
+    else
+      false
+    end
   end
 end

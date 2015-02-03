@@ -4,6 +4,8 @@ class Tackle < ActiveRecord::Base
 	has_and_belongs_to_many :memories
 	has_and_belongs_to_many :tackle_sets
 
+  self.resource_with_only_name_field = true
+
 	def memories_with_tackle_sets_memories
 		Memory.where('memories.id IN 
       (

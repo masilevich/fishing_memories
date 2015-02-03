@@ -1,6 +1,19 @@
 require 'spec_helper'
 require 'user_helper'
 
+shared_context "ordered resources" do
+	let(:singular_resource_name) {resource_class.model_name.singular}
+	before do
+		resource_class.delete_all
+	end
+	let!(:first) { FactoryGirl.create(:"#{singular_resource_name}", user: user, 
+		name: 'a') }
+	let!(:second) { FactoryGirl.create(:"#{singular_resource_name}", user: user, 
+		name: 'b') }
+	let!(:third) { FactoryGirl.create(:"#{singular_resource_name}", user: user, 
+		name: 'c') }
+end
+
 shared_examples "resource with name pages"  do
 	include_context "login user"
 
@@ -28,22 +41,26 @@ shared_examples "resource with name pages"  do
 			end
 
 			describe "sorting" do
-				let(:singular_resource_name) {resource_class.model_name.singular}
-				before do
-					resource_class.delete_all
-				end
-				let!(:first) { FactoryGirl.create(:"#{singular_resource_name}", user: user, 
-					name: 'a') }
-				let!(:second) { FactoryGirl.create(:"#{singular_resource_name}", user: user, 
-					name: 'b') }
-				let!(:third) { FactoryGirl.create(:"#{singular_resource_name}", user: user, 
-					name: 'c') }
+				include_context "ordered resources"
 
 				it_should_behave_like "sorted_table" do
-					let!(:column) { "name" }
+					let!(:sorted_column) { "name" }
 				end
 				
 			end
+		end
+
+		describe "filter" do
+			let(:submit) { I18n.t('ransack.search') }
+
+			it_should_behave_like "filter with title and actions"
+
+			include_context "ordered resources"
+
+			it_should_behave_like "by contains field" do
+				let!(:filter_column) { "name" }
+			end
+
 		end
 
 	end

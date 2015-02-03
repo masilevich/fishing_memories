@@ -2,6 +2,8 @@ module ResourceWithName
 	extend ActiveSupport::Concern
 
 	included do
+		class_attribute :resource_with_only_name_field
+		
 		belongs_to :user
 
 		validates :user_id, presence: true

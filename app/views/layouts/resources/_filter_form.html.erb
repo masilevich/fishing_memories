@@ -1,9 +1,13 @@
 <%= search_form_for @q, class: "filter_form" do |f| %>
 
-  <%= render 'filter_form_fields', f: f %>
+	<% if resource_with_only_name_field? %>
+		<%= (render 'layouts/resources/filter_form_with_name_field', f: f) %>
+	<% else %>
+		<%= render 'filter_form_fields', f: f %>
+	<% end %>
 
   <div class="buttons">
     <%= f.submit %>
-    <%= link_to t('fishing_memories.filters.buttons.clear'), "#", class: "clear_filters_btn"  %>
+    <%= link_to t('ransack.clear'), "#", class: "clear_filters_btn"  %>
   </div>
 <% end %>

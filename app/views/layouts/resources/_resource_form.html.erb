@@ -1,6 +1,10 @@
 <%= semantic_form_for(@resource) do |f| %>
 
-	<%= render 'form_fields', f: f %>
+  <% if resource_with_only_name_field? %>
+    <%= (render 'layouts/resources/resource_form_with_name_field', f: f) %>
+  <% else %>
+    <%= render 'form_fields', f: f %>
+  <% end %>
 	
 	<%= f.actions do %>
 		<li class="action">
