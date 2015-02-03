@@ -16,6 +16,7 @@ ru:
     model_not_destroyed: "%{model} не удален(а)"
     model_updated: "%{model} обновлен(а)"
     model_not_updated: "%{model} не обновлен(а)"
+    model_not_found: "%{model} не найдены"
     details: "Сведения"
     cancel: "Отмена"
     back: "Назад"
