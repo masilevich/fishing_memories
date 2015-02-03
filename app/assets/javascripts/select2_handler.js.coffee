@@ -3,6 +3,7 @@ select2Gem = ->
     select = $(e)
     options =
       placeholder: select.data('placeholder')
+      allowClear: true
       containerCss: {"display":"block"}
     select.select2(options)
 

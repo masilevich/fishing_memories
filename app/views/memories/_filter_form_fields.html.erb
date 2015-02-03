@@ -1,13 +1,26 @@
 <div class="filter_form_field filter_date_range">
-<%= f.label :occured_at %>
-<%= f.text_field :occured_at_gteq, class: "datepicker", max: "10", size: "12" %>
+	<%= f.label :occured_at %>
+	<%= f.text_field :occured_at_gteq, class: "datepicker", max: "10", size: "12" %>
+	<span class="seperator">-</span>
+	<%= f.text_field :occured_at_lteq, class: "datepicker", max: "10", size: "12" %>
+</div>
 
-<span class="seperator">-</span>
+<div class="filter_form_field">
+	<%= f.label :tackles, Memory.human_attribute_name("tackles") %>
+	<%= f.collection_select :tackles_id_eq, @tackles, :id, :name, {include_blank: true}, {class: "select2", data: { placeholder: t('js.placeholders.memory_tackles') }} %>
+</div>
 
-<%= f.text_field :occured_at_lteq, class: "datepicker", max: "10", size: "12" %>
+<div class="filter_form_field">
+	<%= f.label :tackle_sets, Memory.human_attribute_name("tackle_sets") %>
+	<%= f.collection_select :tackle_sets_id_eq, @tackle_sets, :id, :title, {include_blank: true}, {class: "select2", data: { placeholder: t('js.placeholders.memory_tackle_sets') }} %>
+</div>
+
+<div class="filter_form_field">
+	<%= f.label :ponds, Memory.human_attribute_name("ponds") %>
+	<%= f.collection_select :ponds_id_eq, @ponds, :id, :name, {include_blank: true}, {class: "select2", data: { placeholder: t('js.placeholders.memory_ponds') }} %>
 </div>
 
 <div class="filter_form_field filter_string">
-<%= f.label :description %>
-<%= f.text_field :description_cont, maxlength: "255" %>
+	<%= f.label :description %>
+	<%= f.text_field :description_cont, maxlength: "255" %>
 </div>

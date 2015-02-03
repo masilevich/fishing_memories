@@ -4,9 +4,9 @@ class MemoriesController < ApplicationController
 
   load_and_authorize_resource
 
-  before_action :set_tackles, only: [:new, :edit]
-  before_action :set_tackle_sets, only: [:new, :edit]
-  before_action :set_ponds, only: [:new, :edit]
+  before_action :set_tackles, only: [:new, :edit, :index]
+  before_action :set_tackle_sets, only: [:new, :edit, :index]
+  before_action :set_ponds, only: [:new, :edit, :index]
 
   def create
     @resource = resources.build(resource_params)

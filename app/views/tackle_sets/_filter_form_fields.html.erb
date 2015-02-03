@@ -1,1 +1,6 @@
 <%= (render 'layouts/resources/filter_form_with_name_field', f: f) %>
+
+<div class="filter_form_field">
+	<%= f.label :tackles, TackleSet.human_attribute_name("tackles") %>
+	<%= f.collection_select :tackles_id_eq, @tackles, :id, :name, {include_blank: true}, {class: "select2", data: { placeholder: t('js.placeholders.memory_tackles') }} %>
+</div>
