@@ -8,14 +8,6 @@ class MemoriesController < ApplicationController
   before_action :set_tackle_sets, only: [:new, :edit]
   before_action :set_ponds, only: [:new, :edit]
 
-  def index
-    @q = resources.ransack(params[:q])
-    @resources = @q.result
-    @resources = @resources.page(params[:page])
-
-    
-  end
-
   def create
     @resource = resources.build(resource_params)
     if @resource.save

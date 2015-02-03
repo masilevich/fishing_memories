@@ -2,13 +2,11 @@
 	<div class="index_as_table">
 		<%= render layout: 'layouts/resources/index_table' do %>
 			<% content_for :table_head do %>
-						
-				<th class="sortable col"><%= sort_link(@q, :occured_at) %></th>
-				<%#= sortable_col "occured_at", Memory.human_attribute_name("occured_at")  %>
+				<%= sortable_col "occured_at"  %>
 				<th class="col"><%= Memory.human_attribute_name("tackles") %></th>
 				<th class="col"><%= Memory.human_attribute_name("tackle_sets") %></th>
 				<th class="col"><%= Memory.human_attribute_name("ponds") %></th>
-				<th class="sortable col"><%= sort_link(@q, :description) %></th>
+				<%= sortable_col "description"  %>
 				<th class="col col-actions"></th>
 			<% end %>
 

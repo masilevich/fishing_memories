@@ -31,8 +31,7 @@ module Resource
 
 		def index
 			@q = resources.ransack(params[:q])
-    	@resources = @q.result
-			@resources = sort_column ? @resources.reorder(sort_column + ' ' + sort_direction) : @resources 
+    	@resources = @q.result 
 			@resources = @resources.page(params[:page])
 		end
 

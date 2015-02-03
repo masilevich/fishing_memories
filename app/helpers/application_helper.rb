@@ -47,11 +47,10 @@ module ApplicationHelper
   	end
   end
 
-  def sortable_col(column, title)
+  def sortable_col(column)
     css_class = (column == sort_column) ? "sorted-#{sort_direction}" : nil
-    direction = (column == sort_column && sort_direction == "asc") ? "desc" : "asc"
     content_tag(:th, class: "sortable col #{css_class}") do
-      link_to title, {:sort => column, :direction => direction}
+      sort_link(@q, column, hide_indicator: true)
     end
   end
 

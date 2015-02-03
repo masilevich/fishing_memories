@@ -25,12 +25,4 @@ class Memory < ActiveRecord::Base
   	"#{Memory.model_name.human} #{I18n.t('date.from')} #{occured_at}"
   end
 
-  def clear_description
-    ApplicationController.helpers.clear_text_from_tags(description)
-  end
-
-  def self.sort_by_description(direction = "asc")
-    sorted = all.sort_by(&:clear_description)
-    direction == "desc" ? sorted.reverse : sorted
-  end
 end

@@ -2,7 +2,7 @@
 	<div class="index_as_table">
 		<%= render layout: 'layouts/resources/index_table' do %>
 			<% content_for :table_head do %>
-						<%= sortable_col "name", resource_class.human_attribute_name("name") %>
+						<%= sortable_col "name" %>
 						<th class="col col-actions"></th>
 			<% end %>
 
