@@ -37,11 +37,10 @@ describe "TackleSetsPages" do
 
 			describe "HABTM" do
 				context "tackles" do
-					it_should_behave_like "filter by HABTM association" do
+					it_should_behave_like "filter by HABTM association", "tackles" do
 						let!(:first_associated) { FactoryGirl.create(:tackle, user: user, tackle_sets: [first, second], name: "a") }
 						let!(:second_associated) { FactoryGirl.create(:tackle, user: user, tackle_sets: [first], name: "b") }
 						let!(:third_associated) { FactoryGirl.create(:tackle, user: user, name: "c") }
-						let!(:filter_column) { "tackles" }
 						before {visit tackle_sets_path}
 					end
 				end

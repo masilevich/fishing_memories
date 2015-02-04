@@ -73,26 +73,19 @@ describe "MemoriesPages" do
 
 		describe "filter" do
 
-			it_should_behave_like "filter with title and actions"
-
 			include_context "ordered memories"
+			columns = {occured_at: :range,  description: :cont,
+			 tackles: :association, ponds: :association, tackle_sets: :association}
 
-			it_should_behave_like "filter by range field" do
-				let!(:filter_column) { "occured_at" }
-			end
-
-			it_should_behave_like "filter by contains field" do
-				let!(:filter_column) { "description" }
-			end
-
+			it_should_behave_like "filter", columns
+			
 			[Tackle, TackleSet, Pond].each do |association_class|
 				describe "HABTM" do
 					context "#{association_class.model_name.plural}" do
-						it_should_behave_like "filter by HABTM association" do
+						it_should_behave_like "filter by HABTM association", "#{association_class.model_name.plural}" do
 							let!(:first_associated) { FactoryGirl.create(:"#{association_class.model_name.singular}", user: user, memories: [first, second], name: "a") }
 							let!(:second_associated) { FactoryGirl.create(:"#{association_class.model_name.singular}", user: user, memories: [first], name: "b") }
 							let!(:third_associated) { FactoryGirl.create(:"#{association_class.model_name.singular}", user: user, name: "c") }
-							let!(:filter_column) { "#{association_class.model_name.plural}" }
 							before {visit memories_path}
 						end
 					end

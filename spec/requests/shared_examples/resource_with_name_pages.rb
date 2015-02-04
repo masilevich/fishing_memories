@@ -52,13 +52,9 @@ shared_examples "resource with name pages"  do
 
 		describe "filter" do
 
-			it_should_behave_like "filter with title and actions"
-
 			include_context "ordered resources"
 
-			it_should_behave_like "filter by contains field" do
-				let!(:filter_column) { "name" }
-			end
+			it_should_behave_like "filter", {name: :cont}
 
 		end
 
