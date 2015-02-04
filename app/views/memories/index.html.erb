@@ -2,10 +2,11 @@
 	<div class="index_as_table">
 		<%= render layout: 'layouts/resources/index_table' do %>
 			<% content_for :table_head do %>
-				<%= sortable_col "occured_at"  %>
-				<th class="col"><%= Memory.human_attribute_name("tackles") %></th>
-				<th class="col"><%= Memory.human_attribute_name("tackle_sets") %></th>
-				<th class="col"><%= Memory.human_attribute_name("ponds") %></th>
+				<%= sortable_col "occured_at" %>
+				<%= sortable_col "tackles_name", Memory.human_attribute_name("tackles") %>
+				
+				<%= sortable_col "tackle_sets_name", Memory.human_attribute_name("tackle_sets") %>
+				<%= sortable_col "ponds_name", Memory.human_attribute_name("ponds") %>
 				<%= sortable_col "description"  %>
 				<th class="col col-actions"></th>
 			<% end %>

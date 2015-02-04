@@ -16,10 +16,8 @@ module ApplicationHelper
 		devise_controller? ? body_class + " devise" : body_class		
 	end
 
-	# Returns an array of links to use in a breadcrumb
 	def breadcrumb_links(path = request.path)
-  	# remove leading "/" and split up the URL
-    # and remove last since it's used as the page title
+
     parts = path.split('/').select(&:present?)[0..-2]
 
     parts.each_with_index.map do |part, index|
@@ -47,10 +45,14 @@ module ApplicationHelper
   	end
   end
 
-  def sortable_col(column)
+  def sortable_col(column, title = nil)
     css_class = (column == sort_column) ? "sorted-#{sort_direction}" : nil
     content_tag(:th, class: "sortable col #{css_class}") do
-      sort_link(@q, column, hide_indicator: true)
+      if title
+        sort_link(@q, column, title, hide_indicator: true)
+      else
+        sort_link(@q, column, hide_indicator: true)
+      end
     end
   end
 

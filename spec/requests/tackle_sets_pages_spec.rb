@@ -31,6 +31,23 @@ describe "TackleSetsPages" do
 			end
 		end
 
+		describe "sorting" do
+			before do
+				TackleSet.delete_all
+			end
+
+			include_context "ordered tackle sets"
+
+			describe "HABTM" do
+				it_should_behave_like "sort by HABTM association", "tackles" do
+					let!(:first_associated) { FactoryGirl.create(:tackle, user: user, tackle_sets: [first], name: "a") }
+					let!(:second_associated) { FactoryGirl.create(:tackle, user: user, tackle_sets: [second], name: "b") }
+					let!(:third_associated) { FactoryGirl.create(:tackle, user: user, tackle_sets: [third], name: "c") }
+				end
+			end
+
+		end
+
 		describe "filter" do
 
 			include_context "ordered tackle sets"

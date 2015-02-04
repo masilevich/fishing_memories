@@ -4,7 +4,7 @@ module Resource
 		private
 		def sort_column
 			if params[:q] && params[:q][:s]
-				params[:q][:s].split[0] if resource_class.column_names.include?(params[:q][:s].split[0])
+				params[:q][:s].split[0]
 			end
 		end
 		

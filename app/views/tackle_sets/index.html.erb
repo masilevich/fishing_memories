@@ -3,7 +3,7 @@
 		<%= render layout: 'layouts/resources/index_table' do %>
 			<% content_for :table_head do %>
 						<%= sortable_col "name" %>
-						<th class="sortable col"><%= resource_class.human_attribute_name("tackles") %></th>
+						<%= sortable_col "tackles_name", TackleSet.human_attribute_name("tackles") %>
 						<th class="col col-actions"></th>
 			<% end %>
 
