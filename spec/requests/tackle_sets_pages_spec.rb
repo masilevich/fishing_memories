@@ -1,10 +1,17 @@
 require 'spec_helper'
 require 'user_helper'
 
+shared_context "ordered tackle sets" do
+	let!(:first) { FactoryGirl.create(:tackle_set, user: user, name: 'a') }
+	let!(:second) { FactoryGirl.create(:tackle_set, user: user, name: 'b') }
+	let!(:third) { FactoryGirl.create(:tackle_set, user: user, name: 'c') }
+	let!(:other) { FactoryGirl.create(:tackle_set) }
+end
+
 describe "TackleSetsPages" do
 	let(:resource_class) { TackleSet }
 
-  it_should_behave_like "resource pages" 
+	it_should_behave_like "resource pages" 
 
 	it_should_behave_like "resource with name pages"
 
@@ -24,6 +31,23 @@ describe "TackleSetsPages" do
 			end
 		end
 
+		describe "filter" do
+
+			include_context "ordered tackle sets"
+
+			describe "HABTM" do
+				context "tackles" do
+					it_should_behave_like "filter by HABTM association" do
+						let!(:first_associated) { FactoryGirl.create(:tackle, user: user, tackle_sets: [first, second], name: "a") }
+						let!(:second_associated) { FactoryGirl.create(:tackle, user: user, tackle_sets: [first], name: "b") }
+						let!(:third_associated) { FactoryGirl.create(:tackle, user: user, name: "c") }
+						let!(:filter_column) { "tackles" }
+						before {visit tackle_sets_path}
+					end
+				end
+			end
+
+		end
 	end
 
 	describe "create" do
@@ -32,11 +56,11 @@ describe "TackleSetsPages" do
 		describe "select" do
 			let!(:tackles) { FactoryGirl.create_list(:tackle, 3, user: user) }
 			let(:other_user) { FactoryGirl.create(:confirmed_user) }
-		  let!(:other_user_tackles) { FactoryGirl.create_list(:tackle, 3, user: other_user) }
-		  before {visit new_tackle_set_path}
+			let!(:other_user_tackles) { FactoryGirl.create_list(:tackle, 3, user: other_user) }
+			before {visit new_tackle_set_path}
 
-		  context "tackles" do
-		  	it { should have_select('tackle_set[tackle_ids][]', :options => tackles.map { |e| e.name}.sort) }
+			context "tackles" do
+				it { should have_select('tackle_set[tackle_ids][]', :options => tackles.map { |e| e.name}.sort) }
 			end
 
 		end
@@ -76,13 +100,13 @@ describe "TackleSetsPages" do
 		before {visit tackle_set_path(tackle_set)}
 
 		describe "panels" do
-		  specify do
+			specify do
 				expect(page).to have_selector('div.panel h3', text: I18n.t('fishing_memories.details'))
 			end
 		end
 
 		describe "tables" do
-		  it "should have head" do
+			it "should have head" do
 				expect(page).to have_selector('th', text: TackleSet.human_attribute_name("tackles"))
 			end
 
@@ -101,7 +125,7 @@ describe "TackleSetsPages" do
 				before {visit tackle_set_path(tackle_set)}
 			end
 		end
-		
+
 	end
 
 
@@ -117,10 +141,10 @@ describe "TackleSetsPages" do
 		describe "with valid information" do
 			before do
 				@name = "Комплект"
-			  fill_in "tackle_set_name", with: @name
-			  select tackles.second.name, :from => "tackle_set[tackle_ids][]"
-			  click_button submit
-			  tackle_set.reload
+				fill_in "tackle_set_name", with: @name
+				select tackles.second.name, :from => "tackle_set[tackle_ids][]"
+				click_button submit
+				tackle_set.reload
 			end 
 
 			it "should contain right tackles" do

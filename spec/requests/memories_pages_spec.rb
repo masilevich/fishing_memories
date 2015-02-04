@@ -72,18 +72,31 @@ describe "MemoriesPages" do
 		end
 
 		describe "filter" do
-			let(:submit) { I18n.t('ransack.search') }
 
 			it_should_behave_like "filter with title and actions"
 
 			include_context "ordered memories"
 
-			it_should_behave_like "by range field" do
+			it_should_behave_like "filter by range field" do
 				let!(:filter_column) { "occured_at" }
 			end
 
-			it_should_behave_like "by contains field" do
+			it_should_behave_like "filter by contains field" do
 				let!(:filter_column) { "description" }
+			end
+
+			[Tackle, TackleSet, Pond].each do |association_class|
+				describe "HABTM" do
+					context "#{association_class.model_name.plural}" do
+						it_should_behave_like "filter by HABTM association" do
+							let!(:first_associated) { FactoryGirl.create(:"#{association_class.model_name.singular}", user: user, memories: [first, second], name: "a") }
+							let!(:second_associated) { FactoryGirl.create(:"#{association_class.model_name.singular}", user: user, memories: [first], name: "b") }
+							let!(:third_associated) { FactoryGirl.create(:"#{association_class.model_name.singular}", user: user, name: "c") }
+							let!(:filter_column) { "#{association_class.model_name.plural}" }
+							before {visit memories_path}
+						end
+					end
+				end
 			end
 
 		end

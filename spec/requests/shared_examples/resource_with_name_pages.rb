@@ -51,13 +51,12 @@ shared_examples "resource with name pages"  do
 		end
 
 		describe "filter" do
-			let(:submit) { I18n.t('ransack.search') }
 
 			it_should_behave_like "filter with title and actions"
 
 			include_context "ordered resources"
 
-			it_should_behave_like "by contains field" do
+			it_should_behave_like "filter by contains field" do
 				let!(:filter_column) { "name" }
 			end
 

@@ -1,10 +1,14 @@
+shared_context "filter context" do
+  let(:submit) { I18n.t('ransack.search') }
+  let(:singular_resource) {resource_class.model_name.singular}
+end
+
 shared_examples "not found container" do
 	it {should have_selector('div.blank_slate_container', 
 		text: I18n.t('fishing_memories.model_not_found', model: (resource_class.model_name.human count: PLURAL_MANY_COUNT))) }
 end
 
 shared_examples "filter with title and actions" do
-
 	it "should have title" do
 		expect(page).to have_selector('div#sidebar h3', text: I18n.t('fishing_memories.sidebars.filters'))
 	end
@@ -18,8 +22,8 @@ shared_examples "filter with title and actions" do
 
 end
 
-shared_examples "by range field" do
-	let(:singular_resource) {resource_class.model_name.singular}
+shared_examples "filter by range field" do
+	include_context "filter context"
 	context "great then" do
 		before do
 			fill_in "q[#{filter_column}_gteq]", with: third.send(filter_column)
@@ -68,8 +72,8 @@ shared_examples "by range field" do
 	end
 end
 
-shared_examples "by contains field" do
-	let(:singular_resource) {resource_class.model_name.singular}
+shared_examples "filter by contains field" do
+	include_context "filter context"
 
 	context "finded resources" do
 		before do
@@ -92,4 +96,49 @@ shared_examples "by contains field" do
 		it_should_behave_like "not found container"
 	end
 
+end
+
+shared_examples "filter by HABTM association" do
+
+	it { should have_select("q[#{filter_column}_id_eq]", 
+		:options => ["", first_associated.title, second_associated.title, third_associated.title ]) }
+
+	describe "select" do
+		include_context "filter context"
+
+		context "first" do
+			before do
+				select first_associated.title, from: "q[#{filter_column}_id_eq]"
+				click_button submit
+			end
+
+			specify do
+				expect(page).to have_selector("tr##{singular_resource}_#{first.id}")
+				expect(page).to have_selector("tr##{singular_resource}_#{second.id}")
+				expect(page).to_not have_selector("tr##{singular_resource}_#{third.id}")
+			end
+		end
+
+		context "second" do
+			before do
+				select second_associated.title, from: "q[#{filter_column}_id_eq]"
+				click_button submit
+			end
+
+			specify do
+				expect(page).to have_selector("tr##{singular_resource}_#{first.id}")
+				expect(page).to_not have_selector("tr##{singular_resource}_#{second.id}")
+				expect(page).to_not have_selector("tr##{singular_resource}_#{third.id}")
+			end
+		end
+
+		context "third" do
+			before do
+				select third_associated.title, from: "q[#{filter_column}_id_eq]"
+				click_button submit
+			end
+
+			it_should_behave_like "not found container"
+		end
+	end
 end
