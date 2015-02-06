@@ -9,6 +9,11 @@ Rails.application.routes.draw do
   resources :tackle_sets
   resources :ponds
 
+  resources :categories
+  resources :tackle_categories, controller: 'categories', type: 'TackleCategory' 
+  resources :pond_categories, controller: 'categories', type: 'PondCategory'
+  resources :tackle_set_categories, controller: 'categories', type: 'TackleSetCategory'
+
   authenticated :user do
     root :to => 'memories#index', as: :authenticated_root
   end

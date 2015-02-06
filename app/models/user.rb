@@ -3,8 +3,12 @@ class User < ActiveRecord::Base
   has_many :tackles, dependent: :destroy
   has_many :tackle_sets, dependent: :destroy
   has_many :ponds, dependent: :destroy
+  has_many :tackle_categories
+  has_many :tackle_set_categories
+  has_many :pond_categories
 
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
+
   validates :email, presence: true, format: {with: VALID_EMAIL_REGEX},
   uniqueness: {case_sensitive:false}
 
@@ -12,8 +16,6 @@ class User < ActiveRecord::Base
   validates :username, uniqueness: {case_sensitive: false},
   format: {with: valid_user_name}, length: {maximum: 20} 
 
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :confirmable, :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable, :validatable
 

@@ -3,7 +3,8 @@ class Ability
 
   def initialize(user)
 
-    resources = [Memory, Tackle, Pond, TackleSet]
+    resources = [Memory, Tackle, Pond, TackleSet, 
+        Category, PondCategory, TackleSetCategory, TackleCategory]
     can :create, resources
     can :manage, resources do |resource|
       resource.try(:user) == user

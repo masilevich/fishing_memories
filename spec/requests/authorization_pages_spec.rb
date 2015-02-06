@@ -25,5 +25,11 @@ describe "authorization" do
       let(:resource_class) { TackleSet }
     end
   end
+
+  describe "categories" do
+    it_should_behave_like "resource with authorization pages" do
+      let(:resource_class) { Category }
+    end
+  end
   
 end

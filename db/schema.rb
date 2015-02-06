@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150120074343) do
+ActiveRecord::Schema.define(version: 20150206084458) do
+
+  create_table "categories", force: true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.string   "type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "categories", ["name", "type", "user_id"], name: "index_categories_on_name_and_type_and_user_id", unique: true
+  add_index "categories", ["user_id"], name: "index_categories_on_user_id"
 
   create_table "memories", force: true do |t|
     t.integer  "user_id"

@@ -133,6 +133,13 @@ describe User do
     end
   end
 
+  describe "categories" do
+    before { @user.save }
+    context "ponds" do
+      let!(:pond_category) { FactoryGirl.create(:pond_category, user: @user) }
+      its(:pond_categories) {should include(pond_category)}
+    end
+  end
 =begin
   describe "role" do
     describe "admin" do

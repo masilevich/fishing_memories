@@ -55,4 +55,21 @@ FactoryGirl.define do
     name { Faker::Lorem.sentence }
     user
   end
+
+  factory :category do
+    sequence(:name) { |n| "Категория #{n}" }
+    user
+  end
+
+  factory :pond_category, parent: :category do
+    sequence(:name) { |n| "Вид водоема #{n}" }
+  end
+
+  factory :tackle_category, parent: :category do
+    sequence(:name) { |n| "Вид снасти #{n}" }
+  end
+
+  factory :tackle_set_category, parent: :category do
+    sequence(:name) { |n| "Вид комплекта #{n}" }
+  end
 end
