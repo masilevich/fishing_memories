@@ -1,10 +1,7 @@
 class Category < ActiveRecord::Base
-	belongs_to :user
+	include ResourceWithName
 
-	default_scope {order(name: :asc)}
-
-	validates :name, presence: true, length: {maximum: 50}
-
+	self.resource_with_only_name_field = true
 
    def self.types
       %w(PondCategory TackleCategory TackleSetCategory)

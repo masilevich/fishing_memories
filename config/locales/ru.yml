@@ -187,7 +187,20 @@ ru:
       pond:
         one: "Водоем"
         other: "Водоемы"
+      category:
+        one: "Категория"
+        other: "Категории"
+      pond_category:
+        one: "Категория водоёмов"
+        other: "Категории водоёмов"
+      tackle_category:
+        one: "Категория снастей"
+        other: "Категории снастей"
+      tackle_set_category:
+        one: "Категория комплектов снастей"
+        other: "Категории комплектов снастей"
     attributes:
+      name: &name "Название"
       user:
         login: "Email или имя пользователя"
         username: "Имя пользователя"
@@ -201,12 +214,20 @@ ru:
         tackle_sets: "Комплекты снастей"
         ponds: "Водоёмы"
       tackle:
-        name: "Название"
+        name: *name
       tackle_set:
-        name: "Название"
+        name: *name
         tackles: "Снасти"
       pond:
-        name: "Название"
+        name: *name
+      category:
+        name: *name
+      pond_category:
+        name: *name
+      tackle_category:
+        name: *name
+      tackle_set_category:
+        name: *name
     errors:
       <<: *errors
   ransack:

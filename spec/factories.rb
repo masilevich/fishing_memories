@@ -61,15 +61,18 @@ FactoryGirl.define do
     user
   end
 
-  factory :pond_category, parent: :category do
+  factory :pond_category do
     sequence(:name) { |n| "Вид водоема #{n}" }
+    user
   end
 
-  factory :tackle_category, parent: :category do
+  factory :tackle_category do
     sequence(:name) { |n| "Вид снасти #{n}" }
+    user
   end
 
-  factory :tackle_set_category, parent: :category do
+  factory :tackle_set_category do
     sequence(:name) { |n| "Вид комплекта #{n}" }
+    user
   end
 end

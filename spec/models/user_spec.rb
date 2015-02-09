@@ -1,7 +1,8 @@
 require 'spec_helper'
+require "category_helper"
 
 describe User do
-    
+
   before do
     @user = User.new(username: "example_user", email: "user@example.com",
      password: "foobar", password_confirmation: "foobar")
@@ -134,12 +135,17 @@ describe User do
   end
 
   describe "categories" do
+    include_context("category helper")
+
     before { @user.save }
-    context "ponds" do
-      let!(:pond_category) { FactoryGirl.create(:pond_category, user: @user) }
-      its(:pond_categories) {should include(pond_category)}
+    CATEGORY_TYPES.each do |s|
+      context "for #{s} scope" do
+        let!(:category_with_type) { FactoryGirl.create(:"#{s.underscore}", user: @user) }
+        its(s.tableize) {should include(category_with_type)}
+      end
     end
   end
+
 =begin
   describe "role" do
     describe "admin" do
