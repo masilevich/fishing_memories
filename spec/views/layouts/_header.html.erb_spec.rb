@@ -20,6 +20,13 @@ describe 'layouts/_header' do
       expect(rendered).to have_link((Pond.model_name.human count: PLURAL_MANY_COUNT), href: ponds_path)
     end
 
+    it "should display categories links" do
+      expect(rendered).to have_link((Category.model_name.human count: PLURAL_MANY_COUNT))
+      expect(rendered).to have_link((PondCategory.model_name.human count: PLURAL_MANY_COUNT), href: pond_categories_path)
+      expect(rendered).to have_link((TackleCategory.model_name.human count: PLURAL_MANY_COUNT), href: tackle_categories_path)
+      expect(rendered).to have_link((TackleSetCategory.model_name.human count: PLURAL_MANY_COUNT), href: tackle_set_categories_path)
+    end
+    
   end
 
   context 'signed-out user' do

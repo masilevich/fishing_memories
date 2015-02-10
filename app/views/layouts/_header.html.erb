@@ -9,8 +9,15 @@
 			<%= nav_link (Tackle.model_name.human count: PLURAL_MANY_COUNT), tackles_path, 'tackles' %>
 			<%= nav_link (TackleSet.model_name.human count: PLURAL_MANY_COUNT), tackle_sets_path, 'tackle_sets' %>
 			<%= nav_link (Pond.model_name.human count: PLURAL_MANY_COUNT), ponds_path, 'ponds' %>
+
+			<%= nav_link (Category.model_name.human count: PLURAL_MANY_COUNT), "", 'categories' do %>
+					<%= nav_link (TackleCategory.model_name.human count: PLURAL_MANY_COUNT), tackle_categories_path, 'tackle_categories' %>
+					<%= nav_link (TackleSetCategory.model_name.human count: PLURAL_MANY_COUNT), tackle_set_categories_path, 'tackle_set_categories' %>
+					<%= nav_link (PondCategory.model_name.human count: PLURAL_MANY_COUNT), pond_categories_path, 'pond_categories' %>
+			<% end %>
 		<% end %>
 	</ul>
+
 	
 	<ul class="header-item tabs" id="utility_nav">
 		<% if user_signed_in? %>

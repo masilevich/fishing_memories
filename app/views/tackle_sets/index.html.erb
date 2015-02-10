@@ -2,15 +2,15 @@
 	<div class="index_as_table">
 		<%= render layout: 'layouts/resources/index_table' do %>
 			<% content_for :table_head do %>
-						<%= sortable_col "name" %>
-						<%= sortable_col "tackles_name", TackleSet.human_attribute_name("tackles") %>
-						<th class="col col-actions"></th>
+					<%= render 'layouts/resources/table_head_name_and_category' %>
+					<%= sortable_col "tackles_name", TackleSet.human_attribute_name("tackles") %>
+					<th class="col col-actions"></th>
 			<% end %>
 
 			<% content_for :table_body do %>
 				<% @resources.each do |resource| %>
 					<tr class="odd" id="<%=singular_resource_name%>_<%=resource.id%>">
-						<td class="col"><%= resource.name %></td>
+						<%= render 'layouts/resources/table_body_name_and_category', resource: resource %>
 						<td class="col"><%= pluck_and_join(resource.tackles, :name).truncate(70) %></td>
 						<td class="col col-actions">
 		          <div class="table_actions">

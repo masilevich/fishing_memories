@@ -10,6 +10,8 @@ describe Pond do
 
 	it { should respond_to(:memories) }
 
+	it_should_behave_like "categorizable"
+
 	describe "#title" do
 		its(:title) { should eq @pond.name }
 	end

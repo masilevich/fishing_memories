@@ -22,7 +22,7 @@ shared_examples "resource with name pages"  do
 	end
 
 	describe "index" do
-		let!(:resources) { FactoryGirl.create_list(:"#{resource_class.model_name.singular}", 10, user: user) }
+		let!(:resources) { FactoryGirl.create_list(:"#{resource_class.model_name.singular}", 3, user: user) }
 		before {visit polymorphic_path(resource_class)}
 
 		describe "table" do

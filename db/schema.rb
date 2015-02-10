@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150206084458) do
+ActiveRecord::Schema.define(version: 20150210072354) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20150206084458) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "category_id"
   end
 
   add_index "ponds", ["name", "user_id"], name: "index_ponds_on_name_and_user_id", unique: true
@@ -65,6 +66,7 @@ ActiveRecord::Schema.define(version: 20150206084458) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "category_id"
   end
 
   add_index "tackle_sets", ["name", "user_id"], name: "index_tackle_sets_on_name_and_user_id", unique: true
@@ -80,6 +82,7 @@ ActiveRecord::Schema.define(version: 20150206084458) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "category_id"
   end
 
   add_index "tackles", ["name", "user_id"], name: "index_tackles_on_name_and_user_id", unique: true

@@ -188,7 +188,7 @@ ru:
         one: "Водоем"
         other: "Водоемы"
       category:
-        one: "Категория"
+        one: &category "Категория"
         other: "Категории"
       pond_category:
         one: "Категория водоёмов"
@@ -215,11 +215,14 @@ ru:
         ponds: "Водоёмы"
       tackle:
         name: *name
+        category: *category
       tackle_set:
         name: *name
+        category: *category
         tackles: "Снасти"
       pond:
         name: *name
+        category: *category
       category:
         name: *name
       pond_category:
@@ -456,3 +459,4 @@ ru:
       memory_tackles: "Введите название снасти"
       memory_tackle_sets: "Введите название комплекта снастей"
       memory_ponds: "Введите название водоёма"
+      category: "Введите название категории"

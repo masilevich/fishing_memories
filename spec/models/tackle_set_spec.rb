@@ -11,6 +11,8 @@ describe TackleSet do
 	it { should respond_to(:memories) }
 	it { should respond_to(:tackles) }
 
+	it_should_behave_like "categorizable"
+
 	describe "#title" do
 		context "without tackles" do
 			its(:title) { should eq @tackle_set.name }

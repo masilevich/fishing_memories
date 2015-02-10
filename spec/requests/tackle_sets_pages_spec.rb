@@ -15,10 +15,12 @@ describe "TackleSetsPages" do
 
 	it_should_behave_like "resource with name pages"
 
+	it_should_behave_like "categorizable pages"
+
 	include_context "login user"
 
 	describe "index" do
-		let!(:tackle_sets) { FactoryGirl.create_list(:tackle_set_with_tackles, 10, user: user) }
+		let!(:tackle_sets) { FactoryGirl.create_list(:tackle_set_with_tackles, 3, user: user) }
 		before {visit tackle_sets_path}
 
 		it "should have table" do

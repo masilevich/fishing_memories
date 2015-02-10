@@ -1,10 +1,6 @@
 <%= search_form_for @q, class: "filter_form" do |f| %>
 
-	<% if resource_with_only_name_field? %>
-		<%= (render 'layouts/resources/filter_form_with_name_field', f: f) %>
-	<% else %>
-		<%= render 'filter_form_fields', f: f %>
-	<% end %>
+	<%= render 'filter_form_fields', f: f %>
 
   <div class="buttons">
     <%= f.submit %>

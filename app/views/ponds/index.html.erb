@@ -2,14 +2,14 @@
 	<div class="index_as_table">
 		<%= render layout: 'layouts/resources/index_table' do %>
 			<% content_for :table_head do %>
-						<%= sortable_col "name" %>
-						<th class="col col-actions"></th>
+					<%= render 'layouts/resources/table_head_name_and_category' %>
+					<th class="col col-actions"></th>
 			<% end %>
 
 			<% content_for :table_body do %>
 				<% @resources.each do |resource| %>
 					<tr class="odd" id="<%=singular_resource_name%>_<%=resource.id%>">
-						<td class="col"><%= resource.name %></td>
+						<%= render 'layouts/resources/table_body_name_and_category', resource: resource %>
 						<td class="col col-actions">
 		          <div class="table_actions">
 		          	<%= render 'layouts/resources/index_table_actions', resource: resource %>

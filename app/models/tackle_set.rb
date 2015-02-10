@@ -1,6 +1,6 @@
 class TackleSet < ActiveRecord::Base
-
 	include ResourceWithName
+	include Categorizable
 
 	has_and_belongs_to_many :memories
 	has_and_belongs_to_many :tackles

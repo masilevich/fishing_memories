@@ -44,11 +44,4 @@ module Resource
     current_user.send(plural_resource_name)
   end
 
-  def resource_with_only_name_field?
-    if resource_class.respond_to?(:resource_with_only_name_field)
-      resource_class.resource_with_only_name_field
-    else
-      false
-    end
-  end
 end

@@ -9,6 +9,8 @@ describe "TacklesPages" do
 
 	it_should_behave_like "resource with name pages"
 
+	it_should_behave_like "categorizable pages"
+
 	describe "show" do
 		describe "related memories" do
 			include_context "login user"

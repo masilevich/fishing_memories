@@ -1,5 +1,6 @@
 class TackleSetsController < ApplicationController
 	include Resource
+  include CategorizableResource
 
   load_and_authorize_resource
 
@@ -8,7 +9,7 @@ class TackleSetsController < ApplicationController
   private
 
   def tackle_set_params
-  	params.require(:tackle_set).permit(:name, tackle_ids: [])
+  	params.require(:tackle_set).permit(:name, :category_id, tackle_ids: [])
   end
 
   def set_tackles
