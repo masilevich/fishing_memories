@@ -3,7 +3,7 @@ shared_context "filter context" do
 	let(:singular_resource) {resource_class.model_name.singular}
 end
 
-shared_examples "filter" do |columns|
+shared_examples "filter" do |columns = {}|
 
 	include_context "filter context"
 
@@ -26,6 +26,7 @@ shared_examples "not found container" do
 end
 
 shared_examples "filter with title and actions" do
+
 	it "should have title" do
 		expect(page).to have_selector('div#sidebar h3', text: I18n.t('fishing_memories.sidebars.filters'))
 	end
@@ -149,6 +150,53 @@ shared_examples "filter by HABTM association" do |filter_column|
 				specify do
 					expect(page).to have_selector("tr##{singular_resource}_#{first.id}")
 					expect(page).to_not have_selector("tr##{singular_resource}_#{second.id}")
+					expect(page).to_not have_selector("tr##{singular_resource}_#{third.id}")
+				end
+			end
+
+			context "third" do
+				before do
+					select third_associated.title, from: "q[#{filter_column}_id_eq]"
+					click_button submit
+				end
+
+				it_should_behave_like "not found container"
+			end
+		end
+	end
+end
+
+shared_examples "filter by association" do |filter_column|
+	describe "#{filter_column}" do
+
+		it { should have_select("q[#{filter_column}_id_eq]", 
+			:options => ["", first_associated.title, second_associated.title, third_associated.title ]) }
+
+		describe "select" do
+			include_context "filter context"
+
+			context "first" do
+				before do
+					select first_associated.title, from: "q[#{filter_column}_id_eq]"
+					click_button submit
+				end
+
+				specify do
+					expect(page).to have_selector("tr##{singular_resource}_#{first.id}")
+					expect(page).to_not have_selector("tr##{singular_resource}_#{second.id}")
+					expect(page).to_not have_selector("tr##{singular_resource}_#{third.id}")
+				end
+			end
+
+			context "second" do
+				before do
+					select second_associated.title, from: "q[#{filter_column}_id_eq]"
+					click_button submit
+				end
+
+				specify do
+					expect(page).to_not have_selector("tr##{singular_resource}_#{first.id}")
+					expect(page).to have_selector("tr##{singular_resource}_#{second.id}")
 					expect(page).to_not have_selector("tr##{singular_resource}_#{third.id}")
 				end
 			end

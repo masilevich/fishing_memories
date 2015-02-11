@@ -1,14 +1,33 @@
 require 'spec_helper'
 require 'user_helper'
 
+shared_context "ordered resources for categories" do
+	let!(:first) { FactoryGirl.create(:"#{resource_class.model_name.singular}", 
+		user: user) }
+	let!(:second) { FactoryGirl.create(:"#{resource_class.model_name.singular}", 
+		user: user) }
+	let!(:third) { FactoryGirl.create(:"#{resource_class.model_name.singular}", 
+		user: user) }
+end
+
+shared_context "ordered categories" do
+	let(:single_resource_name) {resource_class.model_name.singular}
+	let!(:first_category) { FactoryGirl.create(:"#{single_resource_name}_category", user: user, name: "a") }
+	let!(:second_category) { FactoryGirl.create(:"#{single_resource_name}_category", user: user, name: "b") }
+	let!(:third_category) { FactoryGirl.create(:"#{single_resource_name}_category", user: user, name: "c") }
+end
+
+
+
 shared_examples "categorizable pages"  do
 	include_context "login user"
 
-	let!(:category) {FactoryGirl.create(:"#{resource_class.model_name.singular}_category", user: user)}
 	let(:single_resource_name) {resource_class.model_name.singular}
+	let!(:category) {FactoryGirl.create(:"#{single_resource_name}_category", user: user)}
+	
 
 	shared_examples "resource_item" do
-	  let!(:resource_item) {FactoryGirl.create(:"#{resource_class.model_name.singular}", 
+		let!(:resource_item) {FactoryGirl.create(:"#{single_resource_name}", 
 			user: user, category: category)}
 	end
 
@@ -26,29 +45,48 @@ shared_examples "categorizable pages"  do
 				expect(page).to have_selector('td', text: resource_item.category.name)
 			end
 
-=begin
 			describe "sorting" do
-				include_context "ordered resources"
+				before { resource_class.delete_all }
+				
+				context do
+					include_context "ordered resources for categories"
+					include_context "ordered categories"
+					before do
+						first.update_attribute(:category_id, first_category.id)
+						second.update_attribute(:category_id, second_category.id)
+						third.update_attribute(:category_id, third_category.id)
+						visit polymorphic_path(resource_class)
+					end
+					it_should_behave_like "sorted table", sorted_column: "category" 
 
-				it_should_behave_like "sorted_table" do
-					let!(:sorted_column) { "category_" }
 				end
-
 			end
-=end
 
 		end
 
-=begin
 		describe "filter" do
 
-			include_context "ordered resources"
+			before do
+				resource_class.delete_all
+				Category.delete_all
+			end
 
-			it_should_behave_like "filter", {name: :cont}
+			include_context "ordered resources for categories"
+			include_context "ordered categories"
 
+			context "by category" do
+				before do
+					first.update_attribute(:category_id, first_category.id)
+					second.update_attribute(:category_id, second_category.id)
+					visit polymorphic_path(resource_class)
+				end
+				let(:first_associated) {first_category}
+				let(:second_associated) {second_category}
+				let(:third_associated) {third_category}
+				it_should_behave_like "filter by association", "category"
+			end
 		end
 
-=end
 	end
 
 
@@ -57,20 +95,20 @@ shared_examples "categorizable pages"  do
 		before {visit new_polymorphic_path(resource_class)}
 
 		it "should have select category" do
-		  expect(page).to have_select("#{single_resource_name}[category_id]", 
-		  	:options => [""] + user.send("#{single_resource_name}_categories").map { |e| e.name}.sort)
+			expect(page).to have_select("#{single_resource_name}[category_id]", 
+				:options => [""] + user.send("#{single_resource_name}_categories").map { |e| e.name}.sort)
 		end
 
 		describe "with valid information" do
 			before do
-			  fill_in "#{single_resource_name}_name", with: "Рыболовная снасть"
-			  select category.name, :from => "#{single_resource_name}[category_id]"
-			  click_button submit
-			  @resource = resource_class.order("created_at").last
+				fill_in "#{single_resource_name}_name", with: "Рыболовная снасть"
+				select category.name, :from => "#{single_resource_name}[category_id]"
+				click_button submit
+				@resource = resource_class.order("created_at").last
 			end 
 
 			it "should have category" do
-			  expect(@resource.category).to eq category
+				expect(@resource.category).to eq category
 			end
 
 		end

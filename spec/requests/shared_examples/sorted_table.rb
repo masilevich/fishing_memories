@@ -1,37 +1,15 @@
-shared_examples "sorted_table" do
+shared_examples "sorted table" do |options={}|
 
-	describe "by sorted_column" do
+	describe "by #{options[:sorted_column]}" do
 		let(:singular_resource) {resource_class.model_name.singular}
 		before do
-			visit polymorphic_path(resource_class)
-			click_link(resource_class.human_attribute_name(sorted_column))
+			within ("#main_content") {click_link(resource_class.human_attribute_name(options[:sorted_column]))}
 		end
 		specify do
 			expect(page).to have_selector("tr:first-child##{singular_resource}_#{first.id}")
 			expect(page).to have_selector("tr:nth-child(2)##{singular_resource}_#{second.id}")
 			expect(page).to have_selector("tr:nth-child(3)##{singular_resource}_#{third.id}")
-			click_link(resource_class.human_attribute_name(sorted_column))
-			expect(page).to have_selector("tr:first-child##{singular_resource}_#{third.id}")
-			expect(page).to have_selector("tr:nth-child(2)##{singular_resource}_#{second.id}")
-			expect(page).to have_selector("tr:nth-child(3)##{singular_resource}_#{first.id}")							
-		end
-	end
-
-end
-
-shared_examples "sort by HABTM association" do |sorted_column|
-
-	describe "by #{sorted_column}" do
-		let(:singular_resource) {resource_class.model_name.singular}
-		before do
-			visit polymorphic_path(resource_class)
-			within ("#main_content") {click_link(resource_class.human_attribute_name(sorted_column))}
-		end
-		specify do
-			expect(page).to have_selector("tr:first-child##{singular_resource}_#{first.id}")
-			expect(page).to have_selector("tr:nth-child(2)##{singular_resource}_#{second.id}")
-			expect(page).to have_selector("tr:nth-child(3)##{singular_resource}_#{third.id}")
-			within ("#main_content") {click_link(resource_class.human_attribute_name(sorted_column))}
+			within ("#main_content") {click_link(resource_class.human_attribute_name(options[:sorted_column]))}
 			expect(page).to have_selector("tr:first-child##{singular_resource}_#{third.id}")
 			expect(page).to have_selector("tr:nth-child(2)##{singular_resource}_#{second.id}")
 			expect(page).to have_selector("tr:nth-child(3)##{singular_resource}_#{first.id}")							

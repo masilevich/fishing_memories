@@ -42,11 +42,10 @@ shared_examples "resource with name pages"  do
 
 			describe "sorting" do
 				include_context "ordered resources"
-
-				it_should_behave_like "sorted_table" do
-					let!(:sorted_column) { "name" }
+				context do
+					before {visit polymorphic_path(resource_class)}
+					it_should_behave_like "sorted table", sorted_column: "name"
 				end
-				
 			end
 		end
 
@@ -54,7 +53,7 @@ shared_examples "resource with name pages"  do
 
 			include_context "ordered resources"
 
-			it_should_behave_like "filter", {name: :cont}
+			it_should_behave_like "filter", name: :cont
 
 		end
 

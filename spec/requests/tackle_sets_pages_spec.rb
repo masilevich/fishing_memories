@@ -34,14 +34,12 @@ describe "TackleSetsPages" do
 		end
 
 		describe "sorting" do
-			before do
-				TackleSet.delete_all
-			end
-
-			include_context "ordered tackle sets"
+			before { TackleSet.delete_all	}
+			include_context "ordered tackle sets"					
 
 			describe "HABTM" do
-				it_should_behave_like "sort by HABTM association", "tackles" do
+				before {visit polymorphic_path(resource_class)}
+				it_should_behave_like "sorted table", sorted_column: "tackles" do
 					let!(:first_associated) { FactoryGirl.create(:tackle, user: user, tackle_sets: [first], name: "a") }
 					let!(:second_associated) { FactoryGirl.create(:tackle, user: user, tackle_sets: [second], name: "b") }
 					let!(:third_associated) { FactoryGirl.create(:tackle, user: user, tackle_sets: [third], name: "c") }
