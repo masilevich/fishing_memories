@@ -1,5 +1,5 @@
 require 'spec_helper'
-require "category_helper"
+require "category_helpers"
 
 describe User do
 
@@ -135,7 +135,7 @@ describe User do
   end
 
   describe "categories" do
-    include_context("category helper")
+    include_context("category helpers")
 
     before { @user.save }
     CATEGORY_TYPES.each do |s|

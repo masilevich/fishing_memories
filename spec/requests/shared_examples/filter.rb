@@ -1,6 +1,5 @@
 shared_context "filter context" do
 	let(:submit) { I18n.t('ransack.search') }
-	let(:singular_resource) {resource_class.model_name.singular}
 end
 
 shared_examples "filter" do |columns = {}|
@@ -48,9 +47,9 @@ shared_examples "filter by range field" do |filter_column|
 				click_button submit
 			end
 			specify do
-				expect(page).to have_selector("tr##{singular_resource}_#{third.id}")
-				expect(page).to_not have_selector("tr##{singular_resource}_#{first.id}")
-				expect(page).to_not have_selector("tr##{singular_resource}_#{second.id}")
+				expect(page).to have_selector("tr##{singular_resource_name}_#{third.id}")
+				expect(page).to_not have_selector("tr##{singular_resource_name}_#{first.id}")
+				expect(page).to_not have_selector("tr##{singular_resource_name}_#{second.id}")
 			end
 		end
 
@@ -60,9 +59,9 @@ shared_examples "filter by range field" do |filter_column|
 				click_button submit
 			end
 			specify do
-				expect(page).to have_selector("tr##{singular_resource}_#{first.id}")
-				expect(page).to_not have_selector("tr##{singular_resource}_#{third.id}")
-				expect(page).to_not have_selector("tr##{singular_resource}_#{second.id}")
+				expect(page).to have_selector("tr##{singular_resource_name}_#{first.id}")
+				expect(page).to_not have_selector("tr##{singular_resource_name}_#{third.id}")
+				expect(page).to_not have_selector("tr##{singular_resource_name}_#{second.id}")
 			end
 		end
 
@@ -73,9 +72,9 @@ shared_examples "filter by range field" do |filter_column|
 				click_button submit
 			end
 			specify do
-				expect(page).to have_selector("tr##{singular_resource}_#{first.id}")
-				expect(page).to have_selector("tr##{singular_resource}_#{second.id}")
-				expect(page).to_not have_selector("tr##{singular_resource}_#{third.id}")
+				expect(page).to have_selector("tr##{singular_resource_name}_#{first.id}")
+				expect(page).to have_selector("tr##{singular_resource_name}_#{second.id}")
+				expect(page).to_not have_selector("tr##{singular_resource_name}_#{third.id}")
 			end
 		end
 
@@ -101,9 +100,9 @@ shared_examples "filter by contains field" do |filter_column|
 				click_button submit
 			end
 			specify do
-				expect(page).to have_selector("tr##{singular_resource}_#{first.id}")
-				expect(page).to_not have_selector("tr##{singular_resource}_#{third.id}")
-				expect(page).to_not have_selector("tr##{singular_resource}_#{second.id}")
+				expect(page).to have_selector("tr##{singular_resource_name}_#{first.id}")
+				expect(page).to_not have_selector("tr##{singular_resource_name}_#{third.id}")
+				expect(page).to_not have_selector("tr##{singular_resource_name}_#{second.id}")
 			end
 		end
 
@@ -135,9 +134,9 @@ shared_examples "filter by HABTM association" do |filter_column|
 				end
 
 				specify do
-					expect(page).to have_selector("tr##{singular_resource}_#{first.id}")
-					expect(page).to have_selector("tr##{singular_resource}_#{second.id}")
-					expect(page).to_not have_selector("tr##{singular_resource}_#{third.id}")
+					expect(page).to have_selector("tr##{singular_resource_name}_#{first.id}")
+					expect(page).to have_selector("tr##{singular_resource_name}_#{second.id}")
+					expect(page).to_not have_selector("tr##{singular_resource_name}_#{third.id}")
 				end
 			end
 
@@ -148,9 +147,9 @@ shared_examples "filter by HABTM association" do |filter_column|
 				end
 
 				specify do
-					expect(page).to have_selector("tr##{singular_resource}_#{first.id}")
-					expect(page).to_not have_selector("tr##{singular_resource}_#{second.id}")
-					expect(page).to_not have_selector("tr##{singular_resource}_#{third.id}")
+					expect(page).to have_selector("tr##{singular_resource_name}_#{first.id}")
+					expect(page).to_not have_selector("tr##{singular_resource_name}_#{second.id}")
+					expect(page).to_not have_selector("tr##{singular_resource_name}_#{third.id}")
 				end
 			end
 
@@ -182,9 +181,9 @@ shared_examples "filter by association" do |filter_column|
 				end
 
 				specify do
-					expect(page).to have_selector("tr##{singular_resource}_#{first.id}")
-					expect(page).to_not have_selector("tr##{singular_resource}_#{second.id}")
-					expect(page).to_not have_selector("tr##{singular_resource}_#{third.id}")
+					expect(page).to have_selector("tr##{singular_resource_name}_#{first.id}")
+					expect(page).to_not have_selector("tr##{singular_resource_name}_#{second.id}")
+					expect(page).to_not have_selector("tr##{singular_resource_name}_#{third.id}")
 				end
 			end
 
@@ -195,9 +194,9 @@ shared_examples "filter by association" do |filter_column|
 				end
 
 				specify do
-					expect(page).to_not have_selector("tr##{singular_resource}_#{first.id}")
-					expect(page).to have_selector("tr##{singular_resource}_#{second.id}")
-					expect(page).to_not have_selector("tr##{singular_resource}_#{third.id}")
+					expect(page).to_not have_selector("tr##{singular_resource_name}_#{first.id}")
+					expect(page).to have_selector("tr##{singular_resource_name}_#{second.id}")
+					expect(page).to_not have_selector("tr##{singular_resource_name}_#{third.id}")
 				end
 			end
 

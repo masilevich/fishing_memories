@@ -25,11 +25,9 @@ shared_examples "resource with authorization pages" do
       end
     end
 
-    let(:resource_name) {:"#{resource_class.model_name.singular}"}
-
     describe "for non signed users" do
       let(:user) { FactoryGirl.create(:user) }
-      let!(:resource_item) {FactoryGirl.create(resource_name)}
+      let!(:resource_item) {FactoryGirl.create(resource_class)}
 
       describe "in the resource controller" do
 
@@ -76,7 +74,7 @@ shared_examples "resource with authorization pages" do
       end
 
       describe "in the resource controller" do
-        let!(:resource_item) {FactoryGirl.create(resource_name,user: user)}
+        let!(:resource_item) {FactoryGirl.create(resource_class, user: user)}
 
         describe "submitting to the show action" do
           before { get edit_polymorphic_path(resource_item) }

@@ -2,15 +2,15 @@ require 'spec_helper'
 require 'user_helper'
 
 shared_context "ordered resources" do
-	let(:singular_resource_name) {resource_class.model_name.singular}
+
 	before do
 		resource_class.delete_all
 	end
-	let!(:first) { FactoryGirl.create(:"#{singular_resource_name}", user: user, 
+	let!(:first) { FactoryGirl.create(resource_class, user: user, 
 		name: 'a') }
-	let!(:second) { FactoryGirl.create(:"#{singular_resource_name}", user: user, 
+	let!(:second) { FactoryGirl.create(resource_class, user: user, 
 		name: 'b') }
-	let!(:third) { FactoryGirl.create(:"#{singular_resource_name}", user: user, 
+	let!(:third) { FactoryGirl.create(resource_class, user: user, 
 		name: 'c') }
 end
 
@@ -18,11 +18,11 @@ shared_examples "resource with name pages"  do
 	include_context "login user"
 
 	shared_context 'resource_item' do 
-		let!(:resource_item) {FactoryGirl.create(:"#{resource_class.model_name.singular}", user: user)}
+		let!(:resource_item) {FactoryGirl.create(resource_class, user: user)}
 	end
 
 	describe "index" do
-		let!(:resources) { FactoryGirl.create_list(:"#{resource_class.model_name.singular}", 3, user: user) }
+		let!(:resources) { FactoryGirl.create_list(resource_class, 3, user: user) }
 		before {visit polymorphic_path(resource_class)}
 
 		describe "table" do
@@ -64,7 +64,7 @@ shared_examples "resource with name pages"  do
 		before {visit new_polymorphic_path(resource_class)}
 
 		describe "with valid information" do
-			before {fill_in "#{resource_class.model_name.singular}_name", with: "Рыболовная снасть" }
+			before {fill_in "#{singular_resource_name}_name", with: "Рыболовная снасть" }
 			it "should create a resource" do
 				expect { click_button submit }.to change(resource_class, :count).by(1)
 			end
@@ -103,12 +103,12 @@ shared_examples "resource with name pages"  do
 		let(:submit) {I18n.t('fishing_memories.update_model', model: resource_class.model_name.human)}
 		before {visit edit_polymorphic_path(resource_item)}
 
-		it { should have_field("#{resource_class.model_name.singular}_name", with: resource_item.name) }
+		it { should have_field("#{singular_resource_name}_name", with: resource_item.name) }
 
 		describe "with valid information" do
 			before do
 				@new_name = "Новое название"
-				fill_in "#{resource_class.model_name.singular}_name", with: @new_name
+				fill_in "#{singular_resource_name}_name", with: @new_name
 				click_button submit
 				resource_item.reload
 			end 

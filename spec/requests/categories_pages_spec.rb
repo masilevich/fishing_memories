@@ -1,5 +1,5 @@
 require 'spec_helper'
-require "category_helper"
+require "category_helpers"
 require 'user_helper'
 
 shared_examples "category related resources table" do
@@ -24,25 +24,25 @@ shared_examples "category related resources table" do
 	end
 end
 
-describe "categories_pages" do
-	include_context "category helper"
+describe "CategoriesPages" do
+	include_context "category helpers"
 	include_context "login user"
 
 	CATEGORY_TYPES.each do |type|
 
 		describe "{type}" do
-			let(:resource_class) { category_class(type) }
+			let(:resource_class) { typeable_category_class(type) }
 
 			it_should_behave_like "resource pages" 
 
 			it_should_behave_like "resource with name pages" 
 
 			describe "show" do
-				describe "related related_resources" do
-					let!(:category) { FactoryGirl.create(:"#{category_single_name(type)}", user: user) }
-					let!(:related_resources) { FactoryGirl.create_list(:"#{related_resource_class_single_name(type)}", 
+				describe "related resources" do
+					let!(:category) { FactoryGirl.create(resource_class, user: user) }
+					let!(:related_resources) { FactoryGirl.create_list(resource_class.related_resources_single_name, 
 						3, user: user, category: category) }
-					let!(:other_resources) { FactoryGirl.create_list(:"#{related_resource_class_single_name(type)}", 
+					let!(:other_resources) { FactoryGirl.create_list(resource_class.related_resources_single_name, 
 						3, user: user) }
 					before {visit polymorphic_path(category)}
 

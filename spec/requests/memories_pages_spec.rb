@@ -61,7 +61,7 @@ describe "MemoriesPages" do
 				include_context "ordered memories"
 				
 				context do
-					before {visit polymorphic_path(resource_class)}
+					before {visit memories_path}
 					
 					it_should_behave_like "sorted table", sorted_column: "occured_at"
 
@@ -71,9 +71,9 @@ describe "MemoriesPages" do
 						describe "HABTM" do
 							context "#{association_class.model_name.plural}" do
 								it_should_behave_like "sorted table", sorted_column: "#{association_class.model_name.plural}" do
-									let!(:first_associated) { FactoryGirl.create(:"#{association_class.model_name.singular}", user: user, memories: [first], name: "a") }
-									let!(:second_associated) { FactoryGirl.create(:"#{association_class.model_name.singular}", user: user, memories: [second], name: "b") }
-									let!(:third_associated) { FactoryGirl.create(:"#{association_class.model_name.singular}", user: user, memories: [third], name: "c") }
+									let!(:first_associated) { FactoryGirl.create(association_class, user: user, memories: [first], name: "a") }
+									let!(:second_associated) { FactoryGirl.create(association_class, user: user, memories: [second], name: "b") }
+									let!(:third_associated) { FactoryGirl.create(association_class, user: user, memories: [third], name: "c") }
 								end
 							end
 						end
@@ -96,9 +96,9 @@ describe "MemoriesPages" do
 				describe "HABTM" do
 					context "#{association_class.model_name.plural}" do
 						it_should_behave_like "filter by HABTM association", "#{association_class.model_name.plural}" do
-							let!(:first_associated) { FactoryGirl.create(:"#{association_class.model_name.singular}", user: user, memories: [first, second], name: "a") }
-							let!(:second_associated) { FactoryGirl.create(:"#{association_class.model_name.singular}", user: user, memories: [first], name: "b") }
-							let!(:third_associated) { FactoryGirl.create(:"#{association_class.model_name.singular}", user: user, name: "c") }
+							let!(:first_associated) { FactoryGirl.create( association_class, user: user, memories: [first, second], name: "a") }
+							let!(:second_associated) { FactoryGirl.create( association_class, user: user, memories: [first], name: "b") }
+							let!(:third_associated) { FactoryGirl.create( association_class, user: user, name: "c") }
 							before {visit memories_path}
 						end
 					end

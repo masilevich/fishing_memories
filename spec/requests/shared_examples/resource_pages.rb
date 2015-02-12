@@ -21,7 +21,7 @@ shared_examples "resource pages" do
 	end
 
 	shared_context 'resource_item' do 
-		let!(:resource_item) {FactoryGirl.create(:"#{resource_class.model_name.singular}", user: user)}
+		let!(:resource_item) {FactoryGirl.create(resource_class, user: user)}
 	end
 
 	describe "index" do
@@ -36,7 +36,7 @@ shared_examples "resource pages" do
 		end
 
 		describe "pagination" do
-			let!(:resource_items) { FactoryGirl.create_list(:"#{resource_class.model_name.singular}",40, user: user) }
+			let!(:resource_items) { FactoryGirl.create_list(resource_class, 40, user: user) }
 			before {visit polymorphic_path(resource_class)}
 
 			it { should have_selector('nav.pagination') }

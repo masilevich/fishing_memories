@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'category_helper'
+require 'category_helpers'
 
 describe Category do
 	let(:user) { FactoryGirl.create(:user) }
@@ -41,12 +41,12 @@ describe Category do
 
 
 	describe "typeable" do
-		include_context "category helper"
+		include_context "category helpers"
 
 		CATEGORY_TYPES.each do |type|
 			describe "for #{type} scope" do
 				before do
-					@sub_category = category_class(type).create(name: type, user_id: user.id)
+					@sub_category = typeable_category_class(type).create(name: type, user_id: user.id)
 				end
 				specify { expect(Category.send(scope_name(type))).to include(@sub_category)}
 			end
@@ -55,7 +55,7 @@ describe Category do
 				before do
 					@sub_class_variable = Category.create(name: type, type: type, user_id: user.id)
 				end
-				specify { expect(@sub_class_variable).to be_kind_of category_class(type)}
+				specify { expect(@sub_class_variable).to be_kind_of typeable_category_class(type)}
 			end
 
 		end

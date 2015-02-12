@@ -2,32 +2,28 @@ require 'spec_helper'
 require 'user_helper'
 
 shared_context "ordered resources for categories" do
-	let!(:first) { FactoryGirl.create(:"#{resource_class.model_name.singular}", 
-		user: user) }
-	let!(:second) { FactoryGirl.create(:"#{resource_class.model_name.singular}", 
-		user: user) }
-	let!(:third) { FactoryGirl.create(:"#{resource_class.model_name.singular}", 
-		user: user) }
+	let!(:first) { FactoryGirl.create(resource_class, user: user) }
+	let!(:second) { FactoryGirl.create(resource_class, user: user) }
+	let!(:third) { FactoryGirl.create(resource_class, user: user) }
 end
 
 shared_context "ordered categories" do
-	let(:single_resource_name) {resource_class.model_name.singular}
-	let!(:first_category) { FactoryGirl.create(:"#{single_resource_name}_category", user: user, name: "a") }
-	let!(:second_category) { FactoryGirl.create(:"#{single_resource_name}_category", user: user, name: "b") }
-	let!(:third_category) { FactoryGirl.create(:"#{single_resource_name}_category", user: user, name: "c") }
+	let!(:first_category) { FactoryGirl.create("#{singular_resource_name}_category", user: user, name: "a") }
+	let!(:second_category) { FactoryGirl.create("#{singular_resource_name}_category", user: user, name: "b") }
+	let!(:third_category) { FactoryGirl.create("#{singular_resource_name}_category", user: user, name: "c") }
 end
 
 
 
 shared_examples "categorizable pages"  do
+
 	include_context "login user"
 
-	let(:single_resource_name) {resource_class.model_name.singular}
-	let!(:category) {FactoryGirl.create(:"#{single_resource_name}_category", user: user)}
+	let!(:category) {FactoryGirl.create("#{singular_resource_name}_category", user: user)}
 	
 
 	shared_examples "resource_item" do
-		let!(:resource_item) {FactoryGirl.create(:"#{single_resource_name}", 
+		let!(:resource_item) {FactoryGirl.create(singular_resource_name, 
 			user: user, category: category)}
 	end
 
@@ -95,14 +91,14 @@ shared_examples "categorizable pages"  do
 		before {visit new_polymorphic_path(resource_class)}
 
 		it "should have select category" do
-			expect(page).to have_select("#{single_resource_name}[category_id]", 
-				:options => [""] + user.send("#{single_resource_name}_categories").map { |e| e.name}.sort)
+			expect(page).to have_select("#{singular_resource_name}[category_id]", 
+				:options => [""] + user.send("#{singular_resource_name}_categories").map { |e| e.name}.sort)
 		end
 
 		describe "with valid information" do
 			before do
-				fill_in "#{single_resource_name}_name", with: "Рыболовная снасть"
-				select category.name, :from => "#{single_resource_name}[category_id]"
+				fill_in "#{singular_resource_name}_name", with: "Рыболовная снасть"
+				select category.name, :from => "#{singular_resource_name}[category_id]"
 				click_button submit
 				@resource = resource_class.order("created_at").last
 			end 
@@ -133,13 +129,13 @@ shared_examples "categorizable pages"  do
 
 	describe "edit" do
 		include_context 'resource_item'
-		let!(:other_category) {FactoryGirl.create(:"#{resource_class.model_name.singular}_category", user: user)}
+		let!(:other_category) {FactoryGirl.create("#{singular_resource_name}_category", user: user)}
 		let(:submit) {I18n.t('fishing_memories.update_model', model: resource_class.model_name.human)}
 		before {visit edit_polymorphic_path(resource_item)}
 
 		describe "with valid information" do
 			before do
-				select other_category.name, :from => "#{single_resource_name}[category_id]"
+				select other_category.name, :from => "#{singular_resource_name}[category_id]"
 				click_button submit
 				resource_item.reload
 			end 
