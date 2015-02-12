@@ -11,6 +11,7 @@ describe Memory do
   it { should respond_to(:user_id) }
   it { should respond_to(:user) }
   it { should respond_to(:title) }
+  it { should respond_to(:weather) }
   it { should respond_to(:tackles) }
   it { should respond_to(:tackle_sets) }
   it { should respond_to(:ponds) }

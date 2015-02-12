@@ -210,6 +210,7 @@ ru:
         current_password: "Текущий пароль"
       memory:
         occured_at: "Дата"
+        weather: "Погода"
         description: "Описание"
         tackles: "Снасти"
         tackle_sets: "Комплекты снастей"

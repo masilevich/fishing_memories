@@ -2,12 +2,14 @@
 
 	<%=f.input :occured_at, required: true, as: :date_picker %>
 
+	<%=f.input :weather %>
+
+	<%=f.input :ponds, collection: @ponds, input_html: { class: 'select2',data: { placeholder: t('js.placeholders.memory_ponds') }} %>
+
 	<%=f.input :tackles, collection: @tackles, input_html: { class: 'select2', data: { placeholder: t('js.placeholders.memory_tackles') }} %>
 
 	<%=f.input :tackle_sets, collection: options_from_collection_for_select(@tackle_sets, :id, :title, @resource.tackle_set_ids), 
 		input_html: {class: 'select2', data: { placeholder: t('js.placeholders.memory_tackle_sets') }} %>
-
-	<%=f.input :ponds, collection: @ponds, input_html: { class: 'select2',data: { placeholder: t('js.placeholders.memory_ponds') }} %>
 
 	<%= f.input :description, :as => :ckeditor, :input_html => {:ckeditor => { :height => 400 } } %>
 

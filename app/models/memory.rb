@@ -6,6 +6,7 @@ class Memory < ActiveRecord::Base
 
   validates :user_id, presence: true
   validates :occured_at, presence: true
+  validates :weather, length: {maximum: 200}
 
   default_scope -> { order('occured_at DESC') }
 

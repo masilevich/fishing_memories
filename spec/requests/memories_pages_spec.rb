@@ -30,6 +30,7 @@ describe "MemoriesPages" do
 
 			it "should have header" do
 				expect(page).to have_selector('th', text: Memory.human_attribute_name("occured_at"))
+				expect(page).to have_selector('th', text: Memory.human_attribute_name("weather"))
 				expect(page).to have_selector('th', text: Memory.human_attribute_name("description"))
 				expect(page).to have_selector('th', text: Memory.human_attribute_name("tackles"))
 				expect(page).to have_selector('th', text: Memory.human_attribute_name("tackle_sets"))
@@ -39,6 +40,7 @@ describe "MemoriesPages" do
 			it "should have content and action links" do
 				memories.each do |memory|
 					expect(page).to have_selector('td', text: memory.occured_at)
+					expect(page).to have_selector('th', text: (memory.weather ? memory.weather.truncate(30) : "") )
 					expect(page).to have_selector('td', text: memory.ponds.pluck(:name).join(', ').truncate(70))
 					expect(page).to have_selector('td', text: memory.tackles.pluck(:name).join(', ').truncate(70))
 					expect(page).to have_selector('td', text: memory.tackle_sets.pluck(:name).join(', ').truncate(70))
@@ -143,23 +145,26 @@ describe "MemoriesPages" do
 			let!(:tackle_set) { FactoryGirl.create(:tackle_set, user: user) }
 			before do
 				@occured_at = DateTime.now.to_date
+				@weather_string = "5 градусов тепла, южный ветер"
 				visit new_memory_path
 				select tackle.name, :from => "memory[tackle_ids][]"
 				select tackle_set.name, :from => "memory[tackle_set_ids][]"
 				select pond.name, :from => "memory[pond_ids][]"
 				fill_in "memory_occured_at", with: @occured_at
+				fill_in "memory_weather", with: @weather_string
 			end
 			it "should create a memory" do
 				expect { click_button submit }.to change(Memory, :count).by(1)
 			end
 
-			context 'memory' do
+			context 'memory fields' do
 				before do
 					click_button submit
 					@memory = Memory.order("created_at").last
 				end
-				it "should have selected fields" do
+				it "should have entered values" do
 					expect(@memory.occured_at).to eq @occured_at
+					expect(@memory.weather).to eq @weather_string
 					expect(@memory.ponds.first).to eq pond
 					expect(@memory.tackles.first).to eq tackle
 					expect(@memory.tackle_sets.first).to eq tackle_set
@@ -188,6 +193,7 @@ describe "MemoriesPages" do
 		describe "tables" do
 			it "should have head" do
 				expect(page).to have_selector('th', text: Memory.human_attribute_name("occured_at"))
+				expect(page).to have_selector('th', text: Memory.human_attribute_name("weather"))
 				expect(page).to have_selector('th', text: Memory.human_attribute_name("tackles"))
 				expect(page).to have_selector('th', text: Memory.human_attribute_name("tackle_sets"))
 				expect(page).to have_selector('th', text: Memory.human_attribute_name("ponds"))
@@ -195,6 +201,7 @@ describe "MemoriesPages" do
 
 			it "should have body" do
 				expect(page).to have_selector('td', text: memory.occured_at)
+				expect(page).to have_selector('td', text: memory.weather)
 				expect(page).to have_selector('tr', text: memory.description.truncate(90))
 				memory.tackles.each { |tackle|  expect(page).to have_link(tackle.title, href: tackle_path(tackle))}
 				memory.tackle_sets.each { |tackle_set|  expect(page).to have_link(tackle_set.title, href: tackle_set_path(tackle_set))}

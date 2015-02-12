@@ -3,11 +3,11 @@
 		<%= render layout: 'layouts/resources/index_table' do %>
 			<% content_for :table_head do %>
 				<%= sortable_col "occured_at" %>
-				<%= sortable_col "tackles_name", Memory.human_attribute_name("tackles") %>
-				
-				<%= sortable_col "tackle_sets_name", Memory.human_attribute_name("tackle_sets") %>
-				<%= sortable_col "ponds_name", Memory.human_attribute_name("ponds") %>
 				<%= sortable_col "description"  %>
+				<%= sortable_col "weather" %>
+				<%= sortable_col "ponds_name", Memory.human_attribute_name("ponds") %>
+				<%= sortable_col "tackles_name", Memory.human_attribute_name("tackles") %>
+				<%= sortable_col "tackle_sets_name", Memory.human_attribute_name("tackle_sets") %>
 				<th class="col col-actions"></th>
 			<% end %>
 
@@ -15,10 +15,11 @@
 				<% @resources.each do |resource| %>
 					<tr class="odd" id="<%=singular_resource_name%>_<%=resource.id%>">
 						<td class="col"><%= resource.occured_at %></td>
+						<td class="col"><%= clear_text_from_tags(resource.description).truncate(70) %></td>
+						<td class="col"><%= truncate(resource.weather, :length => 30) %></td>
+						<td class="col"><%= pluck_and_join(resource.ponds, :name).truncate(70) %></td>
 						<td class="col"><%= pluck_and_join(resource.tackles, :name).truncate(70) %></td>
 						<td class="col"><%= pluck_and_join(resource.tackle_sets, :name).truncate(70) %></td>
-						<td class="col"><%= pluck_and_join(resource.ponds, :name).truncate(70) %></td>
-						<td class="col"><%= clear_text_from_tags(resource.description).truncate(70) %></td>
 						<td class="col col-actions">
 		          <div class="table_actions">
 		          	<%= render 'layouts/resources/index_table_actions', resource: resource %>
