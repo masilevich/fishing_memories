@@ -13,4 +13,12 @@ shared_context "category helper" do
 	def category_single_name(type)
 		type.underscore
 	end
+
+	def related_resource_class(type)
+		type.sub("Category","").constantize
+	end	
+
+	def related_resource_class_single_name(type)
+		related_resource_class(type).name.underscore
+	end	
 end

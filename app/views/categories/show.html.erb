@@ -3,7 +3,9 @@
   		<tr class="row">
         <th><%= resource_class.human_attribute_name("name") %></th>
         <td><%= @resource.name %></td>
-      </tr>		
+      </tr>
   <% end %>
+
+  <%= render partial: 'related_resources', locals: {related_resources: @resource.related_resources} %>
 
 <% end %>

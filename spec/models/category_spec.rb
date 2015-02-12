@@ -27,7 +27,7 @@ describe Category do
 
 	describe "order" do
 		before do
-		  Category.delete_all
+			Category.delete_all
 		end
 
 		let!(:c3) { FactoryGirl.create(:category, name: 'В категория', user: user) }
@@ -46,7 +46,7 @@ describe Category do
 		CATEGORY_TYPES.each do |type|
 			describe "for #{type} scope" do
 				before do
-				  @sub_category = category_class(type).create(name: type, user_id: user.id)
+					@sub_category = category_class(type).create(name: type, user_id: user.id)
 				end
 				specify { expect(Category.send(scope_name(type))).to include(@sub_category)}
 			end
@@ -61,4 +61,57 @@ describe Category do
 		end
 	end
 	
+	describe PondCategory do
+		before do
+			@category = PondCategory.create(name: "Категория", user_id: user.id)
+		end
+		specify { expect(@category).to respond_to(:ponds) }
+
+		its(:related_resources_plural_name) { should eq "ponds" }
+		its(:related_resources_single_name) { should eq "pond" }
+
+		describe "#related_resources" do
+			let!(:pond) { FactoryGirl.create(:pond, user: user, category: @category) }
+			its(:related_resources) {should include(pond)}
+
+			specify { expect(@category.related_resources).to eq @category.ponds }
+		end
+
+	end
+
+	describe TackleSetCategory do
+		before do
+			@category = TackleSetCategory.create(name: "Категория", user_id: user.id)
+		end
+		specify { expect(@category).to respond_to(:tackle_sets) }
+
+		its(:related_resources_plural_name) { should eq "tackle_sets" }
+		its(:related_resources_single_name) { should eq "tackle_set" }
+
+		describe "#related_resources" do
+			let!(:tackle_set) { FactoryGirl.create(:tackle_set, user: user, category: @category) }
+			its(:related_resources) {should include(tackle_set)}
+
+			specify { expect(@category.related_resources).to eq @category.tackle_sets }
+		end
+	end
+
+	describe TackleCategory do
+		before do
+			@category = TackleCategory.create(name: "Категория", user_id: user.id)
+		end
+		specify { expect(@category).to respond_to(:tackles) }
+
+		its(:related_resources_plural_name) { should eq "tackles" }
+		its(:related_resources_single_name) { should eq "tackle" }
+
+		describe "#related_resources" do
+			let!(:tackle) { FactoryGirl.create(:tackle, user: user, category: @category) }
+			its(:related_resources) {should include(tackle)}
+
+			specify { expect(@category.related_resources).to eq @category.tackles }
+		end
+	end
+
 end
+

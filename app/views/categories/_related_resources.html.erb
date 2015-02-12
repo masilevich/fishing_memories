@@ -1,0 +1,23 @@
+<div class="index_as_table">
+<br>
+	<%= render layout: 'layouts/resources/index_table' do %>
+		<% content_for :table_head do %>
+					<th class="col"><%= t("fishing_memories.category_related_resources", resources:	resource_class.human_attribute_name(resource_class.related_resources_plural_name)) %>
+					</th>
+					<th class="col col-actions"></th>
+		<% end %>
+
+		<% content_for :table_body do %>
+			<% related_resources.each do |related_resource| %>
+				<tr class="odd">
+					<td class="col"><%= related_resource.title %></td>
+					<td class="col col-actions">
+	          <div class="table_actions">
+	          	<%= render 'layouts/resources/index_table_actions', resource: related_resource %>
+	          </div>
+	        </td>
+				</tr>
+			<% end %>
+		<% end %>
+	<% end %>
+</div> 

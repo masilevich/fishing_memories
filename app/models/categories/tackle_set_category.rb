@@ -1,3 +1,3 @@
 class TackleSetCategory < Category
-	TypeableCategory
+	include TypeableCategory
 end

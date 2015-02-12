@@ -66,6 +66,7 @@ ru:
       labels:
         destroy: "Удалить"
     related_memories: "Упоминается в записях"
+    category_related_resources: "%{resources} с такой категорией"
     devise:
       username:
         title: "Имя пользователя"
@@ -180,13 +181,13 @@ ru:
         other: "Записи"
       tackle:
         one: "Снасть"
-        other: "Снасти"
+        other: &tackles "Снасти"
       tackle_set:
         one: "Комплект снастей"
-        other: "Комплекты снастей"
+        other: &tackle_sets "Комплекты снастей"
       pond:
         one: "Водоем"
-        other: "Водоемы"
+        other: &ponds "Водоемы"
       category:
         one: &category "Категория"
         other: "Категории"
@@ -227,10 +228,13 @@ ru:
         name: *name
       pond_category:
         name: *name
+        ponds: *ponds
       tackle_category:
         name: *name
+        tackles: *tackles
       tackle_set_category:
         name: *name
+        tackle_sets: *tackle_sets
     errors:
       <<: *errors
   ransack:
