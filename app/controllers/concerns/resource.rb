@@ -41,7 +41,11 @@ module Resource
   end
 
   def resources
-    current_user.send(plural_resource_name)
+    if resource_class.method_defined? :category
+      current_user.send(plural_resource_name).includes(:category)
+    else
+      current_user.send(plural_resource_name)
+    end
   end
 
 end

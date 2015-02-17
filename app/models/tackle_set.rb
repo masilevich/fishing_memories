@@ -6,7 +6,7 @@ class TackleSet < ActiveRecord::Base
 	has_and_belongs_to_many :tackles
 
 	def title
-  	"#{name}#{(' (' + tackles.pluck(:name).join(' + ') + ')') if tackles.any?}"
+		"#{name}#{(' (' + tackles.map(&:name).join(' + ') + ')') if tackles.present?}"
   end
 
 end

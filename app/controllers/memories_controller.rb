@@ -4,6 +4,7 @@ class MemoriesController < ApplicationController
 
   load_and_authorize_resource
 
+  before_action :set_resources
   before_action :set_tackles, only: [:new, :edit, :index]
   before_action :set_tackle_sets, only: [:new, :edit, :index]
   before_action :set_ponds, only: [:new, :edit, :index]
@@ -50,10 +51,14 @@ class MemoriesController < ApplicationController
   end
 
   def set_tackle_sets
-    @tackle_sets = current_user.tackle_sets
+    @tackle_sets = current_user.tackle_sets.includes(:tackles)
   end
 
   def set_ponds
     @ponds = current_user.ponds
+  end
+
+  def set_resources
+    @resources = current_user.memories.includes(:tackles, :tackle_sets, :ponds)
   end
 end

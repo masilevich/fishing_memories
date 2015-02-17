@@ -5,7 +5,7 @@ module TypeableCategory
 		has_many :"#{related_resources_plural_name}", foreign_key: "category_id"
 
 		define_singleton_method "categories_for_#{related_resources_plural_name}" do |collection|
-			self.joins(:"#{related_resources_plural_name}").where(:"#{related_resources_plural_name}" => {id: collection.pluck(:id)}).uniq
+			self.joins(:"#{related_resources_plural_name}").where(:"#{related_resources_plural_name}" => {id: collection.map(&:id)}).uniq
 		end
 
 	end

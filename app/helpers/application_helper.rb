@@ -33,8 +33,8 @@ module ApplicationHelper
   	strip_tags(text.gsub("&nbsp;", "").gsub("&#39;", "'"))
   end
 
-  def pluck_and_join(items, column_name, separator = ', ')
-  	items.pluck(column_name).join(separator)
+  def map_and_join(items, column_name, separator = ', ')
+  	items.map(&column_name).join(separator)
   end
 
   def nav_link(link_text, link_path, id, &block)

@@ -30,7 +30,8 @@ module Resource
 		end
 
 		def index
-			@q = resources.ransack(params[:q])
+			@resources ||= resources
+			@q = @resources.ransack(params[:q])
     	@resources = @q.result(distinct: true)
 			@resources = @resources.page(params[:page])
 		end

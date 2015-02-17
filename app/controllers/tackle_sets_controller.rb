@@ -5,6 +5,7 @@ class TackleSetsController < ApplicationController
   load_and_authorize_resource
 
   before_action :set_tackles, only: [:new, :edit, :index]
+  before_action :set_resources, only: [:index]
 
   private
 
@@ -14,5 +15,9 @@ class TackleSetsController < ApplicationController
 
   def set_tackles
     @tackles = current_user.tackles
+  end
+
+  def set_resources
+    @resources = current_user.tackle_sets.includes(:tackles, :category)
   end
 end

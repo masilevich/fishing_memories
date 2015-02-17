@@ -41,9 +41,9 @@ describe "MemoriesPages" do
 				memories.each do |memory|
 					expect(page).to have_selector('td', text: memory.occured_at)
 					expect(page).to have_selector('th', text: (memory.weather ? memory.weather.truncate(30) : "") )
-					expect(page).to have_selector('td', text: memory.ponds.pluck(:name).join(', ').truncate(70))
-					expect(page).to have_selector('td', text: memory.tackles.pluck(:name).join(', ').truncate(70))
-					expect(page).to have_selector('td', text: memory.tackle_sets.pluck(:name).join(', ').truncate(70))
+					expect(page).to have_selector('td', text: memory.ponds.map(&:name).join(', ').truncate(70))
+					expect(page).to have_selector('td', text: memory.tackles.map(&:name).join(', ').truncate(70))
+					expect(page).to have_selector('td', text: memory.tackle_sets.map(&:name).join(', ').truncate(70))
 					expect(page).to have_selector('td', text: memory.description.truncate(70))
 					expect(page).to have_link(I18n.t('fishing_memories.show'), href: memory_path(memory))
 					expect(page).to have_link(I18n.t('fishing_memories.edit'), href: edit_memory_path(memory))
