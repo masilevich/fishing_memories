@@ -14,5 +14,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui/datepicker
+//= require select2
+//= require select2_locale_ru
 //= require ckeditor/init
 //= require_tree .
