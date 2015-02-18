@@ -15,6 +15,7 @@ describe User do
   it { should respond_to(:memories) }
   it { should respond_to(:tackles) }
   it { should respond_to(:tackle_sets) }
+  it { should respond_to(:places) }
 
   #it { should respond_to(:role) }
 
@@ -23,18 +24,15 @@ describe User do
 
   describe "validation" do
 
-
     describe "when user name is not present" do
       before { @user.username = " " }
       it { should_not be_valid }
     end
 
-
     describe "when user name is too long" do
       before { @user.username = "a" * 21 }
       it { should_not be_valid }
     end
-
 
     describe "when email is not present" do
       before { @user.email = " " }
@@ -52,7 +50,6 @@ describe User do
       end
     end
 
-
     describe "when user name format is invalid" do
       it "should be invalid" do
         usersnames = %w[user@foo,com user_at_foo. 123example
@@ -63,7 +60,6 @@ describe User do
         end
       end
     end
-
 
     describe "when email format is valid" do
       it "should be valid" do

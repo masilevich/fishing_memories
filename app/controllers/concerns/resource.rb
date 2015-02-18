@@ -13,11 +13,13 @@ module Resource
 
   included do
     layout :resource_layout
+
     helper_method :resource_class, :resource_label, :plural_resource_label, 
-      :find_resource, :plural_resource_name, :singular_resource_name
+      :plural_resource_name, :singular_resource_name
+    helper_method :find_resource
     helper_method :resources_path, :resource_path, :new_resource_path, :edit_resource_path
     helper_method :sort_column, :sort_direction
-    helper_method :resource_with_only_name_field?
+
     before_action :find_resource, only: [:edit, :update, :show]
   end
 

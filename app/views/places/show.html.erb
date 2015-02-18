@@ -1,0 +1,15 @@
+<% content_for :show_content do %>
+  <%= render layout: 'layouts/resources/show_table' do %>
+  		<tr class="row">
+        <th><%= resource_class.human_attribute_name("name") %></th>
+        <td><%= @resource.name %></td>
+      </tr>
+
+      <tr class="row">
+        <th><%= resource_class.human_attribute_name("pond") %></th>
+        <td><%= render('layouts/resources/resource_link_to', resource: @resource.pond) if @resource.pond %></td>
+      </tr>
+  <% end %>
+
+  <%= render partial: 'memories/related_memories', locals: {memories: @resource.memories} %>
+<% end %>

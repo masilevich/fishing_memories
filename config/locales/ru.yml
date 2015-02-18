@@ -186,8 +186,11 @@ ru:
         one: "Комплект снастей"
         other: &tackle_sets "Комплекты снастей"
       pond:
-        one: "Водоем"
+        one: &pond "Водоем"
         other: &ponds "Водоемы"
+      place:
+        one: &place "Место"
+        other: &places "Места"
       category:
         one: &category "Категория"
         other: "Категории"
@@ -212,9 +215,10 @@ ru:
         occured_at: "Дата"
         weather: "Погода"
         description: "Описание"
-        tackles: "Снасти"
-        tackle_sets: "Комплекты снастей"
-        ponds: "Водоёмы"
+        tackles: *tackles
+        tackle_sets: *tackle_sets
+        ponds: *ponds
+        places: *places
       tackle:
         name: *name
         category: *category
@@ -225,6 +229,9 @@ ru:
       pond:
         name: *name
         category: *category
+      place:
+        name: *name
+        pond: *pond
       category:
         name: *name
       pond_category:
@@ -461,7 +468,8 @@ ru:
     pm: вечера
   js:
     placeholders:
-      memory_tackles: "Введите название снасти"
-      memory_tackle_sets: "Введите название комплекта снастей"
-      memory_ponds: "Введите название водоёма"
+      tackle_name: "Введите название снасти"
+      tackle_set_name: "Введите название комплекта снастей"
+      pond_name: "Введите название водоёма"
+      place_name: "Введите название водоёма"
       category: "Введите название категории"

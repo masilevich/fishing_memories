@@ -31,5 +31,11 @@ describe "authorization" do
       let(:resource_class) { Category }
     end
   end
+
+  describe "places" do
+    it_should_behave_like "resource with authorization pages" do
+      let(:resource_class) { Place }
+    end
+  end
   
 end

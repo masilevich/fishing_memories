@@ -3,6 +3,7 @@ class Memory < ActiveRecord::Base
   has_and_belongs_to_many :tackles
   has_and_belongs_to_many :tackle_sets
   has_and_belongs_to_many :ponds
+  has_and_belongs_to_many :places
 
   validates :user_id, presence: true
   validates :occured_at, presence: true

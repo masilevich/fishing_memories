@@ -1,0 +1,4 @@
+<%=f.inputs do %>
+	<%=f.input :pond, collection: @ponds, input_html: { class: 'select2', data: { placeholder: t('js.placeholders.pond_name') }} %>
+	<%=f.input :name, required: true %>
+<%end%>

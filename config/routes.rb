@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :tackles
   resources :tackle_sets
   resources :ponds
+  resources :places
 
   resources :categories
   resources :tackle_categories, controller: 'categories', type: 'TackleCategory' 

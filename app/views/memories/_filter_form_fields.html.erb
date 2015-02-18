@@ -7,17 +7,17 @@
 
 <div class="filter_form_field">
 	<%= f.label :tackles, Memory.human_attribute_name("tackles") %>
-	<%= f.collection_select :tackles_id_eq, @tackles, :id, :name, {include_blank: true}, {class: "select2", data: { placeholder: t('js.placeholders.memory_tackles') }} %>
+	<%= f.collection_select :tackles_id_eq, @tackles, :id, :name, {include_blank: true}, {class: "select2", data: { placeholder: t('js.placeholders.tackle_name') }} %>
 </div>
 
 <div class="filter_form_field">
 	<%= f.label :tackle_sets, Memory.human_attribute_name("tackle_sets") %>
-	<%= f.collection_select :tackle_sets_id_eq, @tackle_sets, :id, :title, {include_blank: true}, {class: "select2", data: { placeholder: t('js.placeholders.memory_tackle_sets') }} %>
+	<%= f.collection_select :tackle_sets_id_eq, @tackle_sets, :id, :title, {include_blank: true}, {class: "select2", data: { placeholder: t('js.placeholders.tackle_set_name') }} %>
 </div>
 
 <div class="filter_form_field">
 	<%= f.label :ponds, Memory.human_attribute_name("ponds") %>
-	<%= f.collection_select :ponds_id_eq, @ponds, :id, :name, {include_blank: true}, {class: "select2", data: { placeholder: t('js.placeholders.memory_ponds') }} %>
+	<%= f.collection_select :ponds_id_eq, @ponds, :id, :name, {include_blank: true}, {class: "select2", data: { placeholder: t('js.placeholders.pond_name') }} %>
 </div>
 
 <div class="filter_form_field filter_string">

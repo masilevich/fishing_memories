@@ -20,14 +20,16 @@ FactoryGirl.define do
     occured_at Time.now
     user
 
-    factory :memory_with_ponds_and_tackles do
+    factory :memory_with_attributes do
       ignore do
         tackles_count 2
         ponds_count 2
+        places_count 2
       end
       after(:create) do |memory, evaluator|
         create_list(:tackle, evaluator.tackles_count, memories: [memory])
         create_list(:pond, evaluator.ponds_count, memories: [memory])
+        create_list(:place, evaluator.places_count, memories: [memory])
       end
     end
   end
@@ -54,6 +56,17 @@ FactoryGirl.define do
   factory :pond do
     name { Faker::Lorem.sentence }
     user
+  end
+
+  factory :place do
+    name { Faker::Lorem.sentence }
+    user
+
+    factory :place_with_pond do
+      after(:create) do |place|
+        create(:pond, places: [place])
+      end
+    end
   end
 
   factory :category do

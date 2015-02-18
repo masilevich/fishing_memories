@@ -1,5 +1,5 @@
 <%=f.inputs do %>
-	<%=f.input :category, collection: @categories, input_html: { class: 'select2', data: { placeholder: t('js.placeholders.memory_tackles') }} %>
+	<%=f.input :category, collection: @categories, input_html: { class: 'select2', data: { placeholder: t('js.placeholders.tackle_name') }} %>
 	<%=f.input :name, required: true %>
-	<%=f.input :tackles, collection: @tackles, input_html: { class: 'select2', data: { placeholder: t('js.placeholders.memory_tackles') }} %>
+	<%=f.input :tackles, collection: @tackles, input_html: { class: 'select2', data: { placeholder: t('js.placeholders.tackle_name') }} %>
 <%end%>

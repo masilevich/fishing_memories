@@ -15,6 +15,7 @@ describe Memory do
   it { should respond_to(:tackles) }
   it { should respond_to(:tackle_sets) }
   it { should respond_to(:ponds) }
+  it { should respond_to(:places) }
   its(:user) { should eq user }
 
   it { should be_valid }

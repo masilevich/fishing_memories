@@ -3,7 +3,7 @@ class Ability
 
   def initialize(user)
 
-    resources = [Memory, Tackle, Pond, TackleSet, 
+    resources = [Memory, Tackle, Pond, Place, TackleSet, 
         Category, PondCategory, TackleSetCategory, TackleCategory]
     can :create, resources
     can :manage, resources do |resource|

@@ -8,6 +8,7 @@ class MemoriesController < ApplicationController
   before_action :set_tackles, only: [:new, :edit, :index]
   before_action :set_tackle_sets, only: [:new, :edit, :index]
   before_action :set_ponds, only: [:new, :edit, :index]
+  before_action :set_places, only: [:new, :edit, :index]
 
   def create
     @resource = resources.build(resource_params)
@@ -43,7 +44,7 @@ class MemoriesController < ApplicationController
 
   def memory_params
     params.require(:memory).permit(:occured_at, :weather, :description, 
-      tackle_ids: [], pond_ids: [], tackle_set_ids: [])
+      tackle_ids: [], pond_ids: [], place_ids: [], tackle_set_ids: [])
   end
 
   def set_tackles
@@ -58,7 +59,11 @@ class MemoriesController < ApplicationController
     @ponds = current_user.ponds
   end
 
+  def set_places
+    @places = current_user.places
+  end
+
   def set_resources
-    @resources = current_user.memories.includes(:tackles, :tackle_sets, :ponds)
+    @resources = resources.includes(:tackles, :tackle_sets, :ponds)
   end
 end

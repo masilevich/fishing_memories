@@ -13,6 +13,10 @@
         <td><%= render partial: 'layouts/resources/resource_link_to', collection: @resource.ponds, as: :resource, spacer_template: 'shared/comma' %></td>
       </tr> 
       <tr class="row">
+        <th><%= Memory.human_attribute_name("places") %></th>
+        <td><%= render partial: 'layouts/resources/resource_link_to', collection: @resource.places, as: :resource, spacer_template: 'shared/comma' %></td>
+      </tr> 
+      <tr class="row">
         <th><%= Memory.human_attribute_name("tackles") %></th>
         <td><%= render partial: 'layouts/resources/resource_link_to', collection: @resource.tackles, as: :resource, spacer_template: 'shared/comma' %></td>
       </tr>

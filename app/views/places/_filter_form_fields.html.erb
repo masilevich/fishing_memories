@@ -1,0 +1,9 @@
+<div class="filter_form_field filter_string">
+	<%= f.label :name %>
+	<%= f.text_field :name_cont, maxlength: "255" %>
+</div>
+
+<div class="filter_form_field">
+	<%= f.label :pond, resource_class.human_attribute_name("pond") %>
+	<%= f.collection_select :pond_id_eq, @ponds, :id, :name, {include_blank: true}, {class: "select2", data: { placeholder: t('js.placeholders.pond_name') }} %>
+</div>
