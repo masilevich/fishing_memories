@@ -64,6 +64,6 @@ class MemoriesController < ApplicationController
   end
 
   def set_resources
-    @resources = resources.includes(:tackles, :tackle_sets, :ponds)
+    @resources = resources.includes(:tackles, :tackle_sets, :ponds, :places)
   end
 end

@@ -6,7 +6,9 @@
 
 	<%=f.input :ponds, collection: @ponds, input_html: { class: 'select2',data: { placeholder: t('js.placeholders.pond_name') }} %>
 
-	<%=f.input :places, collection: @places, input_html: { class: 'select2',data: { placeholder: t('js.placeholders.place_name') }} %>
+	<%= f.input :places, :collection => option_groups_from_collection_for_select(@ponds, :places, :name, :id, :name), input_html: { class: 'select2',data: { placeholder: t('js.placeholders.place_name') }} %>
+
+	<%#=f.input :places, collection: @places, input_html: { class: 'select2',data: { placeholder: t('js.placeholders.place_name') }} %>
 
 	<%=f.input :tackles, collection: @tackles, input_html: { class: 'select2', data: { placeholder: t('js.placeholders.tackle_name') }} %>
 
