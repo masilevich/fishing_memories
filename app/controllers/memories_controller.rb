@@ -7,7 +7,8 @@ class MemoriesController < ApplicationController
   before_action :set_resources
   before_action :set_tackles, only: [:new, :edit, :index]
   before_action :set_tackle_sets, only: [:new, :edit, :index]
-  before_action :set_ponds, only: [:new, :edit, :index]
+  before_action :set_ponds, only: [:index]
+  before_action :set_eager_ponds, only: [:new, :edit]
   before_action :set_places, only: [:new, :edit, :index]
 
   def create
@@ -57,6 +58,10 @@ class MemoriesController < ApplicationController
 
   def set_ponds
     @ponds = current_user.ponds
+  end
+
+  def set_eager_ponds
+    @ponds = current_user.ponds.includes(:places)
   end
 
   def set_places

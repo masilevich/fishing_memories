@@ -115,7 +115,7 @@ describe "MemoriesPages" do
 
 		describe "select" do
 			let!(:ponds) { FactoryGirl.create_list(:pond, 3, user: user) }
-			let!(:places) { FactoryGirl.create_list(:place, 3, user: user) }
+			let!(:places) { FactoryGirl.create_list(:place, 3, user: user, pond: ponds.first) }
 			let!(:tackles) { FactoryGirl.create_list(:tackle, 3, user: user) }
 			let!(:tackle_sets) { FactoryGirl.create_list(:tackle_set, 3, user: user) }
 			let(:other_user) { FactoryGirl.create(:confirmed_user) }
@@ -141,14 +141,14 @@ describe "MemoriesPages" do
 			end
 
 			context "places" do
-				it { should have_select('memory[place_ids][]', :options => places.map { |e| e.name}.sort) }
+				it { should have_select('memory[place_ids][]', :with_options => places.map { |e| e.name}.sort) }
 			end
 
 		end
 
 		describe "with valid information" do
 			let!(:pond) { FactoryGirl.create(:pond, user: user) }
-			let!(:place) { FactoryGirl.create(:place, user: user) }
+			let!(:place) { FactoryGirl.create(:place, user: user, pond: pond) }
 			let!(:tackle) { FactoryGirl.create(:tackle, user: user) }
 			let!(:tackle_set) { FactoryGirl.create(:tackle_set, user: user) }
 			before do
@@ -228,7 +228,7 @@ describe "MemoriesPages" do
 		let!(:tackles) {FactoryGirl.create_list(:tackle, 2, user: user)}
 		let!(:tackle_sets) {FactoryGirl.create_list(:tackle_set, 2, user: user)}
 		let!(:ponds) {FactoryGirl.create_list(:pond, 2, user: user)}
-		let!(:places) {FactoryGirl.create_list(:place, 2, user: user)}
+		let!(:places) {FactoryGirl.create_list(:place, 2, user: user, pond: ponds.first)}
 		let(:submit) {I18n.t('fishing_memories.update_model', model: Memory.model_name.human)}
 		before do
 			memory.ponds << ponds.first
@@ -243,8 +243,9 @@ describe "MemoriesPages" do
 		it { should have_field("memory_description", with: memory.description) }
 		it { should have_select('memory[pond_ids][]', :options => ponds.map { |e| e.name}.sort,
 			selected: ponds.first.name )}
-		it { should have_select('memory[place_ids][]', :options => places.map { |e| e.name}.sort,
-			selected: places.first.name )}
+		it { should have_select('memory[place_ids][]',
+			with_options: places.map { |e| e.name}.sort,
+			selected: places.first.name ) }
 		it { should have_select('memory[tackle_ids][]', :options => tackles.map { |e| e.name}.sort, 
 			selected: tackles.first.name)}
 		it { should have_select('memory[tackle_set_ids][]', :options => tackle_sets.map { |e| e.name}.sort, 

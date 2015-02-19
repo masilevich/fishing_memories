@@ -3,6 +3,7 @@ class PlacesController < ApplicationController
 	
 	load_and_authorize_resource
 
+	before_action :set_resources, only: [:index]
 	before_action :set_ponds, only: [:new, :edit, :index]
 
 	private
