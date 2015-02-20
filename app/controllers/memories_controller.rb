@@ -7,9 +7,8 @@ class MemoriesController < ApplicationController
   before_action :set_resources
   before_action :set_tackles, only: [:new, :edit, :index]
   before_action :set_tackle_sets, only: [:new, :edit, :index]
-  before_action :set_ponds, only: [:index]
-  before_action :set_eager_ponds, only: [:new, :edit]
-  before_action :set_places, only: [:new, :edit, :index]
+  before_action :set_ponds, only: [:index, :new, :edit]
+  before_action :set_grouped_places_options, only: [:index, :new, :edit]
 
   def create
     @resource = resources.build(resource_params)
@@ -19,6 +18,7 @@ class MemoriesController < ApplicationController
     else
       flash.now[:alert] = t('fishing_memories.model_not_created', model: resource_label)
       set_ponds
+      set_grouped_places_options
       set_tackles
       set_tackle_sets
       render 'new'
@@ -35,6 +35,7 @@ class MemoriesController < ApplicationController
     else
       flash.now[:alert] = t('fishing_memories.model_not_updated', model: resource_label)
       set_ponds
+      set_grouped_places_options
       set_tackles
       set_tackle_sets
       render 'edit'
@@ -60,12 +61,8 @@ class MemoriesController < ApplicationController
     @ponds = current_user.ponds
   end
 
-  def set_eager_ponds
-    @ponds = current_user.ponds.includes(:places)
-  end
-
-  def set_places
-    @places = current_user.places
+  def set_grouped_places_options
+    @places_options = current_user.places.grouped_options_for_select(current_user.ponds)
   end
 
   def set_resources

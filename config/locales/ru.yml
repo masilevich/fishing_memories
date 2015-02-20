@@ -18,6 +18,7 @@ ru:
     model_not_updated: "%{model} не обновлен(а)"
     model_not_found: "%{model} не найдены"
     details: "Сведения"
+    all: "Все"
     cancel: "Отмена"
     back: "Назад"
     empty: "Пусто"
@@ -232,6 +233,7 @@ ru:
       place:
         name: *name
         pond: *pond
+        without_pond: "Без водоема"
       category:
         name: *name
       pond_category:
@@ -471,5 +473,5 @@ ru:
       tackle_name: "Введите название снасти"
       tackle_set_name: "Введите название комплекта снастей"
       pond_name: "Введите название водоёма"
-      place_name: "Введите название водоёма"
+      place_name: "Введите название места"
       category: "Введите название категории"

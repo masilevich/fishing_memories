@@ -4,7 +4,7 @@ describe TackleSet do
 	it_should_behave_like "resource with name"
 
 	let(:user) { FactoryGirl.create(:user) }
-	before { @tackle_set= user.tackle_sets.build(name: "Fishing tackle") }
+	before { @tackle_set= user.tackle_sets.build(name: "Лайт") }
 
 	subject { @tackle_set }
 
@@ -19,13 +19,14 @@ describe TackleSet do
 		end
 
 		context "with tackles" do
-			let!(:tackles) { FactoryGirl.create_list(:tackle, 3, user: user) }
+			let!(:first_tackle) { FactoryGirl.create(:tackle, user: user, name: "Dexter") }
+			let!(:second_tackle) { FactoryGirl.create(:tackle, user: user, name: "Vanquish") }
 			before do
-				tackles.sort_by!{|e| e.name}
-				@tackle_set.tackles << tackles
+				@tackle_set.tackles << first_tackle
+				@tackle_set.tackles << second_tackle
 				@tackle_set.save
 			end
-			its(:title) { should eq "#{@tackle_set.name} (#{tackles.first.name} + #{tackles.second.name} + #{tackles.third.name})" }
+			its(:title) { should eq "Лайт (Dexter + Vanquish)" }
 		end
 	end
 end

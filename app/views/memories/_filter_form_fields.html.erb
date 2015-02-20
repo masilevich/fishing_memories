@@ -20,6 +20,11 @@
 	<%= f.collection_select :ponds_id_eq, @ponds, :id, :name, {include_blank: true}, {class: "select2", data: { placeholder: t('js.placeholders.pond_name') }} %>
 </div>
 
+<div class="filter_form_field">
+	<%= f.label :places, Memory.human_attribute_name("places") %>
+	<%= f.select :places_id_eq, grouped_options_for_select(@places_options, :selected => params[:q].try(:[], :places_id_eq)), {include_blank: true}, {class: "select2", data: { placeholder: t('js.placeholders.place_name') }} %>
+</div>
+
 <div class="filter_form_field filter_string">
 	<%= f.label :description %>
 	<%= f.text_field :description_cont, maxlength: "255" %>

@@ -22,7 +22,7 @@ describe "MemoriesPages" do
 
 	describe "index" do
 
-		let!(:memories) { FactoryGirl.create_list(:memory_with_attributes, 3, user: user) }
+		let!(:memories) { FactoryGirl.create_list(:memory_with_attributes, 2, user: user) }
 		let!(:lond_desc_memory) { FactoryGirl.create(:memory, user: user, description: 'a'*100) }
 		before {visit memories_path}
 
@@ -112,16 +112,18 @@ describe "MemoriesPages" do
 
 	describe "create" do
 		let(:submit) {I18n.t('fishing_memories.new_model', model: Memory.model_name.human)}
+		let!(:ponds) { FactoryGirl.create_list(:pond, 2, user: user) }
+		let!(:places) { FactoryGirl.create_list(:place, 2, user: user, pond: ponds.first) }
+		let!(:place_without_pond) { FactoryGirl.create(:place, user: user) }
+		let!(:tackles) { FactoryGirl.create_list(:tackle, 2, user: user) }
+		let!(:tackle_sets) { FactoryGirl.create_list(:tackle_set, 2, user: user) }
 
 		describe "select" do
-			let!(:ponds) { FactoryGirl.create_list(:pond, 3, user: user) }
-			let!(:places) { FactoryGirl.create_list(:place, 3, user: user, pond: ponds.first) }
-			let!(:tackles) { FactoryGirl.create_list(:tackle, 3, user: user) }
-			let!(:tackle_sets) { FactoryGirl.create_list(:tackle_set, 3, user: user) }
+
 			let(:other_user) { FactoryGirl.create(:confirmed_user) }
-			let!(:other_user_tackles) { FactoryGirl.create_list(:tackle, 3, user: other_user) }
-			let!(:other_user_tackle_sets) { FactoryGirl.create_list(:tackle_set, 3, user: other_user) }
-			let!(:other_user_ponds) { FactoryGirl.create_list(:pond, 3, user: other_user) }
+			let!(:other_user_tackles) { FactoryGirl.create(:tackle, user: other_user) }
+			let!(:other_user_tackle_sets) { FactoryGirl.create(:tackle_set, user: other_user) }
+			let!(:other_user_ponds) { FactoryGirl.create(:pond, user: other_user) }
 			before do
 				visit new_memory_path
 				tackle_sets.first.tackles << tackles
@@ -141,24 +143,20 @@ describe "MemoriesPages" do
 			end
 
 			context "places" do
-				it { should have_select('memory[place_ids][]', :with_options => places.map { |e| e.name}.sort) }
+				it { should have_select('memory[place_ids][]', :with_options => user.places.map { |e| e.name}.sort) }
 			end
 
 		end
 
 		describe "with valid information" do
-			let!(:pond) { FactoryGirl.create(:pond, user: user) }
-			let!(:place) { FactoryGirl.create(:place, user: user, pond: pond) }
-			let!(:tackle) { FactoryGirl.create(:tackle, user: user) }
-			let!(:tackle_set) { FactoryGirl.create(:tackle_set, user: user) }
 			before do
 				@occured_at = DateTime.now.to_date
 				@weather_string = "5 градусов тепла, южный ветер"
 				visit new_memory_path
-				select tackle.name, :from => "memory[tackle_ids][]"
-				select tackle_set.name, :from => "memory[tackle_set_ids][]"
-				select pond.name, :from => "memory[pond_ids][]"
-				select place.name, :from => "memory[place_ids][]"
+				select tackles.first.name, :from => "memory[tackle_ids][]"
+				select tackle_sets.first.name, :from => "memory[tackle_set_ids][]"
+				select ponds.first.name, :from => "memory[pond_ids][]"
+				select places.first.name, :from => "memory[place_ids][]"
 				fill_in "memory_occured_at", with: @occured_at
 				fill_in "memory_weather", with: @weather_string
 			end
@@ -174,10 +172,10 @@ describe "MemoriesPages" do
 				it "should have entered values" do
 					expect(@memory.occured_at).to eq @occured_at
 					expect(@memory.weather).to eq @weather_string
-					expect(@memory.ponds.first).to eq pond
-					expect(@memory.places.first).to eq place
-					expect(@memory.tackles.first).to eq tackle
-					expect(@memory.tackle_sets.first).to eq tackle_set
+					expect(@memory.ponds.first).to eq ponds.first
+					expect(@memory.places.first).to eq places.first
+					expect(@memory.tackles.first).to eq tackles.first
+					expect(@memory.tackle_sets.first).to eq tackle_sets.first
 				end
 			end
 
@@ -229,6 +227,7 @@ describe "MemoriesPages" do
 		let!(:tackle_sets) {FactoryGirl.create_list(:tackle_set, 2, user: user)}
 		let!(:ponds) {FactoryGirl.create_list(:pond, 2, user: user)}
 		let!(:places) {FactoryGirl.create_list(:place, 2, user: user, pond: ponds.first)}
+		let!(:place_without_pond) { FactoryGirl.create(:place, user: user) }
 		let(:submit) {I18n.t('fishing_memories.update_model', model: Memory.model_name.human)}
 		before do
 			memory.ponds << ponds.first
@@ -244,8 +243,7 @@ describe "MemoriesPages" do
 		it { should have_select('memory[pond_ids][]', :options => ponds.map { |e| e.name}.sort,
 			selected: ponds.first.name )}
 		it { should have_select('memory[place_ids][]',
-			with_options: places.map { |e| e.name}.sort,
-			selected: places.first.name ) }
+			with_options:user.places.map { |e| e.name}.sort, selected: places.first.name ) }
 		it { should have_select('memory[tackle_ids][]', :options => tackles.map { |e| e.name}.sort, 
 			selected: tackles.first.name)}
 		it { should have_select('memory[tackle_set_ids][]', :options => tackle_sets.map { |e| e.name}.sort, 
