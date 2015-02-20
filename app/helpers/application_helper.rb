@@ -37,11 +37,13 @@ module ApplicationHelper
   	items.map(&column_name).join(separator)
   end
 
-  def nav_link(link_text, link_path, id, &block)
-  	class_name = controller_name == id ? 'current' : ''
+  def nav_link(link_text, link_path, resource_name = nil, &block)
+  	class_name = (resource_name.kind_of?(Array) ? 
+      resource_name.include?(controller_name) : controller_name == resource_name) ? 
+      'current' : ''
     class_name = "has_nested #{class_name}" if block
     
-    content_tag(:li, :class => class_name, id: id) do
+    content_tag(:li, :class => class_name, id: resource_name) do
       concat(link_to link_text, link_path)
       if block
         concat(content_tag(:ul, capture(&block)))

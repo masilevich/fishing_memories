@@ -16,15 +16,10 @@ describe "ApplicationLayoutPages" do
 			let(:tackle_sets_tab_label) {TackleSet.model_name.human count: PLURAL_MANY_COUNT}
 			let(:memories_tab_label) {Memory.model_name.human count: PLURAL_MANY_COUNT}
 			let(:ponds_tab_label) {Pond.model_name.human count: PLURAL_MANY_COUNT}
+			let(:places_tab_label) {Place.model_name.human count: PLURAL_MANY_COUNT}
+			let(:categories_tab_label) {Category.model_name.human count: PLURAL_MANY_COUNT}
+			let(:tackle_categories_tab_label) {TackleCategory.model_name.human count: PLURAL_MANY_COUNT}
 			describe "tabs" do
-				it "should display tackles, ponds links" do
-					within "#tabs" do
-						expect(page).to have_selector('li.current', text: memories_tab_label)
-						expect(page).to have_link(memories_tab_label, href: root_path)
-						expect(page).to have_link(tackle_tab_label, href: tackles_path)
-						expect(page).to have_link(ponds_tab_label, href: ponds_path)
-					end
-				end
 
 				describe "switch" do
 					describe "to another tab" do
@@ -54,6 +49,24 @@ describe "ApplicationLayoutPages" do
 								it "should change current tab" do
 									within "ul#tabs" do
 										expect(page).to have_selector('li.current', text: ponds_tab_label)
+									end	
+								end
+							end
+
+							describe "places" do
+								before {click_link places_tab_label}
+								it "should change current tab" do
+									within "ul#tabs" do
+										expect(page).to have_selector('li.current', text: ponds_tab_label)
+									end	
+								end
+							end
+
+							describe "categories" do
+								before {click_link tackle_categories_tab_label}
+								it "should change current tab" do
+									within "ul#tabs" do
+										expect(page).to have_selector('li.current', text: categories_tab_label)
 									end	
 								end
 							end
