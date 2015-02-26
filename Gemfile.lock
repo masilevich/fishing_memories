@@ -389,6 +389,9 @@ GEM
       coffee-rails
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    uglifier (2.7.0)
+      execjs (>= 0.3.0)
+      json (>= 1.8.0)
     uniform_notifier (1.7.0)
     warden (1.2.3)
       rack (>= 1.0)
@@ -427,3 +430,4 @@ DEPENDENCIES
   selenium-webdriver (= 2.35.1)
   sqlite3
   turbolinks
+  uglifier
