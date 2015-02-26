@@ -29,5 +29,9 @@ module FishingMemories
     # config.i18n.default_locale = :de
     config.i18n.default_locale = :ru
     config.i18n.enforce_available_locales = true
+
+    config.generators do |g|
+      g.assets false
+    end
   end
 end
