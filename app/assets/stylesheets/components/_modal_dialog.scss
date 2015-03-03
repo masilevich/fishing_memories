@@ -28,7 +28,3 @@
     &:last-child { @include light-button } // Cancel
   }
 }
-
-.active_admin_dialog.ui-dialog {
-  .ui-dialog-titlebar-close { display: none }
-}
