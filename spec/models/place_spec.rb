@@ -1,4 +1,5 @@
 require 'spec_helper'
+require "models/shared_examples/resource_with_name"
 
 describe Place do
   it_should_behave_like "resource with name"

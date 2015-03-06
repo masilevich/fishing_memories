@@ -1,4 +1,5 @@
 require 'spec_helper'
+require "requests/shared_examples/resource_authorization_pages"
 
 describe "authorization" do
 

@@ -1,6 +1,9 @@
 require 'spec_helper'
 require 'user_helper'
 require 'active_support/core_ext/string/filters'
+require "requests/shared_examples/resource_pages"
+require "requests/shared_examples/filter"
+require "requests/shared_examples/sorted_table"
 
 shared_context "ordered memories" do
 	let!(:first) { FactoryGirl.create(:memory, user: user, 

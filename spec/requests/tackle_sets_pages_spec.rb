@@ -1,5 +1,9 @@
 require 'spec_helper'
 require 'user_helper'
+require "requests/shared_examples/resource_pages"
+require "requests/shared_examples/resource_with_name_pages"
+require "requests/shared_examples/categorizable_pages"
+require "requests/shared_examples/related_memories"
 
 shared_context "ordered tackle sets" do
 	let!(:first) { FactoryGirl.create(:tackle_set, user: user, name: 'a') }

@@ -1,4 +1,9 @@
 require 'spec_helper'
+require "requests/shared_examples/resource_pages"
+require "requests/shared_examples/resource_with_name_pages"
+require "requests/shared_examples/sorted_table"
+require "requests/shared_examples/filter"
+require "requests/shared_examples/related_memories"
 
 shared_context "ordered places" do
 	let!(:first) { FactoryGirl.create(:place, user: user, name: 'a') }

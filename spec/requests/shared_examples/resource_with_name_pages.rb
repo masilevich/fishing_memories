@@ -1,5 +1,7 @@
 require 'spec_helper'
 require 'user_helper'
+require "requests/shared_examples/sorted_table"
+require "requests/shared_examples/filter"
 
 shared_context "ordered resources" do
 

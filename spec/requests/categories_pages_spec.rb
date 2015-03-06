@@ -1,6 +1,8 @@
 require 'spec_helper'
 require "category_helpers"
 require 'user_helper'
+require "requests/shared_examples/resource_pages"
+require "requests/shared_examples/resource_with_name_pages"
 
 shared_examples "category related resources table" do
 	it "should have head" do

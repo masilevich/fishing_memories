@@ -1,4 +1,6 @@
 require 'spec_helper'
+require "models/shared_examples/categorizable"
+require "models/shared_examples/resource_with_name"
 
 describe Pond do
 	it_should_behave_like "resource with name"
