@@ -19,56 +19,30 @@ describe "ApplicationLayoutPages" do
 			let(:places_tab_label) {Place.model_name.human count: PLURAL_MANY_COUNT}
 			let(:categories_tab_label) {Category.model_name.human count: PLURAL_MANY_COUNT}
 			let(:tackle_categories_tab_label) {TackleCategory.model_name.human count: PLURAL_MANY_COUNT}
+			
 			describe "tabs" do
-
 				describe "switch" do
-					describe "to another tab" do
-
-						describe "through click on tab" do
-
-							describe "tackles" do
-								before {click_link tackle_tab_label}
-								it "should change current tab" do
-									within "ul#tabs" do
-										expect(page).to have_selector('li.current', text: tackle_tab_label)
-									end	
-								end
-							end
-
-							describe "tackle_sets" do
-								before {click_link tackle_sets_tab_label}
-								it "should change current tab" do
-									within "ul#tabs" do
-										expect(page).to have_selector('li.current', text: tackle_sets_tab_label)
-									end	
-								end
-							end
-							
-							describe "ponds" do
-								before {click_link ponds_tab_label}
-								it "should change current tab" do
-									within "ul#tabs" do
-										expect(page).to have_selector('li.current', text: ponds_tab_label)
-									end	
-								end
-							end
-
-							describe "places" do
-								before {click_link places_tab_label}
-								it "should change current tab" do
-									within "ul#tabs" do
-										expect(page).to have_selector('li.current', text: ponds_tab_label)
-									end	
-								end
-							end
-
-							describe "categories" do
-								before {click_link tackle_categories_tab_label}
-								it "should change current tab" do
-									within "ul#tabs" do
-										expect(page).to have_selector('li.current', text: categories_tab_label)
-									end	
-								end
+					describe "through link click" do
+						it "should switch active nav link" do
+							click_link tackle_tab_label
+							within "ul#tabs" do
+								expect(page).to have_selector('li.current', text: tackle_tab_label)
+							end	
+							click_link tackle_sets_tab_label
+							within "ul#tabs" do
+								expect(page).to have_selector('li.current', text: tackle_sets_tab_label)
+							end	
+							click_link ponds_tab_label
+							within "ul#tabs" do
+								expect(page).to have_selector('li.current', text: ponds_tab_label)
+							end	
+							click_link places_tab_label
+							within "ul#tabs" do
+								expect(page).to have_selector('li.current', text: ponds_tab_label)
+							end	
+							click_link tackle_categories_tab_label
+							within "ul#tabs" do
+								expect(page).to have_selector('li.current', text: categories_tab_label)
 							end
 						end
 
@@ -81,7 +55,6 @@ describe "ApplicationLayoutPages" do
 								end	
 							end
 						end
-
 					end
 				end
 			end
