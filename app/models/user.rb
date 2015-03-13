@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :tackle_sets, dependent: :destroy
   has_many :ponds, dependent: :destroy
   has_many :places, dependent: :destroy
+  has_many :categories, dependent: :destroy
   has_many :tackle_categories
   has_many :tackle_set_categories
   has_many :pond_categories
