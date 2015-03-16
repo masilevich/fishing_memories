@@ -152,40 +152,50 @@ describe "MemoriesPages" do
 		end
 
 		describe "with valid information" do
+
 			before do
-				@occured_at = DateTime.now.to_date
-				@weather_string = "5 градусов тепла, южный ветер"
 				visit new_memory_path
-				select tackles.first.name, :from => "memory[tackle_ids][]"
-				select tackle_sets.first.name, :from => "memory[tackle_set_ids][]"
-				select ponds.first.name, :from => "memory[pond_ids][]"
-				select places.first.name, :from => "memory[place_ids][]"
+				@occured_at = DateTime.now.to_date
 				fill_in "memory_occured_at", with: @occured_at
-				fill_in "memory_weather", with: @weather_string
 			end
+
 			it "should create a memory" do
 				expect { click_button submit }.to change(Memory, :count).by(1)
 			end
 
+			describe "success messages" do
+				before { click_button submit }
+				it { should have_success_message(I18n.t('fishing_memories.model_created', model: Memory.model_name.human)) }
+			end
+
 			context 'memory fields' do
 				before do
+					@weather_string = "5 градусов тепла, южный ветер"
+					@pond_state = "Температуры воды +5"
+					@description = "Рыбалка 5-го ноября"
+					@conclusion = "Клев как на черных камнях"
+					fill_in "memory_description", with: @description
+					fill_in "memory_conclusion", with: @conclusion
+					select tackles.first.name, :from => "memory[tackle_ids][]"
+					select tackle_sets.first.name, :from => "memory[tackle_set_ids][]"
+					select ponds.first.name, :from => "memory[pond_ids][]"
+					select places.first.name, :from => "memory[place_ids][]"
+					fill_in "memory_weather", with: @weather_string
+					fill_in "memory_pond_state", with: @pond_state
 					click_button submit
 					@memory = Memory.order("created_at").last
 				end
 				it "should have entered values" do
 					expect(@memory.occured_at).to eq @occured_at
+					expect(@memory.description).to eq @description
+					expect(@memory.conclusion).to eq @conclusion
 					expect(@memory.weather).to eq @weather_string
+					expect(@memory.pond_state).to eq @pond_state
 					expect(@memory.ponds.first).to eq ponds.first
 					expect(@memory.places.first).to eq places.first
 					expect(@memory.tackles.first).to eq tackles.first
 					expect(@memory.tackle_sets.first).to eq tackle_sets.first
 				end
-			end
-
-
-			describe "success messages" do
-				before { click_button submit }
-				it { should have_success_message(I18n.t('fishing_memories.model_created', model: Memory.model_name.human)) }
 			end
 		end
 	end
@@ -195,9 +205,10 @@ describe "MemoriesPages" do
 		before {visit memory_path(memory)}
 
 		describe "panels" do
-			specify do
+		  specify do
 				expect(page).to have_selector('div.panel h3', text: I18n.t('fishing_memories.details'))
 				expect(page).to have_selector('div.panel h3', text: Memory.human_attribute_name("description"))
+				expect(page).to have_selector('div.panel h3', text: Memory.human_attribute_name("conclusion"))
 			end
 		end
 
@@ -205,6 +216,7 @@ describe "MemoriesPages" do
 			it "should have head" do
 				expect(page).to have_selector('th', text: Memory.human_attribute_name("occured_at"))
 				expect(page).to have_selector('th', text: Memory.human_attribute_name("weather"))
+				expect(page).to have_selector('th', text: Memory.human_attribute_name("pond_state"))
 				expect(page).to have_selector('th', text: Memory.human_attribute_name("tackles"))
 				expect(page).to have_selector('th', text: Memory.human_attribute_name("tackle_sets"))
 				expect(page).to have_selector('th', text: Memory.human_attribute_name("ponds"))

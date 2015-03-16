@@ -216,10 +216,12 @@ ru:
         occured_at: "Дата"
         weather: "Погода"
         description: "Описание"
+        conclusion: "Выводы"
         tackles: *tackles
         tackle_sets: *tackle_sets
         ponds: *ponds
         places: *places
+        pond_state: "Состояние водоема"
       tackle:
         name: *name
         category: *category

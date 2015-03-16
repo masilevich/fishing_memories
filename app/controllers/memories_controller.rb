@@ -46,7 +46,8 @@ class MemoriesController < ApplicationController
 
   def memory_params
     params.require(:memory).permit(:occured_at, :weather, :description, 
-      tackle_ids: [], pond_ids: [], place_ids: [], tackle_set_ids: [])
+      :conclusion, :pond_state, tackle_ids: [], pond_ids: [], place_ids: [],
+      tackle_set_ids: [])
   end
 
   def set_tackles

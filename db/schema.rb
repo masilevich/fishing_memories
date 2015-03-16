@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150218105647) do
+ActiveRecord::Schema.define(version: 20150316104537) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 20150218105647) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "weather"
+    t.text     "conclusion"
+    t.string   "pond_state"
   end
 
   add_index "memories", ["user_id", "occured_at"], name: "index_memories_on_user_id_and_occured_at"

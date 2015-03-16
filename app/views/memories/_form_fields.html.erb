@@ -10,11 +10,15 @@
 	:collection => @places_options, 
 	input_html: { class: 'select2',data: { placeholder: t('js.placeholders.place_name') }} %>
 
+	<%=f.input :pond_state %>
+
 	<%=f.input :tackles, collection: @tackles, input_html: { class: 'select2', data: { placeholder: t('js.placeholders.tackle_name') }} %>
 
 	<%=f.input :tackle_sets, collection: options_from_collection_for_select(@tackle_sets, :id, :title, @resource.tackle_set_ids), 
 		input_html: {class: 'select2', data: { placeholder: t('js.placeholders.tackle_set_name') }} %>
 
 	<%= f.input :description, :as => :ckeditor, :input_html => {:ckeditor => { :height => 400 } } %>
+
+	<%= f.input :conclusion, :as => :ckeditor, :input_html => {:ckeditor => { :height => 100 } } %>
 
 <%end%>

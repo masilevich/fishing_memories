@@ -7,6 +7,7 @@ describe Memory do
   subject { @memory  }
 
   it { should respond_to(:description) }
+  it { should respond_to(:conclusion) }
   it { should respond_to(:occured_at) }
   it { should respond_to(:user_id) }
   it { should respond_to(:user) }
@@ -16,6 +17,7 @@ describe Memory do
   it { should respond_to(:tackle_sets) }
   it { should respond_to(:ponds) }
   it { should respond_to(:places) }
+  it { should respond_to(:pond_state) }
   its(:user) { should eq user }
 
   it { should be_valid }

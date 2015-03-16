@@ -15,7 +15,11 @@
       <tr class="row">
         <th><%= Memory.human_attribute_name("places") %></th>
         <td><%= render partial: 'layouts/resources/resource_link_to', collection: @resource.places, as: :resource, spacer_template: 'shared/comma' %></td>
-      </tr> 
+      </tr>
+      <tr class="row">
+        <th><%= Memory.human_attribute_name("pond_state") %></th>
+        <td><%= @resource.pond_state %></td>
+      </tr>
       <tr class="row">
         <th><%= Memory.human_attribute_name("tackles") %></th>
         <td><%= render partial: 'layouts/resources/resource_link_to', collection: @resource.tackles, as: :resource, spacer_template: 'shared/comma' %></td>
@@ -29,6 +33,12 @@
   <%= render layout: 'layouts/resources/show_table', locals: {title: Memory.human_attribute_name("description")} do %>
       <tr class="row">
         <%= raw(@resource.description) %>
+      </tr>     
+  <% end %>
+
+  <%= render layout: 'layouts/resources/show_table', locals: {title: Memory.human_attribute_name("conclusion")} do %>
+      <tr class="row">
+        <%= raw(@resource.conclusion) %>
       </tr>     
   <% end %>
 
