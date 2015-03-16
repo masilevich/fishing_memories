@@ -1,0 +1,23 @@
+.select2-container .select2-choice, .select2-container .select2-choices {
+  border: $border-width solid #c9d0d6;
+  @include rounded;
+  font-size: 0.95em;
+  @include sans-family;
+
+  /* reset gradient */
+  background-image: none;
+
+  &:focus {
+    border: $border-width solid #99a2aa;
+    @include shadow(0,0,4px,#99a2aa);
+  }
+}
+
+.select2-drop, .select2-drop-active, .select2-drop.select2-drop-above.select2-drop-active,
+.select2-container-active .select2-choice, .select2-container-active .select2-choices, 
+.select2-dropdown-open.select2-drop-above .select2-choice,
+.select2-dropdown-open.select2-drop-above .select2-choices,
+.select2-container-multi.select2-container-active .select2-choices {
+  border: $border-width solid #99a2aa;
+  @include shadow(0,0,4px,#99a2aa);
+}

@@ -1,4 +1,4 @@
-select2Gem = ->
+initSelect2 = ->
   $('.select2').each (i, e) =>
     select = $(e)
     options =
@@ -7,5 +7,5 @@ select2Gem = ->
       containerCss: {"display":"block"}
     select.select2(options)
 
-$(document).ready(select2Gem);
-$(document).on('page:load', select2Gem);
+$(document).ready(initSelect2);
+$(document).on('page:load', initSelect2);

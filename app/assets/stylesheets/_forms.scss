@@ -135,6 +135,20 @@ form {
     }
   }
 
+  input[type=date] {
+    border: $border-width solid #c9d0d6;
+    @include rounded;
+    font-size: 0.95em;
+    @include sans-family;
+    outline: none;
+    padding: 6px $text-input-horizontal-padding 5px;
+
+    &:focus {
+      border: $border-width solid #99a2aa;
+      @include shadow(0,0,4px,#99a2aa);
+    }
+  }
+
   fieldset > ol > li {
 
     /* Hints */
