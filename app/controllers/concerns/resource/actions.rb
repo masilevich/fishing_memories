@@ -33,7 +33,7 @@ module Resource
 			@resources ||= resources
 			@q = @resources.ransack(params[:q])
     	@resources = @q.result
-			@resources = @resources.page(params[:page]).to_a.uniq
+			@resources = @resources.page(params[:page]).uniq
 		end
 
 		def destroy
