@@ -5,9 +5,9 @@ class MemoriesController < ApplicationController
   load_and_authorize_resource
 
   before_action :set_resources
-  before_action :set_tackles, only: [:new, :edit, :index]
-  before_action :set_tackle_sets, only: [:new, :edit, :index]
-  before_action :set_ponds, only: [:index, :new, :edit]
+  before_action :set_grouped_tackles_options, only: [:new, :edit, :index]
+  before_action :set_grouped_tackle_sets_options, only: [:new, :edit, :index]
+  before_action :set_grouped_ponds_options, only: [:index, :new, :edit]
   before_action :set_grouped_places_options, only: [:index, :new, :edit]
 
   def create
@@ -17,10 +17,10 @@ class MemoriesController < ApplicationController
       redirect_to resources_path
     else
       flash.now[:alert] = t('fishing_memories.model_not_created', model: resource_label)
-      set_ponds
+      set_grouped_ponds_options
       set_grouped_places_options
-      set_tackles
-      set_tackle_sets
+      set_grouped_tackles_options
+      set_grouped_tackle_sets_options
       render 'new'
     end
   end
@@ -34,10 +34,10 @@ class MemoriesController < ApplicationController
       redirect_to resources_path
     else
       flash.now[:alert] = t('fishing_memories.model_not_updated', model: resource_label)
-      set_ponds
+      set_grouped_ponds_options
       set_grouped_places_options
-      set_tackles
-      set_tackle_sets
+      set_grouped_tackles_options
+      set_grouped_tackle_sets_options
       render 'edit'
     end
   end
@@ -50,16 +50,16 @@ class MemoriesController < ApplicationController
       tackle_set_ids: [])
   end
 
-  def set_tackles
-    @tackles = current_user.tackles
+  def set_grouped_tackles_options
+    @tackles_options = current_user.tackles.grouped_by_category_options_for_select(current_user.tackle_categories, :name)
   end
 
-  def set_tackle_sets
-    @tackle_sets = current_user.tackle_sets.includes(:tackles)
+  def set_grouped_tackle_sets_options
+    @tackle_sets_options = current_user.tackle_sets.grouped_by_category_options_for_select(current_user.tackle_set_categories, :title)
   end
 
-  def set_ponds
-    @ponds = current_user.ponds
+  def set_grouped_ponds_options
+    @ponds_options = current_user.ponds.grouped_by_category_options_for_select(current_user.pond_categories, :name)
   end
 
   def set_grouped_places_options

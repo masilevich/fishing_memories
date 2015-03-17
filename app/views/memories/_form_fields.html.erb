@@ -4,7 +4,8 @@
 
 	<%=f.input :weather %>
 
-	<%=f.input :ponds, collection: @ponds, input_html: { class: 'select2',data: { placeholder: t('js.placeholders.pond_name') }} %>
+	<%=f.input :ponds, as: :select,
+	 collection: @ponds_options, input_html: { class: 'select2', data: { placeholder: t('js.placeholders.pond_name') }} %>
 
 	<%= f.input :places, as: :select, 
 	:collection => @places_options, 
@@ -12,10 +13,11 @@
 
 	<%=f.input :pond_state %>
 
-	<%=f.input :tackles, collection: @tackles, input_html: { class: 'select2', data: { placeholder: t('js.placeholders.tackle_name') }} %>
+	<%=f.input :tackles, as: :select,
+	 collection: @tackles_options, input_html: { class: 'select2', data: { placeholder: t('js.placeholders.tackle_name') }} %>
 
-	<%=f.input :tackle_sets, collection: options_from_collection_for_select(@tackle_sets, :id, :title, @resource.tackle_set_ids), 
-		input_html: {class: 'select2', data: { placeholder: t('js.placeholders.tackle_set_name') }} %>
+	<%=f.input :tackle_sets, as: :select,
+	 collection: @tackle_sets_options, input_html: { class: 'select2', data: { placeholder: t('js.placeholders.tackle_set_name') }} %>
 
 	<%= f.input :description, :as => :ckeditor, :input_html => {:ckeditor => { :height => 450 } } %>
 

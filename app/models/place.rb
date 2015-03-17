@@ -11,7 +11,7 @@ class Place < ActiveRecord::Base
   end
 
 	def self.grouped_options_for_select(ponds)
-		[[I18n.t('fishing_memories.all'), without_pond.map { |e| [e.name, e.id] }]] + ponds.includes(:places).map { |pond| [pond.name, 
+		[[I18n.t('fishing_memories.all'), self.without_pond.map { |e| [e.name, e.id] }]] + ponds.includes(:places).map { |pond| [pond.name, 
 			pond.places.map { |place| [place.name, place.id] }]}
 	end
 end
