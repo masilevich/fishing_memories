@@ -32,8 +32,8 @@ module Resource
 		def index
 			@resources ||= resources
 			@q = @resources.ransack(params[:q])
-    	@resources = @q.result(distinct: true)
-			@resources = @resources.page(params[:page])
+    	@resources = @q.result
+			@resources = @resources.page(params[:page]).to_a.uniq
 		end
 
 		def destroy
