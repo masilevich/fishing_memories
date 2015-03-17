@@ -10,6 +10,14 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
+  def after_sign_in_path_for(resource)
+    memories_path
+  end
+
+  def after_sign_out_path_for(resource_or_scope)
+    root_path
+  end
+
   after_filter :flash_to_headers
 
   rescue_from CanCan::AccessDenied do |exception|

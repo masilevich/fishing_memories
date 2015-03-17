@@ -15,10 +15,6 @@ Rails.application.routes.draw do
   resources :pond_categories, controller: 'categories', type: 'PondCategory'
   resources :tackle_set_categories, controller: 'categories', type: 'TackleSetCategory'
 
-  authenticated :user do
-    root :to => 'memories#index', as: :authenticated_root
-  end
-
   get '/home',    to: 'static_pages#home'
 
   root 'static_pages#home'

@@ -8,7 +8,7 @@ describe "ApplicationLayoutPages" do
 	describe "for signed-in user" do
 		include_context "login user"
 		before do 
-			visit root_path
+			visit memories_path
 		end
 
 		describe "header" do
