@@ -32,8 +32,11 @@ module Resource
 		def index
 			@resources ||= resources
 			@q = @resources.ransack(params[:q])
-    	@resources = @q.result
-			@resources = @resources.page(params[:page]).uniq
+			if params[:q]
+				@resources = @q.result
+	    	@resources = Kaminari.paginate_array(@resources.to_a.uniq)
+	    end
+	    @resources = @resources.page(params[:page])
 		end
 
 		def destroy
