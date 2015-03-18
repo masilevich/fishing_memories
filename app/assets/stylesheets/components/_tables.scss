@@ -2,7 +2,6 @@
 // ----------------------------------- Tables
 
 table tr {
-  width: 100%;
   td {
     vertical-align: top;
   }
@@ -11,8 +10,7 @@ table tr {
 // --------- Index Tables
 
 table.index_table {
-  
-  display: block;
+  width: 100%;
   margin-bottom: 10px;
   border: 0;
   border-spacing: 0;
@@ -27,6 +25,7 @@ table.index_table {
     a, a:link, a:visited {
       color: $section-header-text-color;
       text-decoration: none;
+      display: block;
       white-space: nowrap;
       -webkit-font-smoothing: antialiased;
     }
