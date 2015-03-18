@@ -2,6 +2,7 @@
 // ----------------------------------- Tables
 
 table tr {
+  display: block;
   td {
     vertical-align: top;
   }
@@ -18,6 +19,7 @@ table.index_table {
 
   th {
     @include section-header;
+    display: block;
     border-right: none;
     text-align: left;
     padding-left: $cell-horizontal-padding;
