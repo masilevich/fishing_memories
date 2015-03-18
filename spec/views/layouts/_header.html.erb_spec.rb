@@ -10,7 +10,7 @@ describe 'layouts/_header' do
     end
 
     it "should display logo with memories" do
-      expect(rendered).to have_link(I18n.t('fishing_memories.title'), href: home_path)
+      expect(rendered).to have_link(I18n.t('fishing_memories.title'), href: root_path)
     end
 
     it "should display tackles, ponds links" do

@@ -23,7 +23,7 @@ describe "Static pages" do
 		end
 
 		describe "content" do
-			it { should have_selector('h1',    text: "Добро пожаловать в Рыболовные записки") }
+			it { should have_selector('h1',    text: "Добро пожаловать на сайт Рыболовный дневник") }
 		end
 		
 	end
