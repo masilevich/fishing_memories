@@ -11,7 +11,8 @@ table tr {
 
 table.index_table {
   width: 100%;
-  overflow-y:scroll;
+  display: block;
+  overflow: auto;
   margin-bottom: 10px;
   border: 0;
   border-spacing: 0;
