@@ -9,14 +9,11 @@ class User < ActiveRecord::Base
   has_many :tackle_set_categories
   has_many :pond_categories
 
-	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
-
   validates :email, presence: true, format: {with: VALID_EMAIL_REGEX},
   uniqueness: {case_sensitive:false}
 
-  valid_user_name = Regexp.new(/\A/.source + ApplicationHelper::USER_NAME_REGEX.source + /\z/.source, Regexp::IGNORECASE)
   validates :username, uniqueness: {case_sensitive: false},
-  format: {with: valid_user_name}, length: {maximum: 20} 
+  format: {with: VALID_USER_NAME_REGEX }, length: {maximum: 20} 
 
   devise :confirmable, :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable, :validatable

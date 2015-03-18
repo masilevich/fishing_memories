@@ -1,6 +1,4 @@
 module ApplicationHelper
-	USER_NAME_REGEX =  /(?<user_name>[a-z]_?(?:[a-z0-9]_?)*)/
-	
 
 	def full_title(page_title="")
 		base_title = I18n.translate('fishing_memories.title')
