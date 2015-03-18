@@ -14,9 +14,9 @@ table.index_table {
   margin-bottom: 10px;
   border: 0;
   border-spacing: 0;
-
+  
   @include wrap-long-word;
-
+  
   th {
     @include section-header;
     border-right: none;
