@@ -22,6 +22,12 @@ end
 shared_examples "not found container" do
 	it {should have_selector('div.blank_slate_container', 
 		text: I18n.t('fishing_memories.model_not_found', model: (resource_class.model_name.human count: PLURAL_MANY_COUNT))) }
+	specify do
+		within('div.blank_slate_container') do
+			expect(page).to_not have_link( I18n.t('fishing_memories.new_model', 
+				model: resource_class.model_name.human), href: new_polymorphic_path(resource_class))
+		end
+	end
 end
 
 shared_examples "filter with title and actions" do

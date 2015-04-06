@@ -1,3 +1,6 @@
 <div class="blank_slate_container">
-	<span class="blank_slate"><%= I18n.t('fishing_memories.model_not_found', model: plural_resource_label) %></span>
+	<span class="blank_slate">
+		<%= I18n.t('fishing_memories.model_not_found', model: plural_resource_label) %>
+		<%= link_to I18n.t('fishing_memories.new_model', model: resource_label),   new_resource_path unless params[:q] %>
+	</span>
 </div>

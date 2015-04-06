@@ -35,6 +35,17 @@ shared_examples "resource pages" do
 				model: resource_class.model_name.human), href: new_polymorphic_path(resource_class)) }
 		end
 
+		describe "blank state container" do
+			it {should have_selector('div.blank_slate_container', 
+				text: I18n.t('fishing_memories.model_not_found', model: (resource_class.model_name.human count: PLURAL_MANY_COUNT))) }
+			specify do
+			  within('div.blank_slate_container') do
+					expect(page).to have_link( I18n.t('fishing_memories.new_model', 
+						model: resource_class.model_name.human), href: new_polymorphic_path(resource_class))
+				end
+			end
+		end
+
 		describe "pagination" do
 			let!(:resource_items) { FactoryGirl.create_list(resource_class, 40, user: user) }
 			before {visit polymorphic_path(resource_class)}
