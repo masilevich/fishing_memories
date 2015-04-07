@@ -18,6 +18,7 @@ gem 'kaminari'
 gem 'select2-rails'
 gem 'ckeditor'
 gem 'ransack'
+gem 'rails_autolink'
 
 group :production do
   gem 'pg', '0.15.1'

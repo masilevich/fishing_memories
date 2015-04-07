@@ -234,6 +234,16 @@ describe "MemoriesPages" do
 			end
 		end
 
+		describe "memory with links" do
+			before do
+			  memory.update_attribute(:description, "this is text with link http://example.com/auto_link_test")
+			  visit memory_path(memory)
+			end
+			it "should auto_link text" do
+				expect(page).to have_link("http://example.com/auto_link_test", href: "http://example.com/auto_link_test")
+			end
+		end
+
 	end
 
 	describe "edit" do

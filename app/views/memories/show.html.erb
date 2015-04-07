@@ -32,13 +32,13 @@
 
   <%= render layout: 'layouts/resources/show_table', locals: {title: Memory.human_attribute_name("description")} do %>
       <tr class="row">
-        <%= raw(@resource.description) %>
+        <%= auto_link(raw(@resource.description)) %>
       </tr>     
   <% end %>
 
   <%= render layout: 'layouts/resources/show_table', locals: {title: Memory.human_attribute_name("conclusion")} do %>
       <tr class="row">
-        <%= raw(@resource.conclusion) %>
+        <%= auto_link(raw(@resource.conclusion)) %>
       </tr>     
   <% end %>
 
