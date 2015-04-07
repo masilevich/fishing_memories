@@ -5,9 +5,14 @@ class Ability
 
     resources = [Memory, Tackle, Pond, Place, TackleSet, 
         Category, PondCategory, TackleSetCategory, TackleCategory]
-    can :create, resources
-    can :manage, resources do |resource|
-      resource.try(:user) == user
+
+    if user.admin?
+      can :manage, :all
+    elsif user    
+      can :create, resources
+      can :manage, resources do |resource|
+        resource.try(:user) == user
+      end
     end
     # Define abilities for the passed in user here. For example:
     #
@@ -35,5 +40,5 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/ryanb/cancan/wiki/Defining-Abilities
-  end
+end
 end

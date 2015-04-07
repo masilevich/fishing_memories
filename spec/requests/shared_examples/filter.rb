@@ -25,7 +25,7 @@ shared_examples "not found container" do
 	specify do
 		within('div.blank_slate_container') do
 			expect(page).to_not have_link( I18n.t('fishing_memories.new_model', 
-				model: resource_class.model_name.human), href: new_polymorphic_path(resource_class))
+				model: resource_class.model_name.human), href: new_resource_path)
 		end
 	end
 end

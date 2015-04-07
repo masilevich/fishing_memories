@@ -35,6 +35,8 @@ ru:
     sign_out: "Выйти"
     sidebars:
       filters: "Фильтры"
+    admin:
+      root_link: "Администрирование"
     pagination:
       empty: "%{model} не найдено"
       one: "Результат: <b>1</b> %{model}"
@@ -177,6 +179,9 @@ ru:
       <<: *errors
   activerecord:
     models:
+      user:
+        one: "Пользователь"
+        other: "Пользователи"
       memory:
         one: "Запись"
         other: "Записи"
@@ -207,11 +212,13 @@ ru:
     attributes:
       name: &name "Название"
       user:
-        login: "Email или имя пользователя"
-        username: "Имя пользователя"
-        password: "Пароль"
-        password_confirmation: "Подтверждение пароля"
+        login: &login "Email или имя пользователя"
+        email: &email "Адрес e-mail"
+        username: &username "Имя пользователя"
+        password: &password "Пароль"
+        password_confirmation: &password_confirmation "Подтверждение пароля"
         current_password: "Текущий пароль"
+        role: "Роль"
       memory:
         occured_at: "Дата"
         weather: "Погода"
@@ -222,6 +229,7 @@ ru:
         ponds: *ponds
         places: *places
         pond_state: "Состояние водоема"
+        count: "Количество записей"
       tackle:
         name: *name
         category: *category
@@ -477,3 +485,4 @@ ru:
       pond_name: "Введите название водоёма"
       place_name: "Введите название места"
       category: "Введите название категории"
+      role_name: "Введите название роли"

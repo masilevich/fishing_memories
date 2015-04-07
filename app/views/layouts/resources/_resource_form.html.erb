@@ -1,4 +1,4 @@
-<%= semantic_form_for(@resource) do |f| %>
+<%= semantic_form_for([(admin_namespace? ? "admin" : nil), @resource]) do |f| %>
 
   <%= render 'form_fields', f: f %>
 	

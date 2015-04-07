@@ -17,7 +17,7 @@ describe User do
   it { should respond_to(:tackle_sets) }
   it { should respond_to(:places) }
 
-  #it { should respond_to(:role) }
+  it { should respond_to(:role) }
 
   it { should be_valid }
 
@@ -153,7 +153,7 @@ describe User do
     end
   end
 
-=begin
+
   describe "role" do
     describe "admin" do
       before do
@@ -165,6 +165,5 @@ describe User do
       end
     end
   end
-=end
 
 end

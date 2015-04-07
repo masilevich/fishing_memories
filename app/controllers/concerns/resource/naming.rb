@@ -27,6 +27,10 @@ module Resource
 			defaults = {count: PLURAL_MANY_COUNT, default: resource_label.pluralize.titleize}
 			resource_class.model_name.human defaults.merge options
 		end
+
+		def namespace
+      controller_path.split('/').first
+    end
 		
 	end
 end

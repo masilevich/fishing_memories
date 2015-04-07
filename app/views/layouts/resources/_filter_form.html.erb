@@ -1,4 +1,4 @@
-<%= search_form_for @q, class: "filter_form" do |f| %>
+<%= search_form_for [(admin_namespace? ? 'admin' : nil), @q], class: "filter_form" do |f| %>
 
 	<%= render 'filter_form_fields', f: f %>
 

@@ -1,0 +1,25 @@
+<% content_for :show_content do %>
+  <%= render layout: 'layouts/resources/show_table' do %>
+  		<tr class="row">
+        <th><%= resource_class.human_attribute_name("email") %></th>
+        <td><%= @resource.email %></td>
+      </tr>
+
+      <tr class="row">
+        <th><%= resource_class.human_attribute_name("username") %></th>
+        <td><%= @resource.username %></td>
+      </tr>
+
+      <tr class="row">
+        <th><%= resource_class.human_attribute_name("role") %></th>
+        <td><%= @resource.role %></td>
+      </tr>
+
+      <tr class="row">
+        <th><%= Memory.human_attribute_name("count") %></th>
+        <td><%= @resource.memories.count %></td>
+      </tr>
+  <% end %>
+
+  <%#= render partial: 'memories/related_memories', locals: {memories: @resource.memories} %>
+<% end %>

@@ -5,17 +5,10 @@
 
 	<ul class="header-item tabs" id="tabs">
 		<% if user_signed_in? %>
-			<%= nav_link (Memory.model_name.human count: PLURAL_MANY_COUNT), memories_path, 'memories'  %>
-			<%= nav_link (Tackle.model_name.human count: PLURAL_MANY_COUNT), tackles_path, 'tackles' %>
-			<%= nav_link (TackleSet.model_name.human count: PLURAL_MANY_COUNT), tackle_sets_path, 'tackle_sets' %>
-			<%= nav_link (Pond.model_name.human count: PLURAL_MANY_COUNT), ponds_path, ['ponds', 'places'] do %>
-				<%= nav_link (Place.model_name.human count: PLURAL_MANY_COUNT), places_path %>
-			<% end %>
-
-			<%= nav_link (Category.model_name.human count: PLURAL_MANY_COUNT), "", 'categories' do %>
-					<%= nav_link (TackleCategory.model_name.human count: PLURAL_MANY_COUNT), tackle_categories_path %>
-					<%= nav_link (TackleSetCategory.model_name.human count: PLURAL_MANY_COUNT), tackle_set_categories_path %>
-					<%= nav_link (PondCategory.model_name.human count: PLURAL_MANY_COUNT), pond_categories_path %>
+			<% if admin_namespace? %>
+				<%= render 'layouts/admin_tabs' %>
+			<% else %>
+				<%= render 'layouts/tabs' %>
 			<% end %>
 		<% end %>
 	</ul>
@@ -23,16 +16,24 @@
 	
 	<ul class="header-item tabs" id="utility_nav">
 		<% if user_signed_in? %>
-		<li id="current_user"><%= link_to "#{current_user.email}", edit_user_registration_path(current_user) %></li>
-		<li id="sign_out"><%= link_to("#{t('fishing_memories.sign_out')}", destroy_user_session_url, :method => 'delete') %></li>
+			<% if current_user.admin? %>
+				<% if admin_namespace? %>
+					<li><%= nav_link (Memory.model_name.human count: PLURAL_MANY_COUNT), memories_path, 'memories'  %></li>
+				<% else %>
+					<li><%= link_to "#{t('fishing_memories.admin.root_link')}", admin_root_path %></li>
+				<% end %>
+				
+			<% end %>
+			<li id="current_user"><%= link_to "#{current_user.email}", edit_user_registration_path(current_user) %></li>
+			<li id="sign_out"><%= link_to("#{t('fishing_memories.sign_out')}", destroy_user_session_url, :method => 'delete') %></li>
 
 		<% else %>
-		<%if controller_name != 'registrations' %>
-		<li><%= link_to "#{t('fishing_memories.devise.sign_up.title')}", new_user_registration_path %></li>
-		<% end%>
-		<%if controller_name != 'sessions' %>
-		<li><%= link_to "#{t('fishing_memories.devise.sign_in.title')}", new_user_session_path %></li>
-		<% end%>
+			<%if controller_name != 'registrations' %>
+				<li><%= link_to "#{t('fishing_memories.devise.sign_up.title')}", new_user_registration_path %></li>
+			<% end%>
+			<%if controller_name != 'sessions' %>
+				<li><%= link_to "#{t('fishing_memories.devise.sign_in.title')}", new_user_session_path %></li>
+			<% end%>
 		<% end %>
 	</ul>
 </div>

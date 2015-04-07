@@ -20,6 +20,8 @@ class User < ActiveRecord::Base
 
   attr_accessor :login
 
+  enum role: [:admin]
+
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)
@@ -27,5 +29,9 @@ class User < ActiveRecord::Base
     else
       where(conditions).first
     end
+  end
+
+  def title
+    username
   end
 end

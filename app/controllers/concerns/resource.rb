@@ -19,7 +19,6 @@ module Resource
     helper_method :find_resource
     helper_method :resources_path, :resource_path, :new_resource_path, :edit_resource_path
     helper_method :sort_column, :sort_direction
-
     before_action :find_resource, only: [:edit, :update, :show]
   end
 

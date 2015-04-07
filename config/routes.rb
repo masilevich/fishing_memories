@@ -15,7 +15,12 @@ Rails.application.routes.draw do
   resources :pond_categories, controller: 'categories', type: 'PondCategory'
   resources :tackle_set_categories, controller: 'categories', type: 'TackleSetCategory'
 
-  get '/home',    to: 'static_pages#home'
+  namespace :admin do
+    root :to => "users#index"
+    resources :users
+  end
+
+  get 'home', to: 'static_pages#home'
 
   root 'static_pages#home'
 
