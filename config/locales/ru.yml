@@ -402,7 +402,7 @@ ru:
         display_entries:
           zero: "Нет записей для вывода"
           one: "Показана <b>1</b> записей"
-          other: "Показаны все <b> %{count}</b> записей"
+          other: "Показаны <b> %{count}</b> записей"
       more_pages:
         display_entries: "Показаны <b>%{first}&nbsp;-&nbsp;%{last}</b> из <b>%{total}</b> записей"
   number:
