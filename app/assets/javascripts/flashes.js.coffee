@@ -13,6 +13,7 @@ show_ajax_message = (msg, type) ->
 $(document).ajaxComplete (event, request, settings) ->
   msg = request.getResponseHeader("X-Message")
   type = request.getResponseHeader("X-Message-Type")
+  return if type == "blank"
   show_ajax_message msg, type #use whatever popup, notification or whatever plugin you want
   return
 

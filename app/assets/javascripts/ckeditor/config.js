@@ -103,6 +103,7 @@ CKEDITOR.editorConfig = function( config )
   ];
 
   config.toolbar_mini = [
+    { name: 'jsonlinks', items: ['JsonLinks']},
   	{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] },
     { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock' ] },
     { name: 'styles', items: [ 'Font', 'FontSize' ] },
@@ -110,6 +111,7 @@ CKEDITOR.editorConfig = function( config )
     { name: 'insert', items: [ 'Image', 'Table', 'HorizontalRule', 'SpecialChar' ] }
   ];
 
+  config.extraPlugins = 'JsonLinks';
   config.toolbar = "mini";
   config.removePlugins = 'elementspath'; 
 };

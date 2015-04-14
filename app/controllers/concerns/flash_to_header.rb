@@ -1,7 +1,7 @@
 module FlashToHeader
-	extend ActiveSupport::Concern
+  extend ActiveSupport::Concern
 
-	def flash_to_headers
+  def flash_to_headers
     return unless request.xhr?
     response.headers['X-Message'] = flash_message
     response.headers["X-Message-Type"] = flash_type.to_s
@@ -21,6 +21,7 @@ module FlashToHeader
     [:error, :warning, :notice, :alert].each do |type|
       return type unless flash[type].blank?
     end
+    :blank
   end
 
 end

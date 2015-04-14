@@ -36,7 +36,11 @@ module Resource
 				@resources = @q.result
 	    	@resources = Kaminari.paginate_array(@resources.to_a.uniq)
 	    end
-	    @resources = @resources.page(params[:page])
+	    
+		  respond_to do |format|
+	      format.html { @resources = @resources.page(params[:page]) }
+	      format.json { render json: @resources }
+	    end
 		end
 
 		def destroy
