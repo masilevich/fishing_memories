@@ -3,8 +3,8 @@ class Ability
 
   def initialize(user)
 
-    resources = [Memory, Tackle, Pond, Place, TackleSet, 
-        Category, PondCategory, TackleSetCategory, TackleCategory]
+    resources = [Memory, Tackle, Pond, Place, TackleSet, Lure,
+        Category, PondCategory, TackleSetCategory, TackleCategory, LureCategory]
 
     if user.admin?
       can :manage, :all

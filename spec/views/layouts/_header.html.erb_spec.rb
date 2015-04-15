@@ -19,6 +19,7 @@ describe 'layouts/_header' do
         expect(rendered).to have_link((Memory.model_name.human count: PLURAL_MANY_COUNT), href: memories_path)
         expect(rendered).to have_link((Tackle.model_name.human count: PLURAL_MANY_COUNT), href: tackles_path)
         expect(rendered).to have_link((TackleSet.model_name.human count: PLURAL_MANY_COUNT), href: tackle_sets_path)
+        expect(rendered).to have_link((Lure.model_name.human count: PLURAL_MANY_COUNT), href: lures_path)
         expect(rendered).to have_link((Pond.model_name.human count: PLURAL_MANY_COUNT), href: ponds_path)
         expect(rendered).to have_link((Place.model_name.human count: PLURAL_MANY_COUNT), href: places_path)
       end
@@ -28,6 +29,7 @@ describe 'layouts/_header' do
         expect(rendered).to have_link((PondCategory.model_name.human count: PLURAL_MANY_COUNT), href: pond_categories_path)
         expect(rendered).to have_link((TackleCategory.model_name.human count: PLURAL_MANY_COUNT), href: tackle_categories_path)
         expect(rendered).to have_link((TackleSetCategory.model_name.human count: PLURAL_MANY_COUNT), href: tackle_set_categories_path)
+        expect(rendered).to have_link((LureCategory.model_name.human count: PLURAL_MANY_COUNT), href: lure_categories_path)
       end
 
       it "should not display admin root link " do

@@ -53,6 +53,11 @@ FactoryGirl.define do
     end
   end
 
+  factory :lure do
+    name { Faker::Lorem.sentence }
+    user
+  end
+
   factory :pond do
     name { Faker::Lorem.sentence }
     user
@@ -86,6 +91,11 @@ FactoryGirl.define do
 
   factory :tackle_set_category do
     sequence(:name) { |n| "Вид комплекта #{n}" }
+    user
+  end
+
+  factory :lure_category do
+    sequence(:name) { |n| "Вид приманки #{n}" }
     user
   end
 end

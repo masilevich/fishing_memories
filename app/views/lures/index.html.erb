@@ -1,0 +1,23 @@
+<% content_for :index_content do %>
+	<div class="index_as_table">
+		<%= render layout: 'layouts/resources/index_table' do %>
+			<% content_for :table_head do %>
+					<%= render 'layouts/resources/table_head_name_and_category' %>
+					<th class="col col-actions"></th>
+			<% end %>
+
+			<% content_for :table_body do %>
+				<% @resources.each do |resource| %>
+					<tr class="odd" id="<%=singular_resource_name%>_<%=resource.id%>">
+						<%= render 'layouts/resources/table_body_name_and_category', resource: resource %>
+						<td class="col col-actions">
+		          <div class="table_actions">
+		          	<%= render 'layouts/resources/index_table_actions', resource: resource %>
+		          </div>
+		        </td>
+					</tr>
+				<% end %>
+			<% end %>
+		<% end %>
+	</div>
+<% end %>

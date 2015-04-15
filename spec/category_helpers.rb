@@ -1,4 +1,4 @@
-CATEGORY_TYPES = %w(PondCategory TackleCategory TackleSetCategory)
+CATEGORY_TYPES = %w(PondCategory TackleCategory TackleSetCategory LureCategory)
 
 shared_context "category helpers" do
 	

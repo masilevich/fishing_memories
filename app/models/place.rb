@@ -1,6 +1,5 @@
 class Place < ActiveRecord::Base
 	include ResourceWithName
-	include Rails.application.routes.url_helpers
 
 	belongs_to :pond
 	has_and_belongs_to_many :memories
@@ -16,11 +15,4 @@ class Place < ActiveRecord::Base
 			pond.places.map { |place| [place.name, place.id] }]}
 	end
 
-	def url
-		polymorphic_path(self)
-	end
-
-	def as_json(options={})
-    super(options.merge(:methods => [:title, :url], :only => []))
-  end
 end

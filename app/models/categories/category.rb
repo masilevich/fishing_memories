@@ -2,7 +2,7 @@ class Category < ActiveRecord::Base
 	include ResourceWithName
 
    def self.types
-      %w(PondCategory TackleCategory TackleSetCategory)
+      %w(PondCategory TackleCategory TackleSetCategory LureCategory)
    end
 
 	self.types.each do |s|

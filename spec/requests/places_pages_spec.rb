@@ -82,15 +82,6 @@ describe "PlacesPages" do
 
 		end
 
-		describe "json" do
-			before do 
-				login_as(user, :scope => :user)
-				@expected = places.sort_by {|u| u.name}.map { |e| {title: e.title, url: place_path(e)} }.to_json
-				get places_path, format: :json 
-			end
-			specify { expect(response.body).to eq @expected }
-		end
-
 	end
 
 	describe "create" do

@@ -9,11 +9,13 @@ Rails.application.routes.draw do
   resources :tackle_sets
   resources :ponds
   resources :places
+  resources :lures
 
   resources :categories
   resources :tackle_categories, controller: 'categories', type: 'TackleCategory' 
   resources :pond_categories, controller: 'categories', type: 'PondCategory'
   resources :tackle_set_categories, controller: 'categories', type: 'TackleSetCategory'
+  resources :lure_categories, controller: 'categories', type: 'LureCategory'
 
   namespace :admin do
     root :to => "users#index"

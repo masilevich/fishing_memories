@@ -16,7 +16,7 @@
 				onLoad : function(){
 					var select = this;
         	(function($){
-						$.getJSON('/places.json', function(data){
+						$.getJSON('/lures.json', function(data){
 				      $.each(data, function(){ 
 				        select.add(this.title, this.url);
 				      })

@@ -1,0 +1,14 @@
+<% content_for :show_content do %>
+  <%= render layout: 'layouts/resources/show_table' do %>
+  		<tr class="row">
+        <th><%= resource_class.human_attribute_name("name") %></th>
+        <td><%= @resource.name %></td>
+      </tr>
+
+      <tr class="row">
+        <th><%= resource_class.human_attribute_name("category") %></th>
+        <td><%= render('layouts/resources/resource_link_to', resource: @resource.category) if @resource.category %></td>
+      </tr>
+  <% end %>
+
+<% end %>

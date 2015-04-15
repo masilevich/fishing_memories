@@ -191,6 +191,9 @@ ru:
       tackle_set:
         one: "Комплект снастей"
         other: &tackle_sets "Комплекты снастей"
+      lure:
+        one: "Приманка"
+        other: &lures "Приманки"
       pond:
         one: &pond "Водоем"
         other: &ponds "Водоемы"
@@ -209,6 +212,9 @@ ru:
       tackle_set_category:
         one: "Категория комплектов снастей"
         other: "Категории комплектов снастей"
+      lure_category:
+        one: "Категория приманок"
+        other: "Категории приманок"
     attributes:
       name: &name "Название"
       user:
@@ -226,6 +232,7 @@ ru:
         conclusion: "Выводы"
         tackles: *tackles
         tackle_sets: *tackle_sets
+        lures: *lures
         ponds: *ponds
         places: *places
         pond_state: "Состояние водоема"
@@ -237,6 +244,9 @@ ru:
         name: *name
         category: *category
         tackles: "Снасти"
+      lure:
+        name: *name
+        category: *category
       pond:
         name: *name
         category: *category

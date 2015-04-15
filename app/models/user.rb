@@ -2,12 +2,14 @@ class User < ActiveRecord::Base
   has_many :memories, dependent: :destroy
   has_many :tackles, dependent: :destroy
   has_many :tackle_sets, dependent: :destroy
+  has_many :lures, dependent: :destroy
   has_many :ponds, dependent: :destroy
   has_many :places, dependent: :destroy
   has_many :categories, dependent: :destroy
   has_many :tackle_categories
   has_many :tackle_set_categories
   has_many :pond_categories
+  has_many :lure_categories
 
   validates :email, presence: true, format: {with: VALID_EMAIL_REGEX},
   uniqueness: {case_sensitive:false}
