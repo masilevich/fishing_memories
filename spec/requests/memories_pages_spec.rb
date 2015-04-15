@@ -111,6 +111,14 @@ describe "MemoriesPages" do
 			end
 
 		end
+
+		describe "json" do
+			before do 
+				login_as(user, :scope => :user)
+				get memories_path, format: :json 
+			end
+			specify { expect(response.body).to eq "as_json not defined" }
+		end
 	end
 
 	describe "create" do
