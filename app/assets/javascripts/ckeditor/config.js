@@ -122,5 +122,5 @@ CKEDITOR.editorConfig = function( config )
 
   config.toolbar = "mini_fishing";
   config.removePlugins = 'elementspath'; 
-  config.removeDialogTabs = 'link:upload;image:Upload;flash:Upload'
+  config.removeDialogTabs = 'link:upload;image:Upload;flash:Upload';
 };
