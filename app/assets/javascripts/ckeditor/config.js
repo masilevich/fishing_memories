@@ -106,7 +106,7 @@ CKEDITOR.editorConfig = function( config )
   ];
 
   config.toolbar_mini = [
-  	{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] },
+    { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] },
     { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock' ] },
     { name: 'styles', items: [ 'Font', 'FontSize' ] },
     { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
@@ -114,12 +114,14 @@ CKEDITOR.editorConfig = function( config )
   ];
 
   config.toolbar_mini_fishing = [
+    { name: 'jsonlinks', items: ['JsonLinks']},
     { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat' ] },
     { name: 'styles', items: [ 'Font', 'FontSize' ] },
     { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock' ] },
     { name: 'insert', groups: ['link', 'image'], items: ['Link', 'Unlink', '-', 'Image', 'Flash'] }
   ];
 
+  config.extraPlugins = 'JsonLinks';
   config.toolbar = "mini_fishing";
   config.removePlugins = 'elementspath'; 
   config.removeDialogTabs = 'link:upload;image:Upload;flash:Upload'
