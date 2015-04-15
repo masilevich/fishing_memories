@@ -28,6 +28,9 @@ CKEDITOR.editorConfig = function( config )
 
   config.allowedContent = true;
 
+  //Tells if user should not be asked to confirm close, if any dialog field was modified.
+  config.dialog_noConfirmCancel = true;
+
   // Rails CSRF token
   config.filebrowserParams = function(){
     var csrf_token, csrf_param, meta,
@@ -103,7 +106,6 @@ CKEDITOR.editorConfig = function( config )
   ];
 
   config.toolbar_mini = [
-    { name: 'jsonlinks', items: ['JsonLinks']},
   	{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] },
     { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock' ] },
     { name: 'styles', items: [ 'Font', 'FontSize' ] },
@@ -111,7 +113,16 @@ CKEDITOR.editorConfig = function( config )
     { name: 'insert', items: [ 'Image', 'Table', 'HorizontalRule', 'SpecialChar' ] }
   ];
 
+  config.toolbar_mini_fishing = [
+    { name: 'jsonlinks', items: ['JsonLinks']},
+    { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat' ] },
+    { name: 'styles', items: [ 'Font', 'FontSize' ] },
+    { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock' ] },
+    { name: 'insert', groups: ['link', 'image'], items: ['Link', 'Unlink', '-', 'Image', 'Flash'] }
+  ];
+
   config.extraPlugins = 'JsonLinks';
-  config.toolbar = "mini";
+  config.toolbar = "mini_fishing";
   config.removePlugins = 'elementspath'; 
+  config.removeDialogTabs = 'link:upload;image:Upload;flash:Upload'
 };
