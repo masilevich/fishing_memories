@@ -33,5 +33,7 @@ module FishingMemories
     config.generators do |g|
       g.assets false
     end
+
+    config.assets.precompile += %w( ckeditor/* )
   end
 end
