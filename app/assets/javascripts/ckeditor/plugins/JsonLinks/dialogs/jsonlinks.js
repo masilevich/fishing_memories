@@ -1,7 +1,7 @@
 ﻿CKEDITOR.dialog.add("jsonlinksDialog", function(editor) {
 	return {
 		allowedContent: "a[href,target]",
-		title: editor.lang.JsonLinks.lures.dialog_title,
+		title: 'Выберите приманку',
 		minWidth: 350,
 		minHeight: 100,
 		resizable: CKEDITOR.DIALOG_RESIZE_NONE,
@@ -10,7 +10,7 @@
 			label: "JsonLinks",
 			elements:[{
 				type: "select",
-				label: editor.lang.JsonLinks.lures.select_label,
+				label: 'Приманки',
 				id: "jslinks",
 				items: [ ],
 				onLoad : function(){
