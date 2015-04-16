@@ -1,0 +1,1 @@
+CKEDITOR.plugins.add("JsonLinks",{icons:"jsonlinks",init:function(n){n.addCommand("jsonlinks",new CKEDITOR.dialogCommand("jsonlinksDialog")),n.ui.addButton("JsonLinks",{label:"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u043f\u0440\u0438\u043c\u0430\u043d\u043a\u0443",icons:"jsonlinks",command:"jsonlinks"})}});
