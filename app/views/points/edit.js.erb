@@ -1,0 +1,4 @@
+openInfowindow(
+    "<%= j(render :template => 'points/edit.html.erb', :locals  => {:point => @point}) %>", 
+    findById(<%=@point.id%>)
+);           

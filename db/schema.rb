@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150415102543) do
+ActiveRecord::Schema.define(version: 20150423110031) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -31,6 +31,15 @@ ActiveRecord::Schema.define(version: 20150415102543) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "maps", force: true do |t|
+    t.integer  "mappable_id"
+    t.string   "mappable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "maps", ["mappable_id"], name: "index_maps_on_mappable_id"
 
   create_table "memories", force: true do |t|
     t.integer  "user_id"
@@ -76,6 +85,16 @@ ActiveRecord::Schema.define(version: 20150415102543) do
 
   add_index "places", ["name", "pond_id", "user_id"], name: "index_places_on_name_and_pond_id_and_user_id", unique: true
   add_index "places", ["user_id"], name: "index_places_on_user_id"
+
+  create_table "points", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.integer  "map_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "ponds", force: true do |t|
     t.string   "name"

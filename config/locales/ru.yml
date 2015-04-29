@@ -200,6 +200,12 @@ ru:
       place:
         one: &place "Место"
         other: &places "Места"
+      point:
+        one: &place "Точка"
+        other: &places "Точки"
+      map:
+        one: &place "Карта"
+        other: &places "Карты"
       category:
         one: &category "Категория"
         other: "Категории"
@@ -217,6 +223,7 @@ ru:
         other: "Категории приманок"
     attributes:
       name: &name "Название"
+      description: &description "Описание"
       user:
         login: &login "Email или имя пользователя"
         email: &email "Адрес e-mail"
@@ -228,7 +235,7 @@ ru:
       memory:
         occured_at: "Дата"
         weather: "Погода"
-        description: "Описание"
+        description: *description
         conclusion: "Выводы"
         tackles: *tackles
         tackle_sets: *tackle_sets
@@ -254,6 +261,9 @@ ru:
         name: *name
         pond: *pond
         without_pond: "Без водоема"
+      point:
+        name: *name
+        description: *description
       category:
         name: *name
       pond_category:
@@ -504,3 +514,4 @@ ru:
       place_name: "Введите название места"
       category: "Введите название категории"
       role_name: "Введите название роли"
+    ajax_request_error: "Возникла ошибка при обработке вашего запроса"

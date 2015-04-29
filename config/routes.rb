@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'maps/new'
+
+  get 'points/new'
+
   devise_for :users
 
   get 'tackles/search/name', to: 'tackles#search_for_name', as: 'search_tackle_names'
@@ -9,6 +13,7 @@ Rails.application.routes.draw do
   resources :tackle_sets
   resources :ponds
   resources :places
+  resources :points
   resources :lures
 
   resources :categories

@@ -4,5 +4,6 @@ class Pond < ActiveRecord::Base
 
 	has_many :places
 	has_and_belongs_to_many :memories
+	has_one :map, as: :mappable
 
 end

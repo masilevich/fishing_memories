@@ -12,6 +12,7 @@ describe Pond do
 
 	it { should respond_to(:memories) }
 	it { should respond_to(:places) }
+	it { should respond_to(:map) }
 
 	it_should_behave_like "categorizable"
 

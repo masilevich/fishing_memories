@@ -35,5 +35,8 @@ module FishingMemories
     end
 
     config.assets.precompile += %w( ckeditor/* )
+    config.assets.precompile += %w( gmaps4rails.css)
+
+    config.action_view.embed_authenticity_token_in_remote_forms = true
   end
 end

@@ -1,0 +1,33 @@
+<%= javascript_include_tag :defaults %>
+<%= form_for @point, :html => { :id => 'point_form' }, :remote => true do |f| %>
+
+  <% if @point.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@point.errors.count, "error") %> prohibited this point from being saved:</h2>
+
+      <ul>
+      <% @point.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.text_field :name %>
+  </div>
+  
+  <div class="field">
+    <%= f.text_field :description %>
+  </div>
+  
+  <%= f.hidden_field :latitude %>
+  <%= f.hidden_field :longitude %>
+  <%= f.hidden_field :map_id %>
+  
+  <%= f.submit class: "btn btn-lg btn-primary" %>
+  
+<% end %>
+
+
+

@@ -1,0 +1,48 @@
+#hand_b {
+  width:31px;
+  height:31px;
+  background-image: url(http://google.com/mapfiles/ms/t/Bsu.png);
+}
+#hand_b.selected {
+  background-image: url(http://google.com/mapfiles/ms/t/Bsd.png);
+}
+
+#placemark_b {
+  width:31px;
+  height:31px;
+  background-image: url(http://google.com/mapfiles/ms/t/Bmu.png);
+}
+#placemark_b.selected {
+  background-image: url(http://google.com/mapfiles/ms/t/Bmd.png);
+}
+
+.map_controls {
+	display: block;
+	float: left
+}
+
+.map_controls td {
+  padding: 1px;
+}
+
+.map_container {
+  form {
+
+    ol, ul { list-style: none }
+
+    fieldset {
+      border: 0;
+      padding: 10px 0;
+      margin: 0px;
+
+      ol > li {
+        padding: 5px 10px;
+      }
+    }
+    
+  }
+}
+
+.without_padding {
+  padding: 0;
+}

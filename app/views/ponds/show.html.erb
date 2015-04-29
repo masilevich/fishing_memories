@@ -1,3 +1,5 @@
+<%= stylesheet_link_tag "gmaps4rails" %>
+
 <% content_for :show_content do %>
   <%= render layout: 'layouts/resources/show_table' do %>
   		<tr class="row">
@@ -10,6 +12,8 @@
         <td><%= render('layouts/resources/resource_link_to', resource: @resource.category) if @resource.category %></td>
       </tr>
   <% end %>
+
+  <%= render 'maps/gmaps' %>
 
   <%= render partial: 'memories/related_memories', locals: {memories: @resource.memories} %>
 <% end %>

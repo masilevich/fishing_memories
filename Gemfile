@@ -19,6 +19,7 @@ gem 'select2-rails'
 gem 'ckeditor'
 gem 'ransack'
 gem 'rails_autolink'
+gem 'gmaps4rails', '1.5.6'
 
 group :production do
   gem 'pg', '0.15.1'

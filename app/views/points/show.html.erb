@@ -1,0 +1,13 @@
+<div class="map_infowindow_container">
+<p>
+  <%= @point.name %>
+</p>
+
+<p>
+  <%= @point.description %>
+</p>
+
+<%= link_to t("fishing_memories.edit"), edit_point_path(@point, :format => "js"), :remote =>true  %>
+<%= link_to t("fishing_memories.delete"), @point, method: "delete", data: { confirm: I18n.t('fishing_memories.delete_confirmation') }, :remote =>true %>
+
+</div>

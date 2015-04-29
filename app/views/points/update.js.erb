@@ -1,0 +1,30 @@
+<%if (@point.errors.empty?) %>    
+
+    var updateMarkerWithInfowindow = function () { 
+
+        var marker_to_update = findById(<%=@point.id%>);
+
+        var showUpdatedInfowinow = function() {
+            openInfowindow(
+                "<%= j(render :template => 'points/show.html.erb', 
+                              :locals  => {:point => @point}) %>", 
+                marker_to_update
+            )
+        };
+
+        showUpdatedInfowinow();
+
+        google.maps.event.addListener(marker_to_update, "click", function (e) {
+            showUpdatedInfowinow();
+        });     
+     
+        show_ajax_message("<%=I18n.t('fishing_memories.model_updated', model: Point.model_name.human)%>", 'notice');
+    }
+    
+    updateMarkerWithInfowindow();  
+      
+<%else%>
+
+    show_ajax_message("<%=I18n.t('fishing_memories.model_not_updated', model: Point.model_name.human)%>", 'alert');
+
+<%end%>
