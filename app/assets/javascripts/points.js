@@ -16,7 +16,7 @@ function pointsNew(geocode_information) {
     $.ajax({
         url: '/points/new?' + jQuery.param({point:geocode_information}) + '#chunked=true',
         type: 'GET',
-        async: false,
+        async: true,
         success: function(html) { 
             
             // Add on close behaviour to clear this marker

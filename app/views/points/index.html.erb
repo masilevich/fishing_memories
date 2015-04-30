@@ -1,52 +1,78 @@
-<%= stylesheet_link_tag "gmaps4rails" %>
+<% without_markers_map_options = {
+  disableDoubleClickZoom: true,
+  detect_location: true,       
+  center_on_user: true,        
+  zoom: 10,
+  auto_adjust: false,
+} %>
 
-<%= gmaps(:markers => {
-            :data => @json,        
-          }, 
-          :map_options => {
-            :do_clustering => false, 
-            :disableDoubleClickZoom => true
-          }
-) %>
+<% with_markers_map_options = {
+  disableDoubleClickZoom: true,      
+  auto_adjust: true,
+  raw: '{ mapTypeId: google.maps.MapTypeId.HYBRID}'
+} %>
+
+
+
+<table class="map_table">
+  <tbody>
+    <tr style="vertical-align:top">
+     <td class="whitout_padding">
+      <% if @json %>
+      <%= gmaps(markers: {data: @json}, map_options: with_markers_map_options) %>
+      <% else %>
+      <%= gmaps(map_options: without_markers_map_options) %>
+      <% end %>
+    </td>
+    <td style="width:15em">
+
+        <table class = "map_controls"><tbody><tr>
+          <td><div id="hand_b" onclick="stopEditing()" class="selected"></div></td>
+          <td><div id="placemark_b" onclick="placeMarker()" class="unselected"></div></td>
+        </tr></tbody></table>
+
+        <input type="hidden" id="featuredetails" rows="2">
+
+        <p>
+        Для того, чтобы поместить точку на карту, щелкните на иконку слева от руки а затем на карте.
+        </p>
+        <table id="featuretable">
+         <tbody id="featuretbody"></tbody>
+       </table>
+     </td>
+  </tr>
+</tbody>
+</table>
+
+
 
 <%= content_for :scripts do %>
-    <script>
-        // Document ready stuff
-        $(document).ready(function() {
-            // Bizarre ajax errors
-            $(document).bind("ajaxError", function() {
-                alert_user('There was an error processing your request. Please try again later', 'alert-error');
-            });
+<script>
+
+  var listener
+
+  function placeMarker() {
+    var pointsNewMarker = null;
+    select("placemark_b");
+    Gmaps.map.serviceObject.setOptions({draggableCursor:'crosshair'});
+
+    listener = google.maps.event.addListener(Gmaps.map.serviceObject, "click", function(event) {
+        clearMarker(pointsNewMarker);
+        select("hand_b");
+        Gmaps.map.serviceObject.setOptions({draggableCursor:''});
+        google.maps.event.removeListener(listener);
+        geocodePoint(event.latLng, 1, function(data) {
+          pointsNew(data);
         });
+      }
+    );
+  }
 
-        // Instance geocoder
-        var geocoder = new google.maps.Geocoder();
+  function stopEditing() {
+    select("hand_b");
+    Gmaps.map.serviceObject.setOptions({draggableCursor:''});
+    google.maps.event.removeListener(listener)
+  }
 
-        // New marker beacon
-        var pointsNewMarker = null;
-
-        // Google maps map-related events
-        Gmaps.map.callback = function() {
-
-            // Double click event to show new marker form
-            google.maps.event.addListener(Gmaps.map.serviceObject, 'dblclick', function(event) {            
-    
-                // Remove previous marker when adding a new one
-                clearMarker(pointsNewMarker);
-    
-                // Geocode point. Callback on success will show the creation form
-                geocodePoint(event.latLng, function(data) {
-                   pointsNew(data);
-                });                
-            });
-        }; 
-    </script>
+</script>
 <% end %>
-
-<% content_for :contextual do %>
-    <%#=render :partial => 'home_side' %>
-<% end %>
-
-
-
-

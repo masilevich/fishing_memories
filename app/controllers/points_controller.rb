@@ -1,18 +1,13 @@
 class PointsController < ApplicationController
   before_action :set_point, only: [:show, :edit, :update, :destroy]
   
-  respond_to :js, :html
-  
-  # 404
-  rescue_from ActiveRecord::RecordNotFound do |exception| 
-    rescue_record_not_found(exception)
-  end
+  respond_to :html, :js
 
   def index
     @points = Point.all
     @json = @points.to_gmaps4rails do |point, marker|
       @point = point
-      marker.infowindow render_to_string(:action => 'show', :layout => false)    
+      marker.infowindow render_to_string('points/show', :layout => false)    
       marker.json({ :id => @point.id })
     end
   end
@@ -43,10 +38,7 @@ class PointsController < ApplicationController
     @point = Point.new(point_params)
     respond_to do |format|
       if @point.save
-        format.html do
-          redirect_to @point
-        	flash[:notice] = t('fishing_memories.model_created', model: Point.model_name.human)
-        end 
+        format.html { redirect_to @point, notice: 'Playground was successfully created.' }
         format.js {}
       else
         format.html { render action: 'new' }
@@ -97,11 +89,4 @@ private
     params.require(:point).permit(:name, :description, :map_id, :latitude, :longitude)
   end
   
-  # Generic not found action
-  def rescue_record_not_found(exception)
-    respond_to do |format|
-      format.html
-      format.js { render :template => "points/404.js.erb", :locals => {:exception => exception} }
-    end
-  end
 end

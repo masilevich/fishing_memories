@@ -4,6 +4,7 @@
     
         clearMarker(pointsNewMarker);
 
+
         var markerInfo = {    
             position: new google.maps.LatLng(
                     <%=@point.latitude%>,
@@ -15,8 +16,9 @@
             
         var marker = new google.maps.Marker(markerInfo);
     
-        markerInfo.serviceObject = marker;
 
+        markerInfo.serviceObject = marker;
+    
         Gmaps.map.markers.push(markerInfo);
 
         google.maps.event.addListener(marker, "click", function (e) {
@@ -25,16 +27,17 @@
                               :locals  => { :point => @point}) %>", 
                 marker
             )
-        });   
-    
-        show_ajax_message("<%=I18n.t('fishing_memories.model_created', model: Point.model_name.human)%>", 'notice');
+        });
        
     }    
     
     createMarkerWithInfoWindow();
 
+    show_ajax_message("created", "notice")
+    
+
 <%else%>
 
-    show_ajax_message("<%=I18n.t('fishing_memories.model_not_created', model: Point.model_name.human)%>", 'alert');
 
 <%end%>
+
