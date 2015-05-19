@@ -1,7 +1,7 @@
 class PointsController < ApplicationController
   before_action :set_point, only: [:show, :edit, :update, :destroy]
   
-  respond_to :html, :js
+  respond_to :html
 
   def index
     @points = Point.all
@@ -39,10 +39,10 @@ class PointsController < ApplicationController
     respond_to do |format|
       if @point.save
         format.html { redirect_to @point, notice: 'Playground was successfully created.' }
-        format.js {}
+        format.js { }
       else
         format.html { render action: 'new' }
-        format.js {}      
+        format.js {render layout: false}     
       end
     end
   end
