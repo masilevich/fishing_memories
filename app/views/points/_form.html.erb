@@ -1,17 +1,15 @@
-<%= form_for @point, remote: true, :authenticity_token => true do |f| %>
+<%= semantic_form_for @point, remote: true do |f| %>
 
-  <div class="field">
-    <%= f.text_field :name %>
-  </div>
+  <%=f.inputs do %>
+    <%=f.input :name %>
+    <%=f.input :description, as: :text, input_html: { rows: 3, cols: 25} %>
+    <%=f.input :latitude, as: :hidden %>
+    <%=f.input :longitude, as: :hidden %>
+    <%=f.input :map_id, as: :hidden %>
+  <%end%>
   
-  <div class="field">
-    <%= f.text_field :description %>
-  </div>
-  
-  <%= f.hidden_field :latitude %>
-  <%= f.hidden_field :longitude %>
-  <%= f.hidden_field :map_id %>
-  
-  <%= f.submit %>
+  <%= f.actions do %>
+    <%= f.submit %>
+  <% end %>
   
 <% end %>
