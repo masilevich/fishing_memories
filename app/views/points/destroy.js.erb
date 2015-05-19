@@ -1,5 +1,10 @@
+
+// Clear the marker itself
 clearMarkerById(<%=@point.id%>);
 
+// Close infowindow
 closeInfowindow();
 
+// Notify
+show_ajax_message("<%=I18n.t('fishing_memories.model_destroyed', model: Point.model_name.human)%>", 'notice');
 

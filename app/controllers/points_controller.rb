@@ -1,7 +1,7 @@
 class PointsController < ApplicationController
   before_action :set_point, only: [:show, :edit, :update, :destroy]
   
-  respond_to :html
+  respond_to :html, :js
 
   def index
     @points = Point.all
@@ -12,19 +12,15 @@ class PointsController < ApplicationController
     end
   end
 
-  # GET /points/1
-  # GET /points/1.json
   def show
     respond_with(@point, :layout =>  !request.xhr?)
   end
 
-  # GET /points/new
   def new
     @point = Point.new(params[:point].present? ? point_params : nil)
     respond_with(@point, :layout => !request.xhr?)
   end
 
-  # GET /points/1/edit
   def edit
     respond_to do |format|
       format.js {}
@@ -32,34 +28,30 @@ class PointsController < ApplicationController
     end
   end
 
-  # POST /points
-  # POST /points.json
   def create
-    @point = Point.new(point_params)
+    @point= Point.new(point_params)
     respond_to do |format|
       if @point.save
-        format.html { redirect_to @point, notice: 'Playground was successfully created.' }
-        format.js { }
+        format.html do 
+          flash[:notice] = t('fishing_memories.model_updated', model: Point.model_name.human)
+          redirect_to @point
+        end
+        format.js {}
       else
         format.html { render action: 'new' }
-        format.js {render layout: false}     
+        format.js {}      
       end
     end
   end
 
-  # PATCH/PUT /points/1
-  # PATCH/PUT /points/1.json
   def update
     respond_to do |format|
       if @point.update(point_params)
         format.html do
-          puts "HTMLHTMLHTMLHTMLHTMLHTML"
           flash[:notice] = t('fishing_memories.model_updated', model: Point.model_name.human)
           redirect_to @point
         end
-        format.js do
-          puts "JSJSJSJSJSJSJSJSJSJSJ"
-        end 
+        format.js {}
       else
         format.html { render action: 'edit' }
         format.js {}  
@@ -67,8 +59,6 @@ class PointsController < ApplicationController
     end
   end
 
-  # DELETE /points/1
-  # DELETE /points/1.json
   def destroy
     @point.destroy
     respond_to do |format|

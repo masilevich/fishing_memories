@@ -2,5 +2,3 @@
 	<%=f.input :category, collection: @categories, input_html: { class: 'select2', data: { placeholder: t('js.placeholders.category') }} %>
 	<%=f.input :name, required: true %>
 <%end%>
-
-<%= render 'maps/gmaps' %>

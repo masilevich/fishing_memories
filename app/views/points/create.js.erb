@@ -33,11 +33,11 @@
     
     createMarkerWithInfoWindow();
 
-    show_ajax_message("created", "notice")
+    show_ajax_message("<%=I18n.t('fishing_memories.model_created', model: Point.model_name.human)%>", 'notice');
     
-
 <%else%>
 
-
+    show_ajax_message("<%=I18n.t('fishing_memories.model_not_created', model: Point.model_name.human)%>", 'alert');
+    
 <%end%>
 

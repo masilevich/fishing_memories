@@ -1,4 +1,4 @@
-<%= form_for @point, url: {controller: "points", action: :create, format: :js}, remote: true, :authenticity_token => true do |f| %>
+<%= form_for @point, remote: true, :authenticity_token => true do |f| %>
 
   <div class="field">
     <%= f.text_field :name %>
