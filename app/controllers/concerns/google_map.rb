@@ -7,9 +7,10 @@ module GoogleMap
 
   private
 
-  def set_points
-		@points = @resource.map.try(:points)
-		@map_id = @resource.map.try(:id)
+  def set_points(mappable_object=nil)
+  	mappable = mappable_object || @resource
+		@points = mappable.map.try(:points)
+		@map_id = mappable.map.try(:id)
 		if @points.try(:any?)
 	    @json = @points.to_gmaps4rails do |point, marker|
 	      @point = point
