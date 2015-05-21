@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150423110031) do
+ActiveRecord::Schema.define(version: 20150520094815) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -23,6 +23,12 @@ ActiveRecord::Schema.define(version: 20150423110031) do
 
   add_index "categories", ["name", "type", "user_id"], name: "index_categories_on_name_and_type_and_user_id", unique: true
   add_index "categories", ["user_id"], name: "index_categories_on_user_id"
+
+  create_table "comments", force: true do |t|
+    t.string   "text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "lures", force: true do |t|
     t.string   "name"
@@ -37,6 +43,7 @@ ActiveRecord::Schema.define(version: 20150423110031) do
     t.string   "mappable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   add_index "maps", ["mappable_id"], name: "index_maps_on_mappable_id"

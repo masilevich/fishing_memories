@@ -11,6 +11,7 @@ describe Place do
 
 	it { should respond_to(:memories) }
 	it { should respond_to(:pond) }
+	it { should respond_to(:map) }
 
 	describe "#title" do
 		context "without pond" do

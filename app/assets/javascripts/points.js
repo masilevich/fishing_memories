@@ -1,9 +1,3 @@
-/**
-* Create new point form 
-*   
-* Invokes rails /points/create by ajax
-* Add the form to google maps infowindow
-*/
 function pointsNew(geocode_information) {
     
     // Create an new marker  

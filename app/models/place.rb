@@ -3,6 +3,7 @@ class Place < ActiveRecord::Base
 
 	belongs_to :pond
 	has_and_belongs_to_many :memories
+	has_one :map, as: :mappable, dependent: :destroy
 
 	scope :without_pond, -> { where(pond_id: nil) }
 

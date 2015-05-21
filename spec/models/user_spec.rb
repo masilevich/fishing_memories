@@ -17,6 +17,7 @@ describe User do
   it { should respond_to(:tackle_sets) }
   it { should respond_to(:lures) }
   it { should respond_to(:places) }
+  it { should respond_to(:maps) }
 
   it { should respond_to(:role) }
 

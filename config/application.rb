@@ -34,8 +34,5 @@ module FishingMemories
       g.assets false
     end
 
-    config.assets.precompile += %w( ckeditor/* )
-    config.assets.precompile += %w( gmaps4rails.css)
-
   end
 end

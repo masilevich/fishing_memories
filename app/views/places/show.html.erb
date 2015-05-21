@@ -11,5 +11,7 @@
       </tr>
   <% end %>
 
+  <%= render 'maps/gmaps' %>
+
   <%= render partial: 'memories/related_memories', locals: {memories: @resource.memories} %>
 <% end %>
