@@ -1,4 +1,3 @@
-Rails.application.config.assets.precompile += %w( gmaps_init.js)
 Rails.application.config.assets.precompile += %w( gmaps4rails.js )
 Rails.application.config.assets.precompile += %w( points.js )
 Rails.application.config.assets.precompile += %w( ckeditor/* )
