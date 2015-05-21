@@ -185,6 +185,9 @@ ru:
       memory:
         one: "Отчет"
         other: "Отчеты"
+      note:
+        one: "Заметка"
+        other: "Заметки"
       tackle:
         one: "Снасть"
         other: &tackles "Снасти"
@@ -244,6 +247,11 @@ ru:
         places: *places
         pond_state: "Состояние водоема"
         count: "Количество записей"
+      note:
+        name: *name
+        text: "Текст"
+        created_at: "Создана"
+        updated_at: "Изменена"
       tackle:
         name: *name
         category: *category

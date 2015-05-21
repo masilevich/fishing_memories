@@ -17,6 +17,7 @@ describe 'layouts/_header' do
 
       it "should display tackles, ponds links" do
         expect(rendered).to have_link((Memory.model_name.human count: PLURAL_MANY_COUNT), href: memories_path)
+        expect(rendered).to have_link((Note.model_name.human count: PLURAL_MANY_COUNT), href: notes_path)
         expect(rendered).to have_link((Tackle.model_name.human count: PLURAL_MANY_COUNT), href: tackles_path)
         expect(rendered).to have_link((TackleSet.model_name.human count: PLURAL_MANY_COUNT), href: tackle_sets_path)
         expect(rendered).to have_link((Lure.model_name.human count: PLURAL_MANY_COUNT), href: lures_path)

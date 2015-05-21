@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'tackles/search/name', to: 'tackles#search_for_name', as: 'search_tackle_names'
 
   resources :memories
+  resources :notes
   resources :tackles
   resources :tackle_sets
   resources :ponds

@@ -1,0 +1,23 @@
+<div class="filter_form_field filter_date_range">
+	<%= f.label :updated_at %>
+	<%= f.text_field :updated_at_gteq, class: "datepicker", max: "10", size: "12" %>
+	<span class="seperator">-</span>
+	<%= f.text_field :updated_at_lteq, class: "datepicker", max: "10", size: "12" %>
+</div>
+
+<div class="filter_form_field filter_date_range">
+	<%= f.label :created_at %>
+	<%= f.text_field :created_at_gteq, class: "datepicker", max: "10", size: "12" %>
+	<span class="seperator">-</span>
+	<%= f.text_field :created_at_lteq, class: "datepicker", max: "10", size: "12" %>
+</div>
+
+<div class="filter_form_field filter_string">
+	<%= f.label :name %>
+	<%= f.text_field :name_cont, maxlength: "255" %>
+</div>
+
+<div class="filter_form_field filter_string">
+	<%= f.label :text %>
+	<%= f.text_field :text_cont, maxlength: "255" %>
+</div>

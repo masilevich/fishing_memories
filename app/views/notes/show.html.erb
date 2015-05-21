@@ -1,0 +1,21 @@
+<% content_for :show_content do %>
+  <%= render layout: 'layouts/resources/show_table' do %>
+  		<tr class="row">
+        <th><%= Note.human_attribute_name("created_at") %></th>
+        <td><%= @resource.created_at %></td>
+      </tr>
+      <tr class="row">
+        <th><%= Note.human_attribute_name("updated_at") %></th>
+        <td><%= @resource.updated_at %></td>
+      </tr>
+      <tr class="row">
+        <th><%= Note.human_attribute_name("name") %></th>
+        <td><%= @resource.name %></td>
+      </tr>
+      <tr class="row">
+        <th><%= Note.human_attribute_name("text") %></th>
+        <td><%= auto_link(raw(@resource.text)) %></td>
+      </tr> 
+  <% end %>
+
+<% end %>

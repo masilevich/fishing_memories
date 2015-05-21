@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :memories, dependent: :destroy
+  has_many :notes, dependent: :destroy
   has_many :tackles, dependent: :destroy
   has_many :tackle_sets, dependent: :destroy
   has_many :lures, dependent: :destroy

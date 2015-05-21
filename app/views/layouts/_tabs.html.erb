@@ -1,4 +1,5 @@
 <%= nav_link (Memory.model_name.human count: PLURAL_MANY_COUNT), memories_path, 'memories'  %>
+<%= nav_link (Note.model_name.human count: PLURAL_MANY_COUNT), notes_path, 'notes'  %>
 <%= nav_link (Tackle.model_name.human count: PLURAL_MANY_COUNT), tackles_path, ['tackles', 'tackle_sets', 'lures'] do %> 
 	<%= nav_link (TackleSet.model_name.human count: PLURAL_MANY_COUNT), tackle_sets_path %>
 	<%= nav_link (Lure.model_name.human count: PLURAL_MANY_COUNT), lures_path %>

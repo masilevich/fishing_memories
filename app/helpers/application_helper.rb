@@ -28,7 +28,7 @@ module ApplicationHelper
   end
 
   def clear_text_from_tags(text)
-  	strip_tags(text.gsub("&nbsp;", "").gsub("&#39;", "'"))
+    text ? strip_tags(text.gsub("&nbsp;", "").gsub("&#39;", "'")) : ""
   end
 
   def map_and_join(items, column_name, separator = ', ')

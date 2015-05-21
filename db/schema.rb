@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150520094815) do
+ActiveRecord::Schema.define(version: 20150521125740) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -81,6 +81,16 @@ ActiveRecord::Schema.define(version: 20150520094815) do
     t.integer "memory_id"
     t.integer "tackle_id"
   end
+
+  create_table "notes", force: true do |t|
+    t.string   "name"
+    t.text     "text"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "notes", ["user_id"], name: "index_notes_on_user_id"
 
   create_table "places", force: true do |t|
     t.string   "name"

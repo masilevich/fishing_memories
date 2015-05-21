@@ -34,6 +34,11 @@ FactoryGirl.define do
     end
   end
 
+  factory :note do
+    name { Faker::Lorem.sentence }
+    user
+  end
+
   factory :tackle do
     name { Faker::Lorem.sentence }
     user

@@ -18,6 +18,7 @@ describe "ApplicationLayoutPages" do
 				let(:tackle_sets_tab_label) {TackleSet.model_name.human count: PLURAL_MANY_COUNT}
 				let(:lures_tab_label) {Lure.model_name.human count: PLURAL_MANY_COUNT}
 				let(:memories_tab_label) {Memory.model_name.human count: PLURAL_MANY_COUNT}
+				let(:notes_tab_label) {Note.model_name.human count: PLURAL_MANY_COUNT}
 				let(:ponds_tab_label) {Pond.model_name.human count: PLURAL_MANY_COUNT}
 				let(:places_tab_label) {Place.model_name.human count: PLURAL_MANY_COUNT}
 				let(:categories_tab_label) {Category.model_name.human count: PLURAL_MANY_COUNT}
@@ -27,6 +28,10 @@ describe "ApplicationLayoutPages" do
 					describe "switch" do
 						describe "through link click" do
 							it "should switch active nav link" do
+								click_link notes_tab_label
+								within "ul#tabs" do
+									expect(page).to have_selector('li.current', text: notes_tab_label)
+								end
 								click_link tackle_tab_label
 								within "ul#tabs" do
 									expect(page).to have_selector('li.current', text: tackle_tab_label)
