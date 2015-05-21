@@ -183,8 +183,8 @@ ru:
         one: "Пользователь"
         other: "Пользователи"
       memory:
-        one: "Запись"
-        other: "Записи"
+        one: "Отчет"
+        other: "Отчеты"
       tackle:
         one: "Снасть"
         other: &tackles "Снасти"
