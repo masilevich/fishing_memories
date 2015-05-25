@@ -5,6 +5,7 @@
 				<%= sortable_col "updated_at" %>
 				<%= sortable_col "created_at"  %>
 				<%= sortable_col "name" %>
+				<%= sortable_col "tag_list" %>
 				<%= sortable_col "text" %>
 				<th class="col col-actions"></th>
 			<% end %>
@@ -15,6 +16,7 @@
 						<td class="col"><%= resource.updated_at %></td>
 						<td class="col"><%= resource.created_at %></td>
 						<td class="col"><%= resource.name %></td>
+						<td class="col"><%= resource.tag_list %></td>
 						<td class="col"><%= clear_text_from_tags(resource.text).truncate(70) %></td>
 						<td class="col col-actions">
 		          <div class="table_actions">

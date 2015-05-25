@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   get 'tackles/search/name', to: 'tackles#search_for_name', as: 'search_tackle_names'
 
+  get '/autocomplete_tags', to: 'notes#autocomplete_tags', as: 'autocomplete_tags'
+
   resources :memories
   resources :notes
   resources :tackles

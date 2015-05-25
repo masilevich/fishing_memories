@@ -2,6 +2,16 @@
 
 	<%=f.input :name %>
 
+	<%= f.input :tag_list,
+      input_html: {
+        data: {
+          placeholder: t('js.placeholders.tag'),
+          saved: f.object.tags.map{|t| {id: t.name, name: t.name}}.to_json,
+          url: autocomplete_tags_path },
+        class: 'tagselect'
+      }
+  %>
+
 	<%= f.input :text, :as => :ckeditor, :input_html => {:ckeditor => { :height => 300 } } %>
 
 <%end%>

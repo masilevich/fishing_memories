@@ -204,11 +204,11 @@ ru:
         one: &place "Место"
         other: &places "Места"
       point:
-        one: &place "Точка"
-        other: &places "Точки"
+        one: &point "Точка"
+        other: &point "Точки"
       map:
-        one: &place "Карта"
-        other: &places "Карты"
+        one: &map "Карта"
+        other: &maps "Карты"
       category:
         one: &category "Категория"
         other: "Категории"
@@ -226,6 +226,7 @@ ru:
         other: "Категории приманок"
     attributes:
       name: &name "Название"
+      tag_list: &tag_list "Метки"
       description: &description "Описание"
       user:
         login: &login "Email или имя пользователя"
@@ -250,6 +251,7 @@ ru:
       note:
         name: *name
         text: "Текст"
+        tag_list: *tag_list
         created_at: "Создана"
         updated_at: "Изменена"
       tackle:
@@ -522,4 +524,5 @@ ru:
       place_name: "Введите название места"
       category: "Введите название категории"
       role_name: "Введите название роли"
+      tag: "Введите метки"
     ajax_request_error: "Возникла ошибка при обработке вашего запроса"

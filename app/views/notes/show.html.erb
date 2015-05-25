@@ -13,6 +13,10 @@
         <td><%= @resource.name %></td>
       </tr>
       <tr class="row">
+        <th><%= Note.human_attribute_name("tag_list") %></th>
+        <td><%= @resource.tag_list %></td>
+      </tr>
+      <tr class="row">
         <th><%= Note.human_attribute_name("text") %></th>
         <td><%= auto_link(raw(@resource.text)) %></td>
       </tr> 

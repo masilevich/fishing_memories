@@ -17,6 +17,11 @@
 	<%= f.text_field :name_cont, maxlength: "255" %>
 </div>
 
+<div class="filter_form_field">
+	<%= f.label :tag_list, Note.human_attribute_name("tag_list") %>
+	<%= f.select :tags_id_eq, options_for_select(@tags, :selected => params[:q].try(:[], :tags_id_eq)), {include_blank: true}, {class: "select2", data: { placeholder: t('js.placeholders.tag') }} %>
+</div>
+
 <div class="filter_form_field filter_string">
 	<%= f.label :text %>
 	<%= f.text_field :text_cont, maxlength: "255" %>

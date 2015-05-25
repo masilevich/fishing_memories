@@ -4,6 +4,7 @@
 //= require select2
 //= require select2_locale_ru
 //= require ./select2_handler
+//= require ./tags_select2_handler
 //= require ckeditor/init
 //= require_tree ./ckeditor
 //= require ./base
