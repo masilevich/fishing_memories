@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   get '/autocomplete_tags', to: 'notes#autocomplete_tags', as: 'autocomplete_tags'
 
   resources :memories
-  resources :notes
+  resources :notes do
+    get 'tags/:tag', to: 'notes#index', as: :tag, on: :collection
+  end
   resources :tackles
   resources :tackle_sets
   resources :ponds

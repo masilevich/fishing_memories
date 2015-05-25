@@ -16,7 +16,7 @@
 						<td class="col"><%= resource.updated_at %></td>
 						<td class="col"><%= resource.created_at %></td>
 						<td class="col"><%= resource.name %></td>
-						<td class="col"><%= resource.tag_list %></td>
+						<td class="col"><%= raw resource.tag_list.map { |t| link_to t, tag_notes_path(t) }.join(', ') %></td>
 						<td class="col"><%= clear_text_from_tags(resource.text).truncate(70) %></td>
 						<td class="col col-actions">
 		          <div class="table_actions">

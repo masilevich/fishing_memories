@@ -10,6 +10,7 @@ describe Note do
 	subject { @note }
 
 	it { should respond_to(:text) }
+	it { should respond_to(:tag_list) }
 
 	describe "#title" do
 		its(:title) { should eq @note.name }

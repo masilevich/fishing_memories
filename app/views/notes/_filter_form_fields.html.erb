@@ -18,8 +18,8 @@
 </div>
 
 <div class="filter_form_field">
-	<%= f.label :tag_list, Note.human_attribute_name("tag_list") %>
-	<%= f.select :tags_id_eq, options_for_select(@tags, :selected => params[:q].try(:[], :tags_id_eq)), {include_blank: true}, {class: "select2", data: { placeholder: t('js.placeholders.tag') }} %>
+<%= f.label :tags_id_eq, Note.human_attribute_name("tag_list") %>
+<%= f.collection_select :tags_id_eq, @tags, :id, :name, {include_blank: true}, {class: "select2", data: { placeholder: t('js.placeholders.tag_name') }} %>
 </div>
 
 <div class="filter_form_field filter_string">

@@ -5,7 +5,7 @@
 	<%= f.input :tag_list,
       input_html: {
         data: {
-          placeholder: t('js.placeholders.tag'),
+          placeholder: t('js.placeholders.tag_name'),
           saved: f.object.tags.map{|t| {id: t.name, name: t.name}}.to_json,
           url: autocomplete_tags_path },
         class: 'tagselect'
