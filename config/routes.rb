@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :memories
   resources :notes do
     get 'tags/:tag', to: 'notes#index', as: :tag, on: :collection
+    get 'tags', to: 'notes#index', as: :tags, on: :collection
   end
   resources :tackles
   resources :tackle_sets
