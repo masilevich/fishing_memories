@@ -16,10 +16,12 @@
         <th><%= Note.human_attribute_name("tag_list") %></th>
         <td class="col"><%= raw @resource.tag_list.map { |t| link_to t, tag_notes_path(t) }.join(', ') %></td>
       </tr>
+  <% end %>
+
+  <%= render layout: 'layouts/resources/show_table', locals: {title: Note.human_attribute_name("text")} do %>
       <tr class="row">
-        <th><%= Note.human_attribute_name("text") %></th>
-        <td><%= auto_link(raw(@resource.text)) %></td>
-      </tr> 
+        <%= auto_link(raw(@resource.text)) %>
+      </tr>     
   <% end %>
 
 <% end %>

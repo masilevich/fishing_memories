@@ -51,6 +51,12 @@ describe "NotesPages" do
 		let!(:note) { FactoryGirl.create(:note, user: user, text: "note text", tag_list: "tag1, tag2") }
 		before {visit note_path(note)}
 
+		describe "panels" do
+		  specify do
+				expect(page).to have_selector('div.panel h3', text: Note.human_attribute_name("text"))
+			end
+		end
+
 		describe "tables" do
 			it "should have head" do
 				expect(page).to have_selector('th', text: Note.human_attribute_name("created_at"))
