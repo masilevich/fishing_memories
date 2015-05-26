@@ -36,6 +36,7 @@ FactoryGirl.define do
 
   factory :note do
     name { Faker::Lorem.sentence }
+    text { Faker::Lorem.sentence }
     user
   end
 

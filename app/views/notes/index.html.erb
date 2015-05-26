@@ -5,7 +5,7 @@
 				<%= sortable_col "updated_at" %>
 				<%= sortable_col "created_at"  %>
 				<%= sortable_col "name" %>
-				<%= sortable_col "tag_list" %>
+				<th class="col"><%= Note.human_attribute_name("tag_list") %></th>
 				<%= sortable_col "text" %>
 				<th class="col col-actions"></th>
 			<% end %>
@@ -13,8 +13,8 @@
 			<% content_for :table_body do %>
 				<% @resources.each do |resource| %>
 					<tr class="odd" id="<%=singular_resource_name%>_<%=resource.id%>">
-						<td class="col"><%= resource.updated_at %></td>
-						<td class="col"><%= resource.created_at %></td>
+						<td class="col"><%= resource.updated_at.to_date %></td>
+						<td class="col"><%= resource.created_at.to_date %></td>
 						<td class="col"><%= resource.name %></td>
 						<td class="col"><%= raw resource.tag_list.map { |t| link_to t, tag_notes_path(t) }.join(', ') %></td>
 						<td class="col"><%= clear_text_from_tags(resource.text).truncate(70) %></td>

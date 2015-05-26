@@ -2,11 +2,11 @@
   <%= render layout: 'layouts/resources/show_table' do %>
   		<tr class="row">
         <th><%= Note.human_attribute_name("created_at") %></th>
-        <td><%= @resource.created_at %></td>
+        <td><%= @resource.created_at.to_date %></td>
       </tr>
       <tr class="row">
         <th><%= Note.human_attribute_name("updated_at") %></th>
-        <td><%= @resource.updated_at %></td>
+        <td><%= @resource.updated_at.to_date %></td>
       </tr>
       <tr class="row">
         <th><%= Note.human_attribute_name("name") %></th>
@@ -14,7 +14,7 @@
       </tr>
       <tr class="row">
         <th><%= Note.human_attribute_name("tag_list") %></th>
-        <td><%= @resource.tag_list %></td>
+        <td class="col"><%= raw @resource.tag_list.map { |t| link_to t, tag_notes_path(t) }.join(', ') %></td>
       </tr>
       <tr class="row">
         <th><%= Note.human_attribute_name("text") %></th>

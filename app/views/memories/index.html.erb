@@ -4,7 +4,7 @@
 			<% content_for :table_head do %>
 				<%= sortable_col "occured_at" %>
 				<%= sortable_col "description"  %>
-				<%= sortable_col "weather" %>
+				<th class="col"><%= Memory.human_attribute_name("weather") %></th>
 				<%= sortable_col "ponds_name", Memory.human_attribute_name("ponds") %>
 				<%= sortable_col "places_name", Memory.human_attribute_name("places") %>
 				<%= sortable_col "tackles_name", Memory.human_attribute_name("tackles") %>
