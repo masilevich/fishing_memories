@@ -6,7 +6,6 @@ $(document).ready(function() {
         $(this).select2({
             tags: true,
             placeholder: placeholder,
-            minimumInputLength: 1,
             containerCss: {"display":"block"},
             initSelection : function(element, callback){
                 saved && callback(saved);
