@@ -1,6 +1,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui/datepicker
+//= require ./datepicker-ru
+//= require ./datepicker_handler
 //= require select2
 //= require select2_locale_ru
 //= require ./select2_handler
