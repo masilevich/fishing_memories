@@ -15,7 +15,7 @@
 			<% content_for :table_body do %>
 				<% @resources.each do |resource| %>
 					<tr class="odd" id="<%=singular_resource_name%>_<%=resource.id%>">
-						<td class="col" style="white-space: nowrap"><%= resource.occured_at %></td>
+						<td class="col no-wrap"><%= resource.occured_at %></td>
 						<td class="col"><%= clear_text_from_tags(resource.description).truncate(70) %></td>
 						<td class="col"><%= truncate(resource.weather, :length => 30) %></td>
 						<td class="col"><%= map_and_join(resource.ponds, :name).truncate(70) %></td>
