@@ -205,7 +205,7 @@ ru:
         other: &places "Места"
       point:
         one: &point "Точка"
-        other: &point "Точки"
+        other: &points "Точки"
       map:
         one: &map "Карта"
         other: &maps "Карты"

@@ -264,7 +264,7 @@ describe "MemoriesPages" do
 			visit edit_memory_path(memory)
 		end
 
-		it { should have_field("memory_occured_at", with: memory.occured_at.strftime("%Y-%m-%d")) }
+		it { should have_field("memory_occured_at", with: memory.occured_at.strftime('%d.%m.%Y')) }
 		it { should have_field("memory_description", with: memory.description) }
 		it { should have_select('memory[pond_ids][]', :options => ponds.map { |e| e.name}.sort,
 			selected: ponds.first.name )}

@@ -62,7 +62,6 @@ describe "NotesPages" do
 				expect(page).to have_selector('th', text: Note.human_attribute_name("created_at"))
 				expect(page).to have_selector('th', text: Note.human_attribute_name("updated_at"))
 				expect(page).to have_selector('th', text: Note.human_attribute_name("tag_list"))
-				expect(page).to have_selector('th', text: Note.human_attribute_name("text"))
 			end
 
 			it "should have body" do
