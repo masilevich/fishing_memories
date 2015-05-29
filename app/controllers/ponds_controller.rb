@@ -5,6 +5,8 @@ class PondsController < ApplicationController
 	
 	load_and_authorize_resource
 
+	before_action :set_resources
+
 	def create
 		@resource = resources.build(resource_params)
 		if @resource.save
@@ -22,5 +24,9 @@ class PondsController < ApplicationController
 	def pond_params
 		params.require(:pond).permit(:name, :category_id)
 	end
+
+	def set_resources
+    @resources = resources.includes(:places)
+  end
 
 end

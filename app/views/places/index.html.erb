@@ -11,7 +11,7 @@
 				<% @resources.each do |resource| %>
 					<tr class="odd" id="<%=singular_resource_name%>_<%=resource.id%>">
 						<td class="col"><%= resource.name %></td>
-						<td class="col"><%= resource.pond.name if resource.pond %></td>
+						<td class="col"><%= render('layouts/resources/resource_link_to', resource: resource.pond) if resource.pond %></td>
 						<td class="col col-actions">
 		          <div class="table_actions">
 		          	<%= render 'layouts/resources/index_table_actions', resource: resource %>

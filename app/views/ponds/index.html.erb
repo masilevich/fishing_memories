@@ -3,6 +3,7 @@
 		<%= render layout: 'layouts/resources/index_table' do %>
 			<% content_for :table_head do %>
 					<%= render 'layouts/resources/table_head_name_and_category' %>
+					<%= sortable_col "places_name", Pond.human_attribute_name("places") %>
 					<th class="col col-actions"></th>
 			<% end %>
 
@@ -10,6 +11,7 @@
 				<% @resources.each do |resource| %>
 					<tr class="odd" id="<%=singular_resource_name%>_<%=resource.id%>">
 						<%= render 'layouts/resources/table_body_name_and_category', resource: resource %>
+						<td class="col"><%= render partial: 'layouts/resources/resource_link_to', collection: resource.places, as: :resource, locals: {body_method: :name}, spacer_template: 'shared/comma' %></td>
 						<td class="col col-actions">
 		          <div class="table_actions">
 		          	<%= render 'layouts/resources/index_table_actions', resource: resource %>

@@ -1,2 +1,2 @@
 <td class="col"><%= resource.name %></td>
-<td class="col"><%= resource.category.name if resource.category %></td>
+<td class="col"><%= render('layouts/resources/resource_link_to', resource: resource.category) if resource.category %></td>

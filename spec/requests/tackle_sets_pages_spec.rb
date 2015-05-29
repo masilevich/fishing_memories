@@ -33,7 +33,7 @@ describe "TackleSetsPages" do
 
 		it "should have content in table" do
 			tackle_sets.each do |tackle_set|
-				expect(page).to have_selector('td', text: tackle_set.tackles.map(&:name).join(', ').truncate(70))
+				tackle_set.tackles.each { |tackle|  expect(page).to have_link(tackle.name, href: tackle_path(tackle))}
 			end
 		end
 

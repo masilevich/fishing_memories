@@ -11,7 +11,7 @@
 				<% @resources.each do |resource| %>
 					<tr class="odd" id="<%=singular_resource_name%>_<%=resource.id%>">
 						<%= render 'layouts/resources/table_body_name_and_category', resource: resource %>
-						<td class="col"><%= map_and_join(resource.tackles, :name).truncate(70) %></td>
+						<td class="col"><%= render partial: 'layouts/resources/resource_link_to', collection: resource.tackles, as: :resource, locals: {body_method: :name}, spacer_template: 'shared/comma' %></td>
 						<td class="col col-actions">
 		          <div class="table_actions">
 		          	<%= render 'layouts/resources/index_table_actions', resource: resource %>

@@ -45,10 +45,10 @@ describe "MemoriesPages" do
 				memories.each do |memory|
 					expect(page).to have_selector('td', text: memory.occured_at)
 					expect(page).to have_selector('th', text: (memory.weather ? memory.weather.truncate(30) : "") )
-					expect(page).to have_selector('td', text: memory.ponds.map(&:name).join(', ').truncate(70))
-					expect(page).to have_selector('td', text: memory.places.map(&:name).join(', ').truncate(70))
-					expect(page).to have_selector('td', text: memory.tackles.map(&:name).join(', ').truncate(70))
-					expect(page).to have_selector('td', text: memory.tackle_sets.map(&:name).join(', ').truncate(70))
+					memory.ponds.each { |pond| expect(page).to have_link(pond.name, href: pond_path(pond)) }
+					memory.places.each { |place| expect(page).to have_link(place.name, href: place_path(place)) }
+					memory.tackles.each { |tackle| expect(page).to have_link(tackle.name, href: tackle_path(tackle))}
+					memory.tackle_sets.each { |tackle_set| expect(page).to have_link(tackle_set.name, href: tackle_set_path(tackle_set))}
 					expect(page).to have_selector('td', text: memory.description.truncate(70))
 					expect(page).to have_link(I18n.t('fishing_memories.show'), href: memory_path(memory))
 					expect(page).to have_link(I18n.t('fishing_memories.edit'), href: edit_memory_path(memory))

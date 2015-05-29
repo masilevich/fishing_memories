@@ -49,4 +49,20 @@ describe "PondsPages" do
 		end
 	end
 
+	describe "index" do
+		let!(:ponds) { FactoryGirl.create_list(:pond_with_places, 2, user: user) }
+		before {visit ponds_path}
+
+		it "should have table" do
+			expect(page).to have_selector('th', text: Pond.human_attribute_name("places"))
+		end
+
+		it "should have content in table" do
+			ponds.each do |pond|
+				pond.places.each { |place| expect(page).to have_link(place.name, href: place_path(place)) }
+			end
+		end
+
+	end
+
 end

@@ -38,7 +38,7 @@ shared_examples "categorizable pages"  do
 			end
 
 			it "should have content and links in table" do
-				expect(page).to have_selector('td', text: resource_item.category.name)
+				expect(page).to have_link(resource_item.category.name, href: polymorphic_path(resource_item.category))
 			end
 
 			describe "sorting" do
@@ -121,7 +121,7 @@ shared_examples "categorizable pages"  do
 			end
 
 			it "should have body" do
-				expect(page).to have_selector('td', text: resource_item.category.name)
+				expect(page).to have_link(resource_item.category.name, href: polymorphic_path(resource_item.category))
 			end
 		end
 

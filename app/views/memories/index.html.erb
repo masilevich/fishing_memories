@@ -18,10 +18,10 @@
 						<td class="col no-wrap"><%= resource.occured_at %></td>
 						<td class="col"><%= clear_text_from_tags(resource.description).truncate(70) %></td>
 						<td class="col"><%= truncate(resource.weather, :length => 30) %></td>
-						<td class="col"><%= map_and_join(resource.ponds, :name).truncate(70) %></td>
-						<td class="col"><%= map_and_join(resource.places, :name).truncate(70) %></td>
-						<td class="col"><%= map_and_join(resource.tackles, :name).truncate(70) %></td>
-						<td class="col"><%= map_and_join(resource.tackle_sets, :name).truncate(70) %></td>
+						<td class="col"><%= render partial: 'layouts/resources/resource_link_to', collection: resource.ponds, as: :resource, spacer_template: 'shared/comma' %></td>
+						<td class="col"><%= render partial: 'layouts/resources/resource_link_to', collection: resource.places, as: :resource, locals: {body_method: :name}, spacer_template: 'shared/comma' %></td>
+						<td class="col"><%= render partial: 'layouts/resources/resource_link_to', collection: resource.tackles, as: :resource, spacer_template: 'shared/comma' %></td>
+						<td class="col"><%= render partial: 'layouts/resources/resource_link_to', collection: resource.tackle_sets, as: :resource, locals: {body_method: :name}, spacer_template: 'shared/comma' %></td>
 						<td class="col col-actions">
 		          <div class="table_actions">
 		          	<%= render 'layouts/resources/index_table_actions', resource: resource %>

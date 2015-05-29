@@ -67,6 +67,15 @@ FactoryGirl.define do
   factory :pond do
     name { Faker::Lorem.sentence }
     user
+
+    factory :pond_with_places do
+      ignore do
+        places_count 2
+      end
+      after(:create) do |pond, evaluator|
+        create_list(:place, evaluator.places_count, pond: pond)
+      end
+    end
   end
 
   factory :place do

@@ -37,7 +37,7 @@ describe "PlacesPages" do
 
 		it "should have content in table" do
 			places.each do |place|
-				expect(page).to have_selector('td', text: place.pond.title)
+				expect(page).to have_link(place.pond.name, href: pond_path(place.pond))
 			end
 		end
 
