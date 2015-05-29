@@ -270,6 +270,7 @@ ru:
       pond:
         name: *name
         category: *category
+        places: *places
       place:
         name: *name
         pond: *pond

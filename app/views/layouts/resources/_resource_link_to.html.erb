@@ -1,1 +1,1 @@
-<%= link_to resource.title, resource %>
+<%= link_to ( defined?(body_method) ? resource.send(body_method) : resource.title), resource %>
