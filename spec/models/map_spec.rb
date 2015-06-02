@@ -16,15 +16,6 @@ describe Map do
   it { should be_valid }
 
   describe "#title" do
-  	describe "for ponds maps" do
-  	  let(:pond) {FactoryGirl.create(:pond, user: user, map: @map)}
-  	  its(:title) { should eq pond.title }
-  	end
-
-  	describe "for places maps" do
-  	  let(:place) {FactoryGirl.create(:place, user: user, map: @map)}
-  	  its(:title) { should eq place.title }
-  	end
-		
+  	  its(:title) { should eq Map.model_name.human }
 	end
 end

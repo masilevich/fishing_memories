@@ -6,6 +6,6 @@ class Map < ActiveRecord::Base
 	belongs_to :mappable, polymorphic: true
 
 	def title
-		mappable.title
+		Map.model_name.human
 	end
 end

@@ -16,19 +16,12 @@ module Resource
 
     helper_method :resource_class, :resource_label, :plural_resource_label, 
       :plural_resource_name, :singular_resource_name
-    helper_method :find_resource
     helper_method :resources_path, :resource_path, :new_resource_path, :edit_resource_path
     helper_method :sort_column, :sort_direction
     before_action :find_resource, only: [:edit, :update, :show]
   end
 
   private
-
-  def find_resource
-    if params[:id]
-      @resource = resource_class.find(params[:id])
-    end
-  end
 
   def resource_params
     send "#{singular_resource_name}_params"

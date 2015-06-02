@@ -17,9 +17,12 @@ Rails.application.routes.draw do
   end
   resources :tackles
   resources :tackle_sets
-  resources :ponds
-  resources :places
-  resources :maps
+  resources :ponds do
+    resource :map
+  end
+  resources :places do
+    resource :map
+  end
   resources :points
   resources :lures
 

@@ -52,7 +52,7 @@ describe "PondsPages" do
 			let!(:pond) { FactoryGirl.create(:pond_with_map, user: user) }
 			before {visit pond_path(pond)}
 		  it "should have map show link" do
-				expect(page).to have_link(I18n.t('fishing_memories.open_map'), href: map_path(pond.map))
+				expect(page).to have_link(I18n.t('fishing_memories.open_map'), href: pond_map_path(pond))
 			end
 		end
 	end

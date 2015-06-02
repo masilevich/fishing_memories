@@ -3,7 +3,7 @@ class MapsController < ApplicationController
 	load_and_authorize_resource
 	
 	def show
-		@map = Map.find(params[:id])
+		@map = find_mappable.map
 		@points = @map.try(:points)
 		@map_id = @map.id
 		if @points.try(:any?)
@@ -14,4 +14,13 @@ class MapsController < ApplicationController
 	    end
   	end
 	end
+
+	def find_mappable  
+	  params.each do |name, value|  
+	    if name =~ /(.+)_id$/  
+	      return $1.classify.constantize.find(value)  
+	    end  
+	  end  
+	  nil  
+	end  
 end

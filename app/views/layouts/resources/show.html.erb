@@ -12,7 +12,7 @@
     </span>
     <% if @resource.try("map")  %>
       <span class="action_item">
-      <%= link_to I18n.t('fishing_memories.open_map'),  map_path(@resource.map) %>
+      <%= link_to I18n.t('fishing_memories.open_map'),  polymorphic_path([@resource, :map]) %>
       </span>
     <% end %>
   </div>

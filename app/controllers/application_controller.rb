@@ -2,13 +2,16 @@ require "resource"
 require "flash_to_header"
 
 class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
+
+  include FlashToHeader
+
   protect_from_forgery with: :exception
 
   before_filter :authenticate_user!
-
   before_filter :configure_permitted_parameters, if: :devise_controller?
+  after_filter :flash_to_headers
+
+  helper_method :find_resource
 
   def after_sign_in_path_for(resource)
     memories_path
@@ -18,13 +21,26 @@ class ApplicationController < ActionController::Base
     root_path
   end
 
-  after_filter :flash_to_headers
+  def find_nested  
+    params.each do |name, value|  
+      if name =~ /(.+)_id$/  
+        return $1.classify.constantize.find(value)  
+      end  
+    end  
+    nil  
+  end  
 
+  def find_resource
+    if params[:id]
+      @resource = resource_class.find(params[:id])
+    else
+      find_nested
+    end
+  end
+  
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, :alert => exception.message
   end
-
-  include FlashToHeader
 
   protected
 

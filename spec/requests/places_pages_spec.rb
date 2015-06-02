@@ -163,7 +163,7 @@ describe "PlacesPages" do
 			let!(:place) { FactoryGirl.create(:place_with_map, user: user) }
 			before {visit place_path(place)}
 		  it "should have map show link" do
-				expect(page).to have_link(I18n.t('fishing_memories.open_map'), href: map_path(place.map))
+				expect(page).to have_link(I18n.t('fishing_memories.open_map'), href: place_map_path(place))
 			end
 		end
 
