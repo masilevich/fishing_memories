@@ -3,7 +3,7 @@ class Ability
 
   def initialize(user)
 
-    resources = [Memory, Note, Tackle, Pond, Place, Map, Point, TackleSet, Lure,
+    resources = [Memory, Note, Tackle, Pond, Place, Map, TackleSet, Lure,
         Category, PondCategory, TackleSetCategory, TackleCategory, LureCategory]
 
     if user.admin?
@@ -13,6 +13,7 @@ class Ability
       can :manage, resources do |resource|
         resource.try(:user) == user
       end
+      can :manage, Point, :map => { :user_id => user.id }
     end
     # Define abilities for the passed in user here. For example:
     #
