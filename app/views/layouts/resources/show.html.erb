@@ -10,6 +10,11 @@
     <span class="action_item">
     <%= link_to I18n.t('fishing_memories.destroy_model', model: resource_label),  resource_path(@resource), { method: :delete, class: 'member_link', data: { confirm: I18n.t('fishing_memories.delete_confirmation') } } %>
     </span>
+    <% if @resource.try("map")  %>
+      <span class="action_item">
+      <%= link_to I18n.t('fishing_memories.open_map'),  map_path(@resource.map) %>
+      </span>
+    <% end %>
   </div>
 <% end %>
 

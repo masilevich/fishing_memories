@@ -17,7 +17,10 @@
   raw: '{ mapTypeId: google.maps.MapTypeId.HYBRID}'
 } %>
 
-
+<% if local_assigns[:full_height].nil? ? false : full_height %>
+  <% without_markers_map_options[:container_class] = "map_container_full_height" %>
+  <% with_markers_map_options[:container_class] = "map_container_full_height" %>
+<% end %>
 
 <table class="map_table">
   <tbody>

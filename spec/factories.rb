@@ -76,6 +76,10 @@ FactoryGirl.define do
         create_list(:place, evaluator.places_count, pond: pond)
       end
     end
+
+    factory :pond_with_map do
+      association :map, factory: :map
+    end
   end
 
   factory :place do
@@ -83,10 +87,18 @@ FactoryGirl.define do
     user
 
     factory :place_with_pond do
-      after(:create) do |place|
-        create(:pond, places: [place])
-      end
+      #after(:create) do |place|
+      #  create(:pond, places: [place])
+      #end
+      association :pond, factory: :pond
     end
+
+    factory :place_with_map do
+      association :map, factory: :map
+    end
+  end
+
+  factory :map do
   end
 
   factory :category do

@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :tackle_sets
   resources :ponds
   resources :places
+  resources :maps
   resources :points
   resources :lures
 

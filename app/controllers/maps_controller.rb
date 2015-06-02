@@ -1,4 +1,5 @@
 class MapsController < ApplicationController
-  def new
-  end
+
+	load_and_authorize_resource
+	
 end

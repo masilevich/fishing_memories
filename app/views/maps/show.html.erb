@@ -1,0 +1,8 @@
+<% provide :title, @map.title %>
+<% content_for :page_title do %>
+  <%= @map.title %>
+<% end %>
+
+<% content_for :page_content do %>
+  <%= render 'maps/gmaps', full_height: true %>
+<% end %>
