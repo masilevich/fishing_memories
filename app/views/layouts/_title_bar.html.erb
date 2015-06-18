@@ -4,6 +4,11 @@
     <h2 id="page_title"><%= yield(:page_title) if content_for?(:page_title) %></h2>
   </div>
   <div id="titlebar_right">
-    <%= yield(:action_items) if content_for?(:action_items) %>
+  	<% if content_for?(:action_items) %>
+  		<div class="action_items">
+  			<%= yield(:action_items) %>
+  		</div>
+  	<% end %>
+    
   </div>
 </div>

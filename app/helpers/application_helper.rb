@@ -60,6 +60,10 @@ module ApplicationHelper
     end
   end
 
+  def action_item(content)
+      content_tag(:span, content, class: "action_item")
+  end
+
   def static_pages_controller?
     controller_name == "static_pages"
   end

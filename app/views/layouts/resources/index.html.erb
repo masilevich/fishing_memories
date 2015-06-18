@@ -3,11 +3,7 @@
 	<%= plural_resource_label %>
 <% end %>
 <% content_for :action_items do %>
-	<div class="action_items">
-		<span class="action_item">
-		<%= link_to I18n.t('fishing_memories.new_model', model: resource_label),   new_resource_path %>
-		</span>
-	</div>
+		<%= action_item link_to I18n.t('fishing_memories.new_model', model: resource_label),   new_resource_path %>
 <% end %>
 
 <% content_for :page_content do %>

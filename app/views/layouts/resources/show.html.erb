@@ -3,19 +3,11 @@
   <%= @resource.title %>
 <% end %>
 <% content_for :action_items do %>
-  <div class="action_items">
-    <span class="action_item">
-    <%= link_to I18n.t('fishing_memories.edit_model', model: resource_label),   edit_resource_path(@resource) %>
-    </span>
-    <span class="action_item">
-    <%= link_to I18n.t('fishing_memories.destroy_model', model: resource_label),  resource_path(@resource), { method: :delete, class: 'member_link', data: { confirm: I18n.t('fishing_memories.delete_confirmation') } } %>
-    </span>
-    <% if @resource.try("map")  %>
-      <span class="action_item">
-      <%= link_to I18n.t('fishing_memories.open_map'),  polymorphic_path([@resource, :map]) %>
-      </span>
-    <% end %>
-  </div>
+  <%= action_item link_to I18n.t('fishing_memories.edit_model', model: resource_label),   edit_resource_path(@resource) %>
+  <%= action_item link_to I18n.t('fishing_memories.destroy_model', model: resource_label),  resource_path(@resource), { method: :delete, class: 'member_link', data: { confirm: I18n.t('fishing_memories.delete_confirmation') } } %>
+  <% if @resource.try("map")  %>
+    <%= action_item link_to I18n.t('fishing_memories.open_map'),  polymorphic_path([@resource, :map]) %>
+  <% end %>
 <% end %>
 
 <% content_for :page_content do %>
