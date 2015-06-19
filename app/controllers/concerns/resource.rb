@@ -14,11 +14,13 @@ module Resource
   included do
     layout :resource_layout
 
+    before_action :disable_json
+    before_action :find_resource, only: [:edit, :update, :show]
+
     helper_method :resource_class, :resource_label, :plural_resource_label, 
       :plural_resource_name, :singular_resource_name
     helper_method :resources_path, :resource_path, :new_resource_path, :edit_resource_path
     helper_method :sort_column, :sort_direction
-    before_action :find_resource, only: [:edit, :update, :show]
   end
 
   private

@@ -34,13 +34,13 @@ module Resource
 			@q = @resources.ransack(params[:q])
 			if params[:q]
 				@resources = @q.result
-	    	@resources = Kaminari.paginate_array(@resources.to_a.uniq)
-	    end
-	    
-		  respond_to do |format|
-	      format.html { @resources = @resources.page(params[:page]) }
-	      format.json { render json: @resources }
-	    end
+				@resources = Kaminari.paginate_array(@resources.to_a.uniq)
+			end
+
+			respond_to do |format|
+				format.html { @resources = @resources.page(params[:page]) }
+				format.json { render json: @resources }
+			end
 		end
 
 		def destroy
@@ -70,5 +70,16 @@ module Resource
 
 		def show
 		end
+
+		private
+
+		def disable_json
+			if request.format.to_s =~ /json/
+				unless resource_class.instance_methods(false).include?(:as_json)
+					render nothing: true, status: :unprocessable_entity
+				end
+			end
+		end
+
 	end
 end
