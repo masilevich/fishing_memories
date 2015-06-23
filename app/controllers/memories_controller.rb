@@ -4,7 +4,7 @@ class MemoriesController < ApplicationController
 
   load_and_authorize_resource
 
-  before_action :set_resources
+  before_action :set_resources, only: [:index]
   before_action :set_grouped_tackles_options, only: [:new, :edit, :index]
   before_action :set_grouped_tackle_sets_options, only: [:new, :edit, :index]
   before_action :set_grouped_ponds_options, only: [:index, :new, :edit]
@@ -51,7 +51,7 @@ class MemoriesController < ApplicationController
   end
 
   def set_grouped_tackles_options
-    @tackles_options = current_user.tackles.grouped_by_category_options_for_select(current_user.tackle_categories, :name)
+    @tackles_options = current_user.tackles.grouped_by_category_options_for_select(current_user.tackle_categories, :title)
   end
 
   def set_grouped_tackle_sets_options

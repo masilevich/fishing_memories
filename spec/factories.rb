@@ -43,6 +43,9 @@ FactoryGirl.define do
   factory :tackle do
     name { Faker::Lorem.sentence }
     user
+    factory :tackle_with_brand do
+      association :brand, factory: :brand
+    end
   end
 
   factory :tackle_set do
@@ -60,6 +63,15 @@ FactoryGirl.define do
   end
 
   factory :lure do
+    name { Faker::Lorem.sentence }
+    user
+
+    factory :lure_with_brand do
+      association :brand, factory: :brand
+    end
+  end
+
+  factory :brand do
     name { Faker::Lorem.sentence }
     user
   end
@@ -87,9 +99,6 @@ FactoryGirl.define do
     user
 
     factory :place_with_pond do
-      #after(:create) do |place|
-      #  create(:pond, places: [place])
-      #end
       association :pond, factory: :pond
     end
 

@@ -14,7 +14,6 @@ module Resource
   included do
     layout :resource_layout
 
-    before_action :disable_json
     before_action :find_resource, only: [:edit, :update, :show]
 
     helper_method :resource_class, :resource_label, :plural_resource_label, 

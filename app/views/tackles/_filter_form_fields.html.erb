@@ -1,1 +1,14 @@
-<%= (render 'layouts/resources/filter_form_fields_name_and_category', f: f) %>
+<div class="filter_form_field filter_string">
+	<%= f.label :name %>
+	<%= f.text_field :name_cont, maxlength: "255" %>
+</div>
+
+<div class="filter_form_field">
+	<%= f.label :category, resource_class.human_attribute_name("category") %>
+	<%= f.collection_select :category_id_eq, @categories, :id, :name, {include_blank: true}, {class: "select2", data: { placeholder: t('js.placeholders.category') }} %>
+</div>
+
+<div class="filter_form_field">
+	<%= f.label :brand, resource_class.human_attribute_name("brand") %>
+	<%= f.collection_select :brand_id_eq, @brands, :id, :name, {include_blank: true}, {class: "select2", data: { placeholder: t('js.placeholders.brand') }} %>
+</div>

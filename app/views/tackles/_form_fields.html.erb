@@ -1,1 +1,5 @@
-<%= (render 'layouts/resources/resource_form_fields_name_and_category', f: f) %>
+<%=f.inputs do %>
+	<%=f.input :brand, collection: @brands, input_html: { class: 'select2', data: { placeholder: t('js.placeholders.brand_name') }} %>
+	<%=f.input :category, collection: @categories, input_html: { class: 'select2', data: { placeholder: t('js.placeholders.category') }} %>
+	<%=f.input :name, required: true %>
+<%end%>

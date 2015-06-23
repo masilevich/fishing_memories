@@ -9,6 +9,11 @@
         <th><%= resource_class.human_attribute_name("category") %></th>
         <td><%= render('layouts/resources/resource_link_to', resource: @resource.category) if @resource.category %></td>
       </tr>
+
+      <tr class="row">
+        <th><%= resource_class.human_attribute_name("brand") %></th>
+        <td><%= render('layouts/resources/resource_link_to', resource: @resource.brand) if @resource.brand %></td>
+      </tr>
   <% end %>
 
 	<%= render partial: 'memories/related_memories', locals: {memories: @resource.memories_with_tackle_sets_memories} %>

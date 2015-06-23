@@ -3,7 +3,7 @@ class Ability
 
   def initialize(user)
 
-    resources = [Memory, Note, Tackle, Pond, Place, Map, TackleSet, Lure,
+    resources = [Memory, Note, Tackle, Pond, Place, Map, TackleSet, Lure, Brand, 
         Category, PondCategory, TackleSetCategory, TackleCategory, LureCategory]
 
     if user.admin?

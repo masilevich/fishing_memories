@@ -36,11 +36,7 @@ module Resource
 				@resources = @q.result
 				@resources = Kaminari.paginate_array(@resources.to_a.uniq)
 			end
-
-			respond_to do |format|
-				format.html { @resources = @resources.page(params[:page]) }
-				format.json { render json: @resources }
-			end
+			@resources = @resources.page(params[:page])
 		end
 
 		def destroy
@@ -69,16 +65,6 @@ module Resource
 		end
 
 		def show
-		end
-
-		private
-
-		def disable_json
-			if request.format.to_s =~ /json/
-				unless resource_class.instance_methods(false).include?(:as_json)
-					render nothing: true, status: :unprocessable_entity
-				end
-			end
 		end
 
 	end

@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   end
   resources :points
   resources :lures
+  resources :brands
 
   resources :categories
   resources :tackle_categories, controller: 'categories', type: 'TackleCategory' 

@@ -6,17 +6,27 @@ describe Tackle do
 	it_should_behave_like "resource with name"
 
 	let(:user) { FactoryGirl.create(:user) }
-	before { @tackle= user.tackles.build(name: "Fishing tackle") }
+	before { @tackle= user.tackles.build(name: "Soare S707SULS") }
 
 	subject { @tackle }
 
 	it { should respond_to(:memories) }
 	it { should respond_to(:tackle_sets) }
+	it { should respond_to(:brand) }
 
 	it_should_behave_like "categorizable"
 
 	describe "#title" do
-		its(:title) { should eq @tackle.name }
+		its(:title) { should eq "Soare S707SULS"}
+
+		describe "with brand" do
+			let(:brand) { FactoryGirl.create(:brand, user: user, name: "Shimano") }
+		  before do
+		    @tackle.brand = brand
+		    @tackle.save
+		  end
+		  its(:title) { should eq "Shimano Soare S707SULS" }
+		end
 	end
 
 	describe "#memories_with_tackle_sets_memories" do

@@ -16,6 +16,6 @@ describe Map do
   it { should be_valid }
 
   describe "#title" do
-  	  its(:title) { should eq Map.model_name.human }
+  	its(:title) { should eq Map.model_name.human }
 	end
 end

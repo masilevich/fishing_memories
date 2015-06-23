@@ -21,6 +21,7 @@ describe 'layouts/_header' do
         expect(rendered).to have_link((Tackle.model_name.human count: PLURAL_MANY_COUNT), href: tackles_path)
         expect(rendered).to have_link((TackleSet.model_name.human count: PLURAL_MANY_COUNT), href: tackle_sets_path)
         expect(rendered).to have_link((Lure.model_name.human count: PLURAL_MANY_COUNT), href: lures_path)
+        expect(rendered).to have_link((Brand.model_name.human count: PLURAL_MANY_COUNT), href: brands_path)
         expect(rendered).to have_link((Pond.model_name.human count: PLURAL_MANY_COUNT), href: ponds_path)
         expect(rendered).to have_link((Place.model_name.human count: PLURAL_MANY_COUNT), href: places_path)
       end

@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150522113334) do
+ActiveRecord::Schema.define(version: 20150622113742) do
+
+  create_table "brands", force: true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "brands", ["user_id"], name: "index_brands_on_user_id"
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -36,6 +45,7 @@ ActiveRecord::Schema.define(version: 20150522113334) do
     t.integer  "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "brand_id"
   end
 
   create_table "maps", force: true do |t|
@@ -146,6 +156,7 @@ ActiveRecord::Schema.define(version: 20150522113334) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "category_id"
+    t.integer  "brand_id"
   end
 
   add_index "tackles", ["name", "user_id"], name: "index_tackles_on_name_and_user_id", unique: true
