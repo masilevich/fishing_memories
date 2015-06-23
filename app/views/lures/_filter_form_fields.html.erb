@@ -10,5 +10,5 @@
 
 <div class="filter_form_field">
 	<%= f.label :brand, resource_class.human_attribute_name("brand") %>
-	<%= f.collection_select :brand_id_eq, @brands, :id, :name, {include_blank: true}, {class: "select2", data: { placeholder: t('js.placeholders.brand') }} %>
+	<%= f.collection_select :brand_id_eq, @brands, :id, :name, {include_blank: true}, {class: "select2", data: { placeholder: t('js.placeholders.brand_name') }} %>
 </div>
