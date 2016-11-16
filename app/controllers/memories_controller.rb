@@ -6,7 +6,6 @@ class MemoriesController < ApplicationController
 
   before_action :set_resources, only: [:index]
   before_action :set_grouped_tackles_options, only: [:new, :edit, :index]
-  before_action :set_grouped_tackle_sets_options, only: [:new, :edit, :index]
   before_action :set_grouped_ponds_options, only: [:index, :new, :edit]
   before_action :set_grouped_places_options, only: [:index, :new, :edit]
 
@@ -20,7 +19,6 @@ class MemoriesController < ApplicationController
       set_grouped_ponds_options
       set_grouped_places_options
       set_grouped_tackles_options
-      set_grouped_tackle_sets_options
       render 'new'
     end
   end
@@ -37,7 +35,6 @@ class MemoriesController < ApplicationController
       set_grouped_ponds_options
       set_grouped_places_options
       set_grouped_tackles_options
-      set_grouped_tackle_sets_options
       render 'edit'
     end
   end
@@ -46,16 +43,11 @@ class MemoriesController < ApplicationController
 
   def memory_params
     params.require(:memory).permit(:occured_at, :weather, :description, 
-      :conclusion, :pond_state, tackle_ids: [], pond_ids: [], place_ids: [],
-      tackle_set_ids: [])
+      :conclusion, :pond_state, tackle_ids: [], pond_ids: [], place_ids: [])
   end
 
   def set_grouped_tackles_options
     @tackles_options = current_user.tackles.grouped_by_category_options_for_select(current_user.tackle_categories, :title)
-  end
-
-  def set_grouped_tackle_sets_options
-    @tackle_sets_options = current_user.tackle_sets.grouped_by_category_options_for_select(current_user.tackle_set_categories, :title)
   end
 
   def set_grouped_ponds_options
@@ -67,7 +59,7 @@ class MemoriesController < ApplicationController
   end
 
   def set_resources
-    @resources = resources.includes(:tackles, :tackle_sets, :ponds, :places)
+    @resources = resources.includes(:tackles, :ponds, :places)
   end
 
 end

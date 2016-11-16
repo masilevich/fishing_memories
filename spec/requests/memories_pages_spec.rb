@@ -36,7 +36,6 @@ describe "MemoriesPages" do
 				expect(page).to have_selector('th', text: Memory.human_attribute_name("weather"))
 				expect(page).to have_selector('th', text: Memory.human_attribute_name("description"))
 				expect(page).to have_selector('th', text: Memory.human_attribute_name("tackles"))
-				expect(page).to have_selector('th', text: Memory.human_attribute_name("tackle_sets"))
 				expect(page).to have_selector('th', text: Memory.human_attribute_name("ponds"))
 				expect(page).to have_selector('th', text: Memory.human_attribute_name("places"))
 			end
@@ -48,7 +47,6 @@ describe "MemoriesPages" do
 					memory.ponds.each { |pond| expect(page).to have_link(pond.name, href: pond_path(pond)) }
 					memory.places.each { |place| expect(page).to have_link(place.name, href: place_path(place)) }
 					memory.tackles.each { |tackle| expect(page).to have_link(tackle.name, href: tackle_path(tackle))}
-					memory.tackle_sets.each { |tackle_set| expect(page).to have_link(tackle_set.name, href: tackle_set_path(tackle_set))}
 					expect(page).to have_selector('td', text: memory.description.truncate(70))
 					expect(page).to have_link(I18n.t('fishing_memories.show'), href: memory_path(memory))
 					expect(page).to have_link(I18n.t('fishing_memories.edit'), href: edit_memory_path(memory))
@@ -72,7 +70,7 @@ describe "MemoriesPages" do
 
 					it_should_behave_like "sorted table", sorted_column: "description"
 
-					[Tackle, TackleSet, Pond, Place].each do |association_class|
+					[Tackle, Pond, Place].each do |association_class|
 						describe "HABTM" do
 							context "#{association_class.model_name.plural}" do
 								it_should_behave_like "sorted table", sorted_column: "#{association_class.model_name.plural}" do
@@ -97,7 +95,7 @@ describe "MemoriesPages" do
 			it_should_behave_like "filter", occured_at: :range,  description: :cont,
 			tackles: :association, ponds: :association, tackle_sets: :association
 			
-			[Tackle, TackleSet, Pond].each do |association_class|
+			[Tackle, Pond].each do |association_class|
 				describe "HABTM" do
 					context "#{association_class.model_name.plural}" do
 						it_should_behave_like "filter by HABTM association", "#{association_class.model_name.plural}" do
@@ -138,10 +136,6 @@ describe "MemoriesPages" do
 				it { should have_select('memory[tackle_ids][]', :options => tackles.map { |e| e.name}.sort) }
 			end
 
-			context "tackle sets" do
-				it { should have_select('memory[tackle_set_ids][]', :options => tackle_sets.map { |e| e.name}.sort) }
-			end
-
 			context "ponds" do
 				it { should have_select('memory[pond_ids][]', :options => ponds.map { |e| e.name}.sort) }
 			end
@@ -178,7 +172,6 @@ describe "MemoriesPages" do
 					fill_in "memory_description", with: @description
 					fill_in "memory_conclusion", with: @conclusion
 					select tackles.first.name, :from => "memory[tackle_ids][]"
-					select tackle_sets.first.name, :from => "memory[tackle_set_ids][]"
 					select ponds.first.name, :from => "memory[pond_ids][]"
 					select places.first.name, :from => "memory[place_ids][]"
 					fill_in "memory_weather", with: @weather_string
@@ -195,7 +188,6 @@ describe "MemoriesPages" do
 					expect(@memory.ponds.first).to eq ponds.first
 					expect(@memory.places.first).to eq places.first
 					expect(@memory.tackles.first).to eq tackles.first
-					expect(@memory.tackle_sets.first).to eq tackle_sets.first
 				end
 			end
 		end
@@ -219,7 +211,6 @@ describe "MemoriesPages" do
 				expect(page).to have_selector('th', text: Memory.human_attribute_name("weather"))
 				expect(page).to have_selector('th', text: Memory.human_attribute_name("pond_state"))
 				expect(page).to have_selector('th', text: Memory.human_attribute_name("tackles"))
-				expect(page).to have_selector('th', text: Memory.human_attribute_name("tackle_sets"))
 				expect(page).to have_selector('th', text: Memory.human_attribute_name("ponds"))
 				expect(page).to have_selector('th', text: Memory.human_attribute_name("places"))
 			end
@@ -272,8 +263,6 @@ describe "MemoriesPages" do
 			with_options:user.places.map { |e| e.name}.sort, selected: places.first.name ) }
 		it { should have_select('memory[tackle_ids][]', :options => tackles.map { |e| e.name}.sort, 
 			selected: tackles.first.name)}
-		it { should have_select('memory[tackle_set_ids][]', :options => tackle_sets.map { |e| e.name}.sort, 
-			selected: tackle_sets.first.title)}
 
 
 		describe "with valid information" do
@@ -281,7 +270,6 @@ describe "MemoriesPages" do
 				@new_occured_at = DateTime.now.to_date
 				fill_in "memory_occured_at", with: @new_occured_at
 				select tackles.second.name, :from => "memory[tackle_ids][]"
-				select tackle_sets.second.name, :from => "memory[tackle_set_ids][]"
 				select ponds.second.name, :from => "memory[pond_ids][]"
 				select places.second.name, :from => "memory[place_ids][]"
 				click_button submit
@@ -306,10 +294,6 @@ describe "MemoriesPages" do
 				expect(memory.tackles).to include(tackles.first)
 			end
 
-			it "should contain right tackle set" do
-				expect(memory.tackle_sets).to include(tackle_sets.second)
-				expect(memory.tackle_sets).to include(tackle_sets.first)
-			end
 		end
 
 	end

@@ -1,7 +1,6 @@
 <%= nav_link (Memory.model_name.human count: PLURAL_MANY_COUNT), memories_path, 'memories'  %>
 <%= nav_link (Note.model_name.human count: PLURAL_MANY_COUNT), notes_path, 'notes'  %>
-<%= nav_link (Tackle.model_name.human count: PLURAL_MANY_COUNT), tackles_path, ['tackles', 'tackle_sets', 'lures', 'brands'] do %> 
-	<%= nav_link (TackleSet.model_name.human count: PLURAL_MANY_COUNT), tackle_sets_path %>
+<%= nav_link (Tackle.model_name.human count: PLURAL_MANY_COUNT), tackles_path, ['tackles', 'lures', 'brands'] do %> 
 	<%= nav_link (Brand.model_name.human count: PLURAL_MANY_COUNT), brands_path %>
 	<%= nav_link (Lure.model_name.human count: PLURAL_MANY_COUNT), lures_path %>
 <% end %>
@@ -12,7 +11,6 @@
 
 <%= nav_link (Category.model_name.human count: PLURAL_MANY_COUNT), "", 'categories' do %>
 		<%= nav_link (TackleCategory.model_name.human count: PLURAL_MANY_COUNT), tackle_categories_path %>
-		<%= nav_link (TackleSetCategory.model_name.human count: PLURAL_MANY_COUNT), tackle_set_categories_path %>
 		<%= nav_link (LureCategory.model_name.human count: PLURAL_MANY_COUNT), lure_categories_path %>
 		<%= nav_link (PondCategory.model_name.human count: PLURAL_MANY_COUNT), pond_categories_path %>
 <% end %>

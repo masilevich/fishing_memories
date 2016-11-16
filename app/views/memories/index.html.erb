@@ -8,7 +8,6 @@
 				<%= sortable_col "ponds_name", Memory.human_attribute_name("ponds") %>
 				<%= sortable_col "places_name", Memory.human_attribute_name("places") %>
 				<%= sortable_col "tackles_name", Memory.human_attribute_name("tackles") %>
-				<%= sortable_col "tackle_sets_name", Memory.human_attribute_name("tackle_sets") %>
 				<th class="col col-actions"></th>
 			<% end %>
 
@@ -21,7 +20,6 @@
 						<td class="col"><%= render partial: 'layouts/resources/resource_link_to', collection: resource.ponds, as: :resource, spacer_template: 'shared/comma' %></td>
 						<td class="col"><%= render partial: 'layouts/resources/resource_link_to', collection: resource.places, as: :resource, locals: {body_method: :name}, spacer_template: 'shared/comma' %></td>
 						<td class="col"><%= render partial: 'layouts/resources/resource_link_to', collection: resource.tackles, as: :resource, spacer_template: 'shared/comma' %></td>
-						<td class="col"><%= render partial: 'layouts/resources/resource_link_to', collection: resource.tackle_sets, as: :resource, locals: {body_method: :name}, spacer_template: 'shared/comma' %></td>
 						<td class="col col-actions">
 		          <div class="table_actions">
 		          	<%= render 'layouts/resources/index_table_actions', resource: resource %>

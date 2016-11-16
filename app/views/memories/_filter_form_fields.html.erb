@@ -11,11 +11,6 @@
 </div>
 
 <div class="filter_form_field">
-	<%= f.label :tackle_sets, Memory.human_attribute_name("tackle_sets") %>
-	<%= f.select :tackle_sets_id_eq, grouped_options_for_select(@tackle_sets_options, :selected => params[:q].try(:[], :tackle_sets_id_eq)), {include_blank: true}, {class: "select2", data: { placeholder: t('js.placeholders.tackle_set_name') }} %>
-</div>
-
-<div class="filter_form_field">
 	<%= f.label :ponds, Memory.human_attribute_name("ponds") %>
 	<%= f.select :ponds_id_eq, grouped_options_for_select(@ponds_options, :selected => params[:q].try(:[], :ponds_id_eq)), {include_blank: true}, {class: "select2", data: { placeholder: t('js.placeholders.pond_name') }} %>
 </div>

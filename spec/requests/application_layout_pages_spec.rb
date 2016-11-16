@@ -15,7 +15,6 @@ describe "ApplicationLayoutPages" do
 
 			describe "header" do
 				let(:tackle_tab_label) {Tackle.model_name.human count: PLURAL_MANY_COUNT}
-				let(:tackle_sets_tab_label) {TackleSet.model_name.human count: PLURAL_MANY_COUNT}
 				let(:lures_tab_label) {Lure.model_name.human count: PLURAL_MANY_COUNT}
 				let(:brands_tab_label) {Brand.model_name.human count: PLURAL_MANY_COUNT}
 				let(:memories_tab_label) {Memory.model_name.human count: PLURAL_MANY_COUNT}
@@ -34,10 +33,6 @@ describe "ApplicationLayoutPages" do
 									expect(page).to have_selector('li.current', text: notes_tab_label)
 								end
 								click_link tackle_tab_label
-								within "ul#tabs" do
-									expect(page).to have_selector('li.current', text: tackle_tab_label)
-								end	
-								click_link tackle_sets_tab_label
 								within "ul#tabs" do
 									expect(page).to have_selector('li.current', text: tackle_tab_label)
 								end

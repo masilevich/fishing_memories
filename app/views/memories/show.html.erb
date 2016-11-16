@@ -24,10 +24,6 @@
         <th><%= Memory.human_attribute_name("tackles") %></th>
         <td><%= render partial: 'layouts/resources/resource_link_to', collection: @resource.tackles, as: :resource, spacer_template: 'shared/comma' %></td>
       </tr>
-      <tr class="row">
-        <th><%= Memory.human_attribute_name("tackle_sets") %></th>
-        <td><%= render partial: 'layouts/resources/resource_link_to', collection: @resource.tackle_sets, as: :resource, spacer_template: 'shared/comma' %></td>
-      </tr>
   <% end %>
 
   <%= render layout: 'layouts/resources/show_table', locals: {title: Memory.human_attribute_name("description")} do %>
