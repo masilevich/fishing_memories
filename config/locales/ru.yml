@@ -131,6 +131,7 @@ ru:
       next: "Следующая &rsaquo;"
       previous: "&lsaquo; Предыдущая"
       truncate: "&hellip;"
+    calendar: "Календарь"
   errors: &errors
     format: ! '%{attribute} %{message}'
     messages:

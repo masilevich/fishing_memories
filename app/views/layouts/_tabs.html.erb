@@ -1,4 +1,6 @@
-<%= nav_link (Memory.model_name.human count: PLURAL_MANY_COUNT), memories_path, 'memories'  %>
+<%= nav_link (Memory.model_name.human count: PLURAL_MANY_COUNT), memories_path, ['memories', 'calendar'] do  %>
+	<%= nav_link I18n.t('views.calendar'), memories_path({view: :calendar}) %>
+<% end %>
 <%= nav_link (Note.model_name.human count: PLURAL_MANY_COUNT), notes_path, 'notes'  %>
 <%= nav_link (Tackle.model_name.human count: PLURAL_MANY_COUNT), tackles_path, ['tackles', 'lures', 'brands'] do %> 
 	<%= nav_link (Brand.model_name.human count: PLURAL_MANY_COUNT), brands_path %>
