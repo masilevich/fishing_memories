@@ -20,6 +20,7 @@ gem 'ransack'
 gem 'rails_autolink'
 gem 'gmaps4rails', '1.5.6'
 gem 'acts-as-taggable-on', '~> 3.4'
+gem "simple_calendar", "~> 2.0"
 
 group :production do
   gem 'pg', '0.15.1'

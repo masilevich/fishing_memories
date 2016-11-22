@@ -183,6 +183,8 @@ GEM
       multi_json (~> 1.0)
       rubyzip (< 1.0.0)
       websocket (~> 1.0.4)
+    simple_calendar (2.2.0)
+      rails (>= 3.0)
     slop (3.6.0)
     sprockets (2.12.3)
       hike (~> 1.2)
@@ -434,5 +436,6 @@ DEPENDENCIES
   sass-rails (~> 4.0.2)
   select2-rails
   selenium-webdriver (= 2.35.1)
+  simple_calendar (~> 2.0)
   sqlite3
   uglifier

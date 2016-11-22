@@ -1,14 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'home', to: 'static_pages#home'
   get 'maps/new'
-
   get 'points/new'
+  get 'tackles/search/name', to: 'tackles#search_for_name', as: 'search_tackle_names'
+  get '/autocomplete_tags', to: 'notes#autocomplete_tags', as: 'autocomplete_tags'
+  get 'calendar', :to => 'calendars#show'
 
   devise_for :users
-
-  get 'tackles/search/name', to: 'tackles#search_for_name', as: 'search_tackle_names'
-
-  get '/autocomplete_tags', to: 'notes#autocomplete_tags', as: 'autocomplete_tags'
 
   resources :memories
   resources :notes do
@@ -26,7 +25,6 @@ Rails.application.routes.draw do
   resources :points
   resources :lures
   resources :brands
-
   resources :categories
   resources :tackle_categories, controller: 'categories', type: 'TackleCategory' 
   resources :pond_categories, controller: 'categories', type: 'PondCategory'
@@ -37,8 +35,6 @@ Rails.application.routes.draw do
     root :to => "users#index"
     resources :users
   end
-
-  get 'home', to: 'static_pages#home'
 
   root 'static_pages#home'
 
