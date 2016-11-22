@@ -1,0 +1,17 @@
+<% provide :title, I18n.t('views.calendar') %>
+<% content_for :page_title do %>
+  <%= I18n.t('views.calendar') %>
+<% end %>
+
+<% content_for :page_content do %>
+	<%= month_calendar events: @memories, attribute: :occured_at do |date, memories| %>
+	  <%= date %>
+
+	  <% memories.each do |memory| %>
+	    <div>
+	      <%= link_to memory.title, memory%>
+	    </div>
+	  <% end %>
+
+	<% end %>
+<% end %>
